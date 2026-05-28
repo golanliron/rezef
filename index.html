@@ -458,6 +458,7 @@ nav{
   border:1.5px solid rgba(124,58,237,0.12);
   border-radius:20px;
   padding:24px 22px 20px;
+  height:auto;
   text-align:right;
   direction:rtl;
   box-shadow:0 4px 20px rgba(124,58,237,0.08);
@@ -658,6 +659,9 @@ footer{background:var(--navy);padding:64px 80px 36px}
 /* פוטר מובייל — עיצוב שונה לחלוטין */
 .ft-mobile{display:none}
 @media(max-width:768px){
+  .tcard{flex:0 0 calc(100vw - 80px)!important;min-width:0}
+  .tcard-text{font-size:13px}
+  .tcarousel-wrap{padding:0 40px}
   .ft-desktop{display:none!important}
   .ft-mobile{display:block}
   footer{padding:24px 16px 20px}
