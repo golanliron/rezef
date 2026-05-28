@@ -995,8 +995,7 @@ footer{background:var(--navy);padding:64px 80px 36px}
   .ft-legal-links{gap:10px}
 
   /* FLOATING BTN */
-  #add-maan-btn{bottom:52px;left:16px;padding:0;border-radius:50%;width:48px;height:48px;justify-content:center;font-size:26px;background:transparent;box-shadow:none;border:none}
-  #add-maan-btn .add-maan-label{display:none}
+  #add-maan-btn{display:none!important}
   .add-maan-desktop{display:none}
   .add-maan-mobile{display:block}
   .add-maan-mobile{display:block}
@@ -1426,6 +1425,11 @@ if(typeof initMaanim==="function"){initMaanim();}else{document.addEventListener(
         <div class="tcard"><div class="tcard-quote">"</div><div class="tcard-text">קיבלתי אבחון בגיל 32. חיפשתי תמיכה לבוגרים ולא מצאתי כלום עד שנכנסתי לרצף. יש מקום גם לנו.</div><div class="tcard-who"><div class="tcard-avatar">י</div><div><div class="tcard-name">יונתן, על הספקטרום</div><div class="tcard-sub">באר שבע</div></div></div></div>
         <div class="tcard"><div class="tcard-quote">"</div><div class="tcard-text">הילדה שלנו אובחנה בגיל 5. תוך יומיים מצאנו גן מתאים, מרפאה ומסגרת שעות. לא ידעתי שזה אפשרי.</div><div class="tcard-who"><div class="tcard-avatar">נ</div><div><div class="tcard-name">נועה ואמיר</div><div class="tcard-sub">פתח תקווה</div></div></div></div>
         <div class="tcard"><div class="tcard-quote">"</div><div class="tcard-text">סוף סוף הבנתי מה הזכויות שמגיעות לנו. המידע היה ברור, מסודר ולא מכריע.</div><div class="tcard-who"><div class="tcard-avatar">ש</div><div><div class="tcard-name">שרה, אמא לבת בת 9</div><div class="tcard-sub">נתניה</div></div></div></div>
+        <div class="tcard"><div class="tcard-quote">"</div><div class="tcard-text">הגעתי לרצף אחרי חיפוש אינסופי בגוגל. תוך רבע שעה היה לי רשימה של קבוצות חברתיות לבן שלי. פשוט כך.</div><div class="tcard-who"><div class="tcard-avatar">ג</div><div><div class="tcard-name">גלית, אמא לבן בן 16</div><div class="tcard-sub">מודיעין</div></div></div></div>
+        <div class="tcard"><div class="tcard-quote">"</div><div class="tcard-text">אני על הספקטרום ועבדתי קשה למצוא מקום עבודה שמכיל. רצף הראה לי תוכניות תעסוקה שלא ידעתי שקיימות.</div><div class="tcard-who"><div class="tcard-avatar">ע</div><div><div class="tcard-name">עמית, בן 24</div><div class="tcard-sub">תל אביב</div></div></div></div>
+        <div class="tcard"><div class="tcard-quote">"</div><div class="tcard-text">הדיור הנתמך שמצאתי דרך רצף שינה את החיים של הבת שלנו. היא פורחת שם. אנחנו לא מאמינים עד היום.</div><div class="tcard-who"><div class="tcard-avatar">ה</div><div><div class="tcard-name">הלנה ויוסי</div><div class="tcard-sub">חיפה</div></div></div></div>
+        <div class="tcard"><div class="tcard-quote">"</div><div class="tcard-text">כסוציאלית, רצף חסך לי שעות של מחקר. אני מפנה אליו משפחות וכולן חוזרות עם תשובות.</div><div class="tcard-who"><div class="tcard-avatar">ל</div><div><div class="tcard-name">לירי, עובדת סוציאלית</div><div class="tcard-sub">ירושלים</div></div></div></div>
+        <div class="tcard"><div class="tcard-quote">"</div><div class="tcard-text">אחרי האבחון הרגשנו לאבודים. רצף היה כמו מגדלור. ידענו לאן ללכת, עם מי לדבר ומה לבקש.</div><div class="tcard-who"><div class="tcard-avatar">צ</div><div><div class="tcard-name">צחי ורותי</div><div class="tcard-sub">רעננה</div></div></div></div>
       </div>
     </div>
     <div class="tcarousel-dots" id="tcarouselDots"></div>
@@ -1708,7 +1712,7 @@ if(typeof initMaanim==="function"){initMaanim();}else{document.addEventListener(
       <a href="javascript:openTerms()" class="ft-legal-a">תנאי שימוש</a>
     </span>
   </div>
-  <div style="margin-top:12px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08);text-align:center">
+  <div class="ft-desktop" style="margin-top:12px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08);text-align:center">
     <p style="font-size:10px;color:rgba(255,255,255,0.25);line-height:1.5;max-width:560px;margin:0 auto">
       המידע מוצג לצורכי אוריינטציה בלבד ואינו מהווה המלצה מקצועית. רצף אינו אחראי לנכונות או עדכניות המענים.
     </p>
@@ -1935,6 +1939,13 @@ document.addEventListener('DOMContentLoaded', initMaanim);
     };
     window.addEventListener('resize', render);
     render();
+    // autoplay — infinite, no gaps
+    setInterval(function(){
+      perView = calcPer();
+      if(cur + perView >= cards.length) cur = 0;
+      else cur = cur + 1;
+      render();
+    }, 3500);
   }
   document.addEventListener('DOMContentLoaded', init);
 })();
