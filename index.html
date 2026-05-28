@@ -410,48 +410,26 @@ nav{
 .testimonials-sec .sec-title{margin-bottom:8px}
 .testimonials-sec .sec-header{padding:0 80px;margin-bottom:48px}
 
-/* carousel */
-.tcarousel-wrap{
-  position:relative;
-  padding:0 72px;
-}
+/* marquee */
+.tcarousel-wrap{position:relative;padding:0;}
 .tscroll-outer{
-  position:relative;
-  width:100%;
-  overflow:hidden;
-  padding:12px 0 20px;
+  width:100%;overflow:hidden;
+  padding:16px 0 24px;
+  -webkit-mask:linear-gradient(to left,transparent 0%,#000 8%,#000 92%,transparent 100%);
+  mask:linear-gradient(to left,transparent 0%,#000 8%,#000 92%,transparent 100%);
 }
 .tscroll-track{
-  display:flex;
-  flex-direction:row;
-  gap:18px;
-  padding:6px 0;
-  transition:transform .4s cubic-bezier(.4,0,.2,1);
+  display:flex;flex-direction:row;gap:20px;
+  width:max-content;
+  animation:marquee 40s linear infinite;
 }
-.tcarousel-btn{
-  position:absolute;top:50%;transform:translateY(-50%);
-  width:48px;height:48px;border-radius:50%;
-  background:#fff;border:1.5px solid rgba(124,58,237,0.25);
-  color:var(--purple);cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 4px 16px rgba(124,58,237,0.12);
-  transition:background .2s,box-shadow .2s,border-color .2s;
-  z-index:2;
+.tscroll-track:hover{animation-play-state:paused}
+@keyframes marquee{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(-50%)}
 }
-.tcarousel-btn:hover{background:var(--purple);color:#fff;box-shadow:0 6px 24px rgba(124,58,237,0.25);border-color:var(--purple)}
-.tcarousel-btn:disabled{opacity:0.3;cursor:default;pointer-events:none}
-.tcarousel-btn.prev{right:12px}
-.tcarousel-btn.next{left:12px}
-.tcarousel-dots{
-  display:flex;justify-content:center;gap:8px;margin-top:24px;
-}
-.tcarousel-dot{
-  width:8px;height:8px;border-radius:50%;
-  background:rgba(124,58,237,0.2);
-  transition:background .2s,width .2s;
-  cursor:pointer;border:none;padding:0;
-}
-.tcarousel-dot.active{background:var(--purple);width:22px;border-radius:4px}
+.tcarousel-btn{display:none}
+.tcarousel-dots{display:none}
 
 .tcard{
   flex:0 0 300px;
@@ -913,13 +891,13 @@ footer{background:var(--navy);padding:64px 80px 36px}
   .hero-btns{display:none}
 
   /* SEARCH STRIP */
-  .hero-search-strip{padding:18px 16px 20px}
+  .hero-search-strip{padding:10px 14px 12px}
   .hero-search-strip .hero-search{
-    border-radius:14px;margin-bottom:0;
-    padding:5px 5px 5px 12px;
+    border-radius:10px;margin-bottom:0;
+    padding:3px 3px 3px 10px;
   }
-  .hero-search-strip .hero-search input{font-size:15px}
-  .hero-search-strip .hero-search button{padding:12px 18px;font-size:14px;border-radius:10px}
+  .hero-search-strip .hero-search input{font-size:13px}
+  .hero-search-strip .hero-search button{padding:8px 13px;font-size:12px;border-radius:8px}
   .hero-btns{display:flex;gap:5px;margin-top:12px;flex-wrap:nowrap;justify-content:center}
   .hero-btns .btn-main,.hero-btns .btn-line{padding:9px 11px;font-size:11.5px;border-radius:100px;white-space:nowrap;flex-shrink:0}
 
@@ -1414,14 +1392,10 @@ if(typeof initMaanim==="function"){initMaanim();}else{document.addEventListener(
     <div class="sec-title">משפחות שמצאו את הדרך ב<span style="font-family:'Rubik',sans-serif;letter-spacing:2px">רֶצֶף</span></div>
 
   <div class="tcarousel-wrap">
-    <button class="tcarousel-btn prev" onclick="tCarousel(-1)" aria-label="הקודם">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
-    </button>
-    <button class="tcarousel-btn next" onclick="tCarousel(1)" aria-label="הבא">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
-    </button>
+
     <div class="tscroll-outer">
       <div class="tscroll-track" id="tscrollTrack">
+        <div class="tcard"><div class="tcard-quote">"</div><div class="tcard-text">סוף סוף מקום אחד שמרכז את כל מה שחיפשנו. חסכנו שבועות של חיפושים מייאשים.</div><div class="tcard-who"><div class="tcard-avatar">א</div><div><div class="tcard-name">אמא לילד בן 7</div><div class="tcard-sub">תל אביב
         <div class="tcard"><div class="tcard-quote">"</div><div class="tcard-text">סוף סוף מקום אחד שמרכז את כל מה שחיפשנו. חסכנו שבועות של חיפושים מייאשים.</div><div class="tcard-who"><div class="tcard-avatar">א</div><div><div class="tcard-name">אמא לילד בן 7</div><div class="tcard-sub">תל אביב</div></div></div></div>
         <div class="tcard"><div class="tcard-quote">"</div><div class="tcard-text">הייתי אבודה לגמרי אחרי האבחון. רצף נתן לי מפה ברורה לפי גיל, לפי צורך, ולפי מקום. זה שינה הכל.</div><div class="tcard-who"><div class="tcard-avatar">ר</div><div><div class="tcard-name">רחל, אמא לנערה בת 14</div><div class="tcard-sub">ירושלים</div></div></div></div>
         <div class="tcard"><div class="tcard-quote">"</div><div class="tcard-text">הבן שלי עומד לעבור לחיים עצמאיים. מצאתי דרך רצף תוכניות שלא ידעתי שקיימות.</div><div class="tcard-who"><div class="tcard-avatar">ד</div><div><div class="tcard-name">דנה, אמא לבן בן 20</div><div class="tcard-sub">חיפה</div></div></div></div>
@@ -1436,7 +1410,7 @@ if(typeof initMaanim==="function"){initMaanim();}else{document.addEventListener(
         <div class="tcard"><div class="tcard-quote">"</div><div class="tcard-text">אחרי האבחון הרגשנו לאבודים. רצף היה כמו מגדלור. ידענו לאן ללכת, עם מי לדבר ומה לבקש.</div><div class="tcard-who"><div class="tcard-avatar">צ</div><div><div class="tcard-name">צחי ורותי</div><div class="tcard-sub">רעננה</div></div></div></div>
       </div>
     </div>
-    <div class="tcarousel-dots" id="tcarouselDots"></div>
+
   </div>
 </section>
 
