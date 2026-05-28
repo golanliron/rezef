@@ -421,13 +421,9 @@ nav{
 .tscroll-track{
   display:flex;flex-direction:row;gap:20px;
   width:max-content;
-  animation:marquee 40s linear infinite;
+  will-change:transform;
 }
 .tscroll-track:hover{animation-play-state:paused}
-@keyframes marquee{
-  0%{transform:translateX(0)}
-  100%{transform:translateX(-50%)}
-}
 .tcarousel-btn{display:none}
 .tcarousel-dots{display:none}
 
@@ -1880,7 +1876,7 @@ document.addEventListener('DOMContentLoaded', initMaanim);
     cur=(cur+1)%slides.length;
     slides[cur].classList.add('active');
   }
-  setInterval(tick,4500);
+  setInterval(tick,2000);
 })();
 
 /* ── TESTIMONIALS CAROUSEL ── */
@@ -2319,6 +2315,7 @@ document.addEventListener('DOMContentLoaded', function(){
     var st = document.createElement('style');
     st.textContent = '@keyframes scrollInfinite{from{transform:translateX(0)}to{transform:translateX(-'+Math.round(setW)+'px)}}';
     document.head.appendChild(st);
+    track.style.animation = 'scrollInfinite 35s linear infinite';
   });
 });
 
