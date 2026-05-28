@@ -1225,10 +1225,10 @@ footer{background:var(--navy);padding:64px 80px 36px}
 </div>
 
 <!-- STATS -->
-<div class="stats">
-  <div class="stat"><div class="stat-n" id="stat-count">842</div><div class="stat-l">מענים ותוכניות</div></div>
-  <div class="stat"><div class="stat-n">6</div><div class="stat-l">שלבי חיים</div></div>
-  <div class="stat"><div class="stat-n">חינם</div><div class="stat-l">מידע פתוח לכולם</div></div>
+<div class="stats" id="stats-section">
+  <div class="stat"><div class="stat-n" id="stat-count" data-target="842">0</div><div class="stat-l">מענים ותוכניות</div></div>
+  <div class="stat"><div class="stat-n" data-target="6">0</div><div class="stat-l">שלבי חיים</div></div>
+  <div class="stat"><div class="stat-n stat-free" style="opacity:0;transition:opacity 0.8s 0.6s">חינם</div><div class="stat-l">מידע פתוח לכולם</div></div>
 </div>
 
 <!-- AGES -->
@@ -2670,6 +2670,50 @@ function closePromo(){
     if(!ticking){ requestAnimationFrame(function(){ updateParallax(); ticking=false; }); ticking=true; }
   }, {passive:true});
   updateParallax();
+})();
+</script>
+
+<!-- COUNTER ANIMATION -->
+<script>
+(function(){
+  function easeOut(t){ return 1 - Math.pow(1 - t, 3); }
+
+  function animateCounter(el, target, duration) {
+    const start = performance.now();
+    function step(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const value = Math.round(easeOut(progress) * target);
+      el.textContent = value;
+      if (progress < 1) requestAnimationFrame(step);
+      else el.textContent = target;
+    }
+    requestAnimationFrame(step);
+  }
+
+  const section = document.getElementById('stats-section');
+  if (!section) return;
+
+  let fired = false;
+  const observer = new IntersectionObserver(function(entries) {
+    if (fired || !entries[0].isIntersecting) return;
+    fired = true;
+    observer.disconnect();
+
+    // מספרים
+    section.querySelectorAll('.stat-n[data-target]').forEach(function(el, i) {
+      const target = parseInt(el.dataset.target, 10);
+      const delay = i * 150;
+      setTimeout(function(){ animateCounter(el, target, 1400); }, delay);
+    });
+
+    // חינם — fade in
+    const free = section.querySelector('.stat-free');
+    if (free) free.style.opacity = '1';
+
+  }, { threshold: 0.4 });
+
+  observer.observe(section);
 })();
 </script>
 
