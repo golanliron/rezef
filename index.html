@@ -660,9 +660,14 @@ footer{background:var(--navy);padding:64px 80px 36px}
 /* פוטר מובייל — עיצוב שונה לחלוטין */
 .ft-mobile{display:none;background:var(--navy)}
 @media(max-width:768px){
-  .tcard{flex:0 0 calc(100vw - 80px)!important;min-width:0}
+  .tcard{flex:0 0 calc(100vw - 48px)!important;min-width:0}
   .tcard-text{font-size:13px}
-  .tcarousel-wrap{padding:0 40px}
+  .tcarousel-wrap{padding:0 16px}
+  .tcarousel-btn{width:40px;height:40px;top:auto;bottom:-56px;transform:none}
+  .tcarousel-btn.prev{right:auto;left:calc(50% - 52px)}
+  .tcarousel-btn.next{left:auto;right:calc(50% - 52px)}
+  .tscroll-outer{padding:12px 0 8px}
+  .tcarousel-dots{margin-top:68px}
   .ft-desktop{display:none!important}
   .ft-mobile{display:block}
   footer{padding:10px 16px max(8px, env(safe-area-inset-bottom))}
