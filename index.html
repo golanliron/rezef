@@ -665,60 +665,17 @@ footer{background:var(--navy);padding:64px 80px 36px}
   .tcarousel-wrap{padding:0 40px}
   .ft-desktop{display:none!important}
   .ft-mobile{display:block}
-  footer{padding:18px 16px 16px}
+  footer{padding:10px 16px 8px}
 }
-.ft-mobile-logo{
-  display:flex;align-items:flex-start;gap:10px;
-  margin-bottom:14px;
-  padding-bottom:14px;
-  border-bottom:1px solid rgba(255,255,255,0.1);
+.ft-mini-nav{
+  display:flex;align-items:center;justify-content:center;gap:20px;margin-bottom:7px;
 }
-.ft-mobile-name{
-  font-family:'Rubik',sans-serif;font-size:16px;font-weight:800;
-  color:#fff;letter-spacing:1.5px;
-  line-height:1;
-}
-.ft-mobile-tag{
-  font-size:11px;color:rgba(255,255,255,0.45);
-  line-height:1.5;margin-top:3px;
-  font-weight:400;letter-spacing:0.1px;
-}
-.ft-chips{
-  display:flex;flex-wrap:wrap;gap:6px;
-  margin-bottom:16px;
-}
-.ft-chip{
-  display:inline-block;
-  padding:6px 12px;
-  border-radius:100px;
-  border:1px solid rgba(167,139,250,0.25);
-  color:rgba(255,255,255,0.75);
-  font-size:12px;font-weight:500;
-  text-decoration:none;
-  transition:background .2s,border-color .2s,color .2s;
-  background:rgba(124,58,237,0.12);
-  letter-spacing:0.1px;
-}
-.ft-chip:active{background:rgba(124,58,237,0.35);border-color:var(--purple3);color:#fff}
-.ft-wa-btn{
-  display:inline-flex;align-items:center;justify-content:center;
-  width:40px;height:40px;border-radius:50%;
-  background:#25D366;color:#fff;
-  text-decoration:none;
-  box-shadow:0 2px 8px rgba(37,211,102,0.25);
-  transition:opacity .2s;
-  flex-shrink:0;
-}
-.ft-wa-btn:active{opacity:0.88}
-.ft-mobile-bottom{
-  border-top:1px solid rgba(255,255,255,0.08);
-  padding-top:16px;
-  display:flex;justify-content:space-between;align-items:center;
-  flex-wrap:wrap;gap:8px;
-}
-.ft-mobile-copy{font-size:12px;color:rgba(255,255,255,0.3);letter-spacing:0.2px}
-.ft-mobile-legal{display:flex;gap:14px}
-.ft-mobile-legal a{font-size:12px;color:rgba(255,255,255,0.45);text-decoration:none;letter-spacing:0.1px}
+.ft-mini-link{font-size:11.5px;color:rgba(255,255,255,0.5);text-decoration:none;font-weight:500;transition:color .15s;}
+.ft-mini-link:active{color:#fff}
+.ft-mini-wa{display:inline-flex;align-items:center;color:#4ade80;opacity:0.7;text-decoration:none;transition:opacity .15s;}
+.ft-mini-wa:active{opacity:1}
+.ft-mini-copy{font-size:10px;color:rgba(255,255,255,0.22);text-align:center;}
+.ft-mini-copy a{color:rgba(255,255,255,0.32);text-decoration:none;}
 
 .logo-svg{width:32px;height:32px;flex-shrink:0}
 
@@ -931,7 +888,7 @@ footer{background:var(--navy);padding:64px 80px 36px}
   .ages-grid{grid-template-columns:repeat(3,1fr)!important;gap:14px}
   .svc-grid{grid-template-columns:repeat(3,1fr)}
   .articles-grid{grid-template-columns:repeat(2,1fr)}
-  footer{padding:52px 40px 28px}
+  footer{padding:10px 16px 8px}
   .ft-cols{gap:32px}
 }
 
@@ -1029,7 +986,7 @@ footer{background:var(--navy);padding:64px 80px 36px}
   .cta-btns .btn-main,.cta-btns .btn-line{flex:1;text-align:center;min-width:120px}
 
   /* FOOTER */
-  footer{padding:40px 16px 24px}
+  footer{padding:10px 16px 8px}
   .ft{flex-direction:column;gap:24px;margin-bottom:28px}
   .ft-cols{flex-direction:column;gap:20px}
   .ft-bottom{flex-direction:column;align-items:flex-start;gap:8px;font-size:11px}
@@ -1332,7 +1289,7 @@ if(typeof initMaanim==="function"){initMaanim();}else{document.addEventListener(
       <span class="svc-tag">חינוך</span>
       <h3>חינוך והכלה</h3>
       <p>מסגרות חינוכיות מיוחדות, חינוך משלב, סל שילוב, סייעות לכל גיל ולכל רמת תפקוד. כי כל ילד זכאי ללמוד בסביבה המתאימה לו.</p>
-      <a href="#" class="svc-link" onclick="event.preventDefault();openMaanimByCategory('מסגרות חינוך')">133 מענים ←</a>
+      <a href="#" class="svc-link" onclick="event.preventDefault();openMaanimByCategory('מסגרות חינוך')">←</a>
     </div>
     <div class="svc-card" style="cursor:pointer" onclick="openMaanimByCategory('שירותים לבוגרים')">
       <div class="svc-ico">
@@ -1341,7 +1298,7 @@ if(typeof initMaanim==="function"){initMaanim();}else{document.addEventListener(
       <span class="svc-tag">תעסוקה ובגרות</span>
       <h3>תעסוקה נתמכת</h3>
       <p>הכשרות, ליווי תעסוקתי ומעסיקים מכילים לצעירים ומבוגרים.</p>
-      <a href="#" class="svc-link" onclick="event.stopPropagation();event.preventDefault();openMaanimByCategory('שירותים לבוגרים')">102 מענים ←</a>
+      <a href="#" class="svc-link" onclick="event.stopPropagation();event.preventDefault();openMaanimByCategory('שירותים לבוגרים')">←</a>
     </div>
     <div class="svc-card" style="cursor:pointer" onclick="openMaanimByCategory('שירותים לבוגרים')">
       <div class="svc-ico">
@@ -1350,7 +1307,7 @@ if(typeof initMaanim==="function"){initMaanim();}else{document.addEventListener(
       <span class="svc-tag">דיור</span>
       <h3>דיור ועצמאות</h3>
       <p>דיור מוגן, דיור בקהילה, תמיכה בחיים עצמאיים למבוגרים.</p>
-      <a href="#" class="svc-link" onclick="event.stopPropagation();event.preventDefault();openMaanimByCategory('שירותים לבוגרים')">102 מענים ←</a>
+      <a href="#" class="svc-link" onclick="event.stopPropagation();event.preventDefault();openMaanimByCategory('שירותים לבוגרים')">←</a>
     </div>
     <div class="svc-card" style="cursor:pointer" onclick="openMaanimByCategory('טיפולים ומטפלים')">
       <div class="svc-ico">
@@ -1359,7 +1316,7 @@ if(typeof initMaanim==="function"){initMaanim();}else{document.addEventListener(
       <span class="svc-tag">טיפול ובריאות הנפש</span>
       <h3>תמיכה רגשית</h3>
       <p>טיפול, קבוצות תמיכה, ייעוץ להורים ולאחים.</p>
-      <a href="#" class="svc-link" onclick="event.stopPropagation();event.preventDefault();openMaanimByCategory('טיפולים ומטפלים')">229 מענים ←</a>
+      <a href="#" class="svc-link" onclick="event.stopPropagation();event.preventDefault();openMaanimByCategory('טיפולים ומטפלים')">←</a>
     </div>
     <div class="svc-card" style="cursor:pointer" onclick="openMaanimByCategory('זכויות ורווחה')">
       <div class="svc-ico">
@@ -1368,7 +1325,7 @@ if(typeof initMaanim==="function"){initMaanim();}else{document.addEventListener(
       <span class="svc-tag">זכויות</span>
       <h3>זכויות וסיוע</h3>
       <p>קצבאות, סל שיקום, ועדות השמה. כי כל אחד זכאי לדעת.</p>
-      <a href="#" class="svc-link" onclick="event.stopPropagation();event.preventDefault();openMaanimByCategory('זכויות ורווחה')">84 מענים ←</a>
+      <a href="#" class="svc-link" onclick="event.stopPropagation();event.preventDefault();openMaanimByCategory('זכויות ורווחה')">←</a>
     </div>
     <div class="svc-card" style="cursor:pointer" onclick="openMaanimByCategory('קייטנות ופנאי')">
       <div class="svc-ico">
@@ -1377,7 +1334,7 @@ if(typeof initMaanim==="function"){initMaanim();}else{document.addEventListener(
       <span class="svc-tag">פנאי</span>
       <h3>פנאי וקהילה</h3>
       <p>חוגים, קייטנות, מועדוני ספורט. כי שייכות היא זכות.</p>
-      <a href="#" class="svc-link" onclick="event.stopPropagation();event.preventDefault();openMaanimByCategory('קייטנות ופנאי')">43 מענים ←</a>
+      <a href="#" class="svc-link" onclick="event.stopPropagation();event.preventDefault();openMaanimByCategory('קייטנות ופנאי')">←</a>
     </div>
   </div>
 </section>
@@ -1728,39 +1685,13 @@ if(typeof initMaanim==="function"){initMaanim();}else{document.addEventListener(
 
   <!-- ── MOBILE FOOTER ── -->
   <div class="ft-mobile">
-    <div class="ft-mobile-logo">
-      <svg class="logo-svg" viewBox="0 0 40 40" fill="none" style="width:32px;height:32px">
-        <path d="M4 36 C4 16 20 10 20 10 C20 10 36 16 36 36" stroke="#A78BFA" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-        <path d="M8.5 36 C8.5 19 20 14 20 14 C20 14 31.5 19 31.5 36" stroke="#312E81" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-        <path d="M13 36 C13 22 20 18 20 18 C20 18 27 22 27 36" stroke="#7C3AED" stroke-width="3.5" stroke-linecap="round" fill="none"/>
-        <circle cx="20" cy="36" r="2.8" fill="#7C3AED"/>
-      </svg>
-      <div style="flex:1;min-width:0">
-        <div class="ft-mobile-name">רֶצֶף</div>
-        <div class="ft-mobile-tag">מלווים אנשים אוטיסטים ומשפחותיהם — בכל שלב בחיים</div>
-      </div>
-    </div>
-
-    <div style="margin-bottom:16px;">
-      <a href="https://wa.me/972536256653?text=שלום%20מיטל%2C%20הגעתי%20דרך%20אתר%20רצף%20ואשמח%20לעזרה" target="_blank" class="ft-wa-btn">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        דברו איתי בוואטסאפ
-      </a>
-    </div>
-
-    <div class="ft-chips">
-      <a href="#ages" class="ft-chip" onclick="closeMaanim&&closeMaanim()">מענים</a>
-      <a href="javascript:toggleArticles(event||{preventDefault:()=>{}})" class="ft-chip">כתבות</a>
-      <a href="#about" class="ft-chip">אודות</a>
-    </div>
-
-    <div class="ft-mobile-bottom">
-      <span class="ft-mobile-copy">© 2026 רֶצֶף · מיטל פלג</span>
-      <div class="ft-mobile-legal">
-        <a href="javascript:openPrivacy()">פרטיות</a>
-        <a href="javascript:openTerms()">תנאי שימוש</a>
-      </div>
-    </div>
+    <nav class="ft-mini-nav">
+      <a href="#ages" class="ft-mini-link" onclick="closeMaanim&&closeMaanim()">מענים</a>
+      <a href="javascript:toggleArticles(event||{preventDefault:()=>{}})" class="ft-mini-link">כתבות</a>
+      <a href="#about" class="ft-mini-link">אודות</a>
+      <a href="https://wa.me/972536256653?text=שלום%20מיטל" target="_blank" class="ft-mini-wa"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+    </nav>
+    <div class="ft-mini-copy">&copy; 2026 רֶצֶף &middot; <a href="javascript:openPrivacy()">פרטיות</a> &middot; <a href="javascript:openTerms()">תנאי שימוש</a></div>
   </div>
 
   <!-- shared bottom bar — desktop only -->
