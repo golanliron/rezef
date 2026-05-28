@@ -1883,65 +1883,7 @@ document.addEventListener('DOMContentLoaded', initMaanim);
   setInterval(tick,2000);
 })();
 
-/* ── TESTIMONIALS CAROUSEL ── */
-(function(){
-  var track, cards, dots, cur=0, perView=3;
-  function init(){
-    track = document.getElementById('tscrollTrack');
-    if(!track) return;
-    cards = Array.from(track.querySelectorAll('.tcard'));
-    var dotsEl = document.getElementById('tcarouselDots');
-    var total = cards.length;
-    function calcPer(){
-      var w = window.innerWidth;
-      return w < 600 ? 1 : w < 900 ? 2 : 3;
-    }
-    function getCardW(){
-      // measure from DOM or fallback to outer width / perView
-      var w = cards[0] ? cards[0].getBoundingClientRect().width : 0;
-      if(!w){
-        var outer = track.parentElement;
-        w = outer ? outer.offsetWidth / calcPer() - 18 : 300;
-      }
-      return w + 18;
-    }
-    function render(){
-      perView = calcPer();
-      var cardW = getCardW();
-      track.style.transform = 'translateX(' + (cur * cardW) + 'px)';
-      // dots
-      var pages = Math.ceil(total / perView);
-      dotsEl.innerHTML='';
-      for(var i=0;i<pages;i++){
-        var d=document.createElement('button');
-        d.className='tcarousel-dot'+(Math.floor(cur/perView)===i?' active':'');
-        d.setAttribute('aria-label','עמוד '+(i+1));
-        (function(idx){d.onclick=function(){cur=idx*perView;render();}})(i);
-        dotsEl.appendChild(d);
-      }
-      // btns
-      var prev=document.querySelector('.tcarousel-btn.prev');
-      var next=document.querySelector('.tcarousel-btn.next');
-      if(prev) prev.disabled = cur<=0;
-      if(next) next.disabled = cur+perView>=total;
-    }
-    window.tCarousel = function(dir){
-      perView = calcPer();
-      cur = Math.max(0, Math.min(cur + dir*perView, cards.length - perView));
-      render();
-    };
-    window.addEventListener('resize', function(){ cur=0; render(); });
-    render();
-    // autoplay infinite
-    setInterval(function(){
-      perView = calcPer();
-      if(cur + perView >= total) cur = 0;
-      else cur += 1;
-      render();
-    }, 3500);
-  }
-  document.addEventListener('DOMContentLoaded', init);
-})();
+/* ── TESTIMONIALS — CSS marquee only ── */
 
 function openMaanim(ageKey) {
   const cfg = AGE_CONFIG.find(a => a.key === ageKey);
