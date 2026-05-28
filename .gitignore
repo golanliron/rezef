@@ -1,0 +1,10 @@
+# Backup files from data pipeline
+*.original
+*.pre-clean
+*.backup-*
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
