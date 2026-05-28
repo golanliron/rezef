@@ -658,7 +658,7 @@ footer{background:var(--navy);padding:64px 80px 36px}
 }
 
 /* פוטר מובייל — עיצוב שונה לחלוטין */
-.ft-mobile{display:none}
+.ft-mobile{display:none;background:var(--navy)}
 @media(max-width:768px){
   .tcard{flex:0 0 calc(100vw - 80px)!important;min-width:0}
   .tcard-text{font-size:13px}
@@ -982,8 +982,10 @@ footer{background:var(--navy);padding:64px 80px 36px}
     text-align:right;
   }
   .cta-band h2{max-width:100%;line-height:1.25}
-  .cta-btns{flex-wrap:wrap;gap:10px}
-  .cta-btns .btn-main,.cta-btns .btn-line{flex:1;text-align:center;min-width:120px}
+  .cta-btns{flex-wrap:wrap;gap:8px}
+  .cta-btns .btn-main,.cta-btns .btn-line{flex:1;text-align:center;min-width:120px;padding:10px 16px;font-size:14px}
+  .cta-band{padding:32px 20px!important}
+  .cta-band h2{font-size:20px!important}
 
   /* FOOTER */
   footer{padding:10px 16px 8px}
@@ -993,8 +995,11 @@ footer{background:var(--navy);padding:64px 80px 36px}
   .ft-legal-links{gap:10px}
 
   /* FLOATING BTN */
-  #add-maan-btn{bottom:20px;left:16px;padding:13px 16px;border-radius:50%;width:52px;height:52px;justify-content:center}
+  #add-maan-btn{bottom:90px;left:16px;padding:0;border-radius:50%;width:48px;height:48px;justify-content:center;font-size:26px;background:transparent;box-shadow:none;border:none}
   #add-maan-btn .add-maan-label{display:none}
+  .add-maan-desktop{display:none}
+  .add-maan-mobile{display:block}
+  .add-maan-mobile{display:block}
 
   /* MAANIM PANEL */
   #maanim-panel{width:100vw!important;border-radius:0!important}
@@ -1712,8 +1717,9 @@ if(typeof initMaanim==="function"){initMaanim();}else{document.addEventListener(
 
 <!-- ══ ADD MAAN FLOATING BTN ══ -->
 <a href="https://wa.me/972536256653?text=שלום%20מיטל%2C%20אני%20רוצה%20להוסיף%20מענה%20לאתר%20רצף" target="_blank" id="add-maan-btn" title="הוסיפו מענה לאתר" aria-label="הוסיפו מענה לאתר רצף דרך וואטסאפ">
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-  <span class="add-maan-label">הוסיפו מענה</span>
+  <span class="add-maan-desktop"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+  <span class="add-maan-label">הוסיפו מענה</span></span>
+  <span class="add-maan-mobile" style="font-size:28px;line-height:1">💬</span>
 </a>
 
 <!-- ══ BACK TO TOP BTN ══ -->
