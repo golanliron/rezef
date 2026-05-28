@@ -2290,33 +2290,18 @@ function closeArticlesPage(){
   }
 }
 
-/* ── Testimonials track fix — מבטיח שהכרטיסים תמיד נראים ── */
+/* ── Testimonials marquee ── */
 document.addEventListener('DOMContentLoaded', function(){
   var track = document.getElementById('tscrollTrack');
   if(!track) return;
-  var origCards = Array.from(track.children);
-  var n = Math.floor(origCards.length / 2); /* חצי הם הכפל */
-  var origSet = origCards.slice(0, n || origCards.length);
-
-  /* בנה 4 עותקים לגלישה חלקה */
-  track.innerHTML = '';
-  for(var s=0;s<4;s++){
-    origSet.forEach(function(c){ track.appendChild(c.cloneNode(true)); });
-  }
-
-  /* חשב רוחב סט אחד ועדכן keyframes */
-  requestAnimationFrame(function(){
-    var gap = 18;
-    var setW = 0;
-    Array.from(track.children).slice(0, origSet.length).forEach(function(c){
-      setW += c.getBoundingClientRect().width + gap;
-    });
-    if(setW < 10) return;
-    var st = document.createElement('style');
-    st.textContent = '@keyframes scrollInfinite{from{transform:translateX(0)}to{transform:translateX(-'+Math.round(setW)+'px)}}';
-    document.head.appendChild(st);
-    track.style.animation = 'scrollInfinite 35s linear infinite';
-  });
+  var orig = track.innerHTML;
+  track.innerHTML = orig + orig;
+  var cardCount = track.children.length / 2;
+  var totalW = cardCount * 320;
+  var st = document.createElement('style');
+  st.textContent = '@keyframes tmarquee{0%{transform:translateX(0)}100%{transform:translateX(-'+totalW+'px)}}';
+  document.head.appendChild(st);
+  track.style.animation = 'tmarquee '+(cardCount*3)+'s linear infinite';
 });
 
 function openArticle(id){
