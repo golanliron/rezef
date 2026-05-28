@@ -421,9 +421,14 @@ nav{
 .tscroll-track{
   display:flex;flex-direction:row;gap:20px;
   width:max-content;
+  animation:tmarquee 36s linear infinite;
   will-change:transform;
 }
 .tscroll-track:hover{animation-play-state:paused}
+@keyframes tmarquee{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(-50%)}
+}
 .tcarousel-btn{display:none}
 .tcarousel-dots{display:none}
 
@@ -1391,7 +1396,6 @@ if(typeof initMaanim==="function"){initMaanim();}else{document.addEventListener(
 
     <div class="tscroll-outer">
       <div class="tscroll-track" id="tscrollTrack">
-        <div class="tcard"><div class="tcard-quote">"</div><div class="tcard-text">סוף סוף מקום אחד שמרכז את כל מה שחיפשנו. חסכנו שבועות של חיפושים מייאשים.</div><div class="tcard-who"><div class="tcard-avatar">א</div><div><div class="tcard-name">אמא לילד בן 7</div><div class="tcard-sub">תל אביב
         <div class="tcard"><div class="tcard-quote">"</div><div class="tcard-text">סוף סוף מקום אחד שמרכז את כל מה שחיפשנו. חסכנו שבועות של חיפושים מייאשים.</div><div class="tcard-who"><div class="tcard-avatar">א</div><div><div class="tcard-name">אמא לילד בן 7</div><div class="tcard-sub">תל אביב</div></div></div></div>
         <div class="tcard"><div class="tcard-quote">"</div><div class="tcard-text">הייתי אבודה לגמרי אחרי האבחון. רצף נתן לי מפה ברורה לפי גיל, לפי צורך, ולפי מקום. זה שינה הכל.</div><div class="tcard-who"><div class="tcard-avatar">ר</div><div><div class="tcard-name">רחל, אמא לנערה בת 14</div><div class="tcard-sub">ירושלים</div></div></div></div>
         <div class="tcard"><div class="tcard-quote">"</div><div class="tcard-text">הבן שלי עומד לעבור לחיים עצמאיים. מצאתי דרך רצף תוכניות שלא ידעתי שקיימות.</div><div class="tcard-who"><div class="tcard-avatar">ד</div><div><div class="tcard-name">דנה, אמא לבן בן 20</div><div class="tcard-sub">חיפה</div></div></div></div>
@@ -2291,17 +2295,15 @@ function closeArticlesPage(){
 }
 
 /* ── Testimonials marquee ── */
-document.addEventListener('DOMContentLoaded', function(){
+document.addEventListener('DOMContentLoaded',function(){
   var track = document.getElementById('tscrollTrack');
   if(!track) return;
-  var orig = track.innerHTML;
-  track.innerHTML = orig + orig;
-  var cardCount = track.children.length / 2;
-  var totalW = cardCount * 320;
-  var st = document.createElement('style');
-  st.textContent = '@keyframes tmarquee{0%{transform:translateX(0)}100%{transform:translateX(-'+totalW+'px)}}';
-  document.head.appendChild(st);
-  track.style.animation = 'tmarquee '+(cardCount*3)+'s linear infinite';
+  var cards = Array.from(track.children);
+  cards.forEach(function(c){
+    var clone = c.cloneNode(true);
+    clone.setAttribute('aria-hidden','true');
+    track.appendChild(clone);
+  });
 });
 
 function openArticle(id){
