@@ -1,0 +1,2677 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>רצף — מענים לאוטיזם לאורך כל שלבי החיים</title>
+<style>@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=Rubik:wght@700;800;900&display=swap');</style>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Heebo',sans-serif;
+  direction:rtl;
+  background:#fff;
+  color:#1E1B4B;
+  overflow-x:hidden;
+}
+
+:root{
+  --nav-h: 68px;
+  --purple:  #7C3AED;
+  --purple2: #6D28D9;
+  --purple3: #A78BFA;
+  --purple-bg: #F8F6FF;
+  --purple-bg2: #EDE9FE;
+  --navy:    #1E1B4B;
+  --navy2:   #312E81;
+  --gray:    #6B7280;
+  --gray2:   #9CA3AF;
+  --border:  #EDE9FE;
+  --white:   #FFFFFF;
+}
+
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:100;
+  height:68px;padding:0 64px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(255,255,255,0.95);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo-name{
+  font-family:'Rubik',sans-serif;
+  font-size:26px;font-weight:900;
+  color:var(--purple);
+  letter-spacing:2px;
+}
+.logo-tag{font-size:10.5px;color:var(--gray);margin-top:2px;font-weight:400}
+
+.nav-links{display:flex;align-items:center;gap:36px;list-style:none}
+.nav-links a{text-decoration:none;color:var(--navy);font-size:14px;font-weight:600;transition:color .15s}
+.nav-links a:hover{color:var(--purple)}
+
+.nav-btn{
+  background:var(--purple)!important;
+  color:#fff!important;
+  padding:11px 24px;border-radius:100px;
+  font-weight:700!important;
+  font-size:14px;
+  white-space:nowrap;
+  box-shadow:0 4px 18px rgba(124,58,237,0.3);
+  transition:box-shadow .2s,transform .15s!important;
+  text-decoration:none;
+}
+.nav-btn:hover{
+  background:var(--purple2)!important;
+  box-shadow:0 6px 26px rgba(124,58,237,0.42)!important;
+  transform:translateY(-1px)!important;
+}
+/* CTA בנאב — מוסתר במובייל, מחליף אותו כפתור ה-nav-cta-btn */
+.nav-cta-btn{ flex-shrink:0 }
+
+/* ── HERO ── */
+.hero{
+  position:relative;
+  height:70vh;
+  min-height:500px;
+  max-height:750px;
+  overflow:hidden;
+  background:var(--navy);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.hero-image{
+  position:absolute;inset:0;
+  z-index:0;
+}
+.hero-slide{
+  position:absolute;inset:0;
+  opacity:0;
+  transition:opacity 1.2s ease-in-out;
+}
+.hero-slide.active{opacity:1}
+.hero-slide img{
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:center 25%;
+  display:block;
+}
+.hero-image::after{
+  content:'';position:absolute;inset:0;z-index:1;
+  background:linear-gradient(
+    to bottom,
+    rgba(20,17,60,0.42) 0%,
+    rgba(20,17,60,0.62) 55%,
+    rgba(20,17,60,0.88) 100%
+  );
+}
+
+.hero-content-wrap{
+  position:relative;z-index:2;
+  display:flex;align-items:center;justify-content:center;
+  width:100%;
+  padding:60px 40px;
+}
+
+.hero-inner{
+  max-width:660px;
+  text-align:center;
+  position:relative;z-index:1;
+}
+
+/* ── HERO SEARCH STRIP (מתחת לתמונה) ── */
+.hero-search-strip{
+  background:var(--purple-bg);
+  border-bottom:1px solid var(--border);
+  padding:36px 40px 40px;
+  text-align:center;
+}
+.hero-search-strip .hero-search{
+  display:flex;align-items:center;
+  background:#fff;border:2px solid var(--border);
+  border-radius:16px;padding:6px 6px 6px 20px;
+  max-width:520px;margin:0 auto 24px;
+  box-shadow:0 4px 24px rgba(124,58,237,0.08);
+  transition:border-color .2s,box-shadow .2s;
+}
+.hero-search-strip .hero-search:focus-within{
+  border-color:var(--purple);
+  box-shadow:0 4px 24px rgba(124,58,237,0.18);
+}
+.hero-search-strip .hero-search input{
+  flex:1;border:none;outline:none;
+  font-family:'Heebo',sans-serif;font-size:16px;
+  color:var(--navy);background:none;direction:rtl;
+}
+.hero-search-strip .hero-search input::placeholder{color:var(--gray2)}
+.hero-search-strip .hero-search button{
+  background:var(--purple);color:#fff;border:none;
+  border-radius:12px;padding:14px 28px;
+  font-family:'Heebo',sans-serif;font-size:15px;font-weight:700;
+  cursor:pointer;transition:background .2s;white-space:nowrap;
+}
+.hero-search-strip .hero-search button:hover{background:var(--purple2)}
+
+.hero-pill{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,0.12);
+  border:1.5px solid rgba(255,255,255,0.25);
+  backdrop-filter:blur(10px);
+  border-radius:100px;padding:8px 20px;
+  font-size:13px;color:#fff;font-weight:700;
+  margin-bottom:32px;
+}
+.pill-dot{width:7px;height:7px;border-radius:50%;background:var(--purple);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.25}}
+
+.hero h1{
+  font-size:74px;font-weight:900;line-height:1.05;
+  letter-spacing:-2.5px;margin-bottom:24px;
+  color:#fff;
+}
+.hero h1 .grad{
+  background:linear-gradient(135deg,var(--purple) 0%,var(--navy2) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+
+.hero-sub{
+  font-size:18px;color:rgba(255,255,255,0.8);line-height:1.75;
+  max-width:520px;margin:0 auto 48px;
+}
+
+.hero-search{
+  display:flex;align-items:center;
+  background:rgba(255,255,255,0.95);border:2px solid rgba(255,255,255,0.3);
+  border-radius:16px;padding:6px 6px 6px 20px;
+  max-width:500px;margin:0 auto 36px;
+  box-shadow:0 4px 24px rgba(124,58,237,0.08);
+  transition:border-color .2s,box-shadow .2s;
+}
+.hero-search:focus-within{
+  border-color:var(--purple);
+  box-shadow:0 4px 24px rgba(124,58,237,0.18);
+}
+.hero-search input{
+  flex:1;border:none;outline:none;
+  font-family:'Heebo',sans-serif;font-size:15px;
+  color:var(--navy);background:none;direction:rtl;
+}
+.hero-search input::placeholder{color:var(--gray2)}
+.hero-search button{
+  background:var(--purple);color:#fff;border:none;
+  border-radius:12px;padding:13px 26px;
+  font-family:'Heebo',sans-serif;font-size:14px;font-weight:700;
+  cursor:pointer;transition:background .2s;white-space:nowrap;
+}
+.hero-search button:hover{background:var(--purple2)}
+
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-main{
+  background:var(--purple);color:#fff;
+  padding:14px 30px;border-radius:100px;
+  font-size:15px;font-weight:700;
+  font-family:'Heebo',sans-serif;text-decoration:none;display:inline-block;
+  box-shadow:0 4px 22px rgba(124,58,237,0.3);
+  transition:background .2s,box-shadow .2s,transform .15s;
+}
+.btn-main:hover{background:var(--purple2);box-shadow:0 8px 32px rgba(124,58,237,0.38);transform:translateY(-2px)}
+.btn-line{
+  background:#fff;color:var(--navy);
+  border:2px solid var(--border);
+  padding:13px 28px;border-radius:100px;
+  font-size:15px;font-weight:600;
+  font-family:'Heebo',sans-serif;text-decoration:none;display:inline-block;
+  transition:border-color .2s,color .2s;
+}
+.btn-line:hover{border-color:var(--purple);color:var(--purple)}
+
+/* ── STATS ── */
+.stats{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  background:var(--purple);
+}
+.stat{
+  padding:36px 24px;
+  text-align:center;border-left:1px solid rgba(255,255,255,0.15);
+}
+.stat:last-child{border-left:none}
+.stat-n{font-size:40px;font-weight:900;letter-spacing:-1.5px;color:#fff;line-height:1;margin-bottom:6px}
+.stat-l{font-size:13px;color:rgba(255,255,255,0.75);font-weight:500}
+
+/* ── SHARED SECTION ── */
+.sec{padding:96px 80px}
+.sec-label{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11px;font-weight:800;
+  letter-spacing:2px;text-transform:uppercase;
+  color:var(--purple);margin-bottom:18px;
+  background:var(--purple-bg2);
+  padding:6px 14px;border-radius:100px;
+  border:1px solid rgba(124,58,237,0.18);
+}
+.sec-title{
+  font-size:clamp(26px,4vw,46px);font-weight:900;
+  letter-spacing:clamp(-0.5px,-0.05em,-2px);line-height:1.1;
+  background:linear-gradient(135deg, var(--navy) 0%, var(--purple) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+  margin-bottom:16px;
+  word-break:keep-all;
+  overflow-wrap:break-word;
+}
+.sec-sub{font-size:clamp(14px,1.5vw,17px);color:var(--gray);margin-bottom:52px;max-width:480px;line-height:1.7}
+
+/* ── AGES ── */
+.ages-sec{background:var(--purple-bg)}
+
+.ages-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+
+.age-card{
+  background:#fff;border:1.5px solid var(--border);
+  border-radius:24px;padding:36px 20px 28px;
+  cursor:pointer;position:relative;overflow:hidden;
+  text-align:center;
+  transition:transform .35s cubic-bezier(.34,1.56,.64,1), box-shadow .35s, border-color .25s;
+  transform-origin:center bottom;
+}
+.age-card:hover{
+  transform:translateY(-10px) rotate(-1deg) scale(1.03);
+  box-shadow:0 24px 56px rgba(124,58,237,0.18);
+  border-color:var(--purple);
+}
+/* top accent bar */
+.age-card::before{
+  content:'';position:absolute;
+  top:0;left:0;right:0;height:4px;
+  border-radius:24px 24px 0 0;
+  transition:height .3s;
+}
+.age-card:hover::before{height:6px}
+.ac0::before{background:var(--purple)}
+.ac1::before{background:var(--navy2)}
+.ac2::before{background:var(--purple2)}
+.ac3::before{background:var(--navy)}
+.ac4::before{background:var(--purple3)}
+
+.age-icon{
+  width:52px;height:52px;margin:0 auto 18px;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:16px;background:var(--purple-bg);
+  transition:transform .35s cubic-bezier(.34,1.56,.64,1), background .25s;
+}
+.age-card:hover .age-icon{
+  transform:rotate(8deg) scale(1.15);
+  background:var(--purple-bg2);
+}
+
+.age-num{font-size:24px;font-weight:900;letter-spacing:-0.5px;color:var(--navy);margin-bottom:3px}
+.age-lbl{font-size:12.5px;color:var(--gray);font-weight:500;margin-bottom:18px}
+.age-prog{height:4px;border-radius:100px;background:var(--border);margin-bottom:14px;overflow:hidden}
+.age-prog-fill{height:100%;border-radius:100px;transition:width .6s ease;background:linear-gradient(90deg,var(--purple),var(--purple3))}
+.ac0 .age-prog-fill{width:65%}
+.ac1 .age-prog-fill{width:92%;background:linear-gradient(90deg,var(--navy),var(--navy2))}
+.ac2 .age-prog-fill{width:70%}
+.ac3 .age-prog-fill{width:56%;background:linear-gradient(90deg,var(--navy),var(--navy2))}
+.ac4 .age-prog-fill{width:40%}
+
+.age-cnt{font-size:12px;font-weight:600;color:var(--purple);letter-spacing:0.3px}
+
+/* ── SERVICES ── */
+.svc-sec{background:#fff}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+
+.svc-card{
+  background:linear-gradient(145deg,#f3f0ff 0%,#ede9fe 100%);
+  border:1.5px solid rgba(124,58,237,0.12);
+  border-radius:18px;
+  padding:24px 22px 20px;
+  display:flex;flex-direction:column;
+  position:relative;overflow:hidden;
+  transition:transform .25s,box-shadow .25s,border-color .25s,background .25s;
+  cursor:pointer;
+}
+.svc-card::before{
+  content:'';position:absolute;
+  top:0;right:0;width:100%;height:3px;
+  background:linear-gradient(90deg,var(--purple),var(--purple3));
+  border-radius:18px 18px 0 0;
+  opacity:0;transition:opacity .25s;
+}
+.svc-card:hover::before{opacity:1}
+.svc-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 16px 40px rgba(124,58,237,0.16);
+  border-color:var(--purple3);
+  background:linear-gradient(145deg,#ede9fe 0%,#e8e2fd 100%);
+}
+
+.svc-ico{
+  width:34px;height:34px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:12px;
+  background:rgba(124,58,237,0.12);
+  box-shadow:none;
+}
+.svc-ico svg{width:16px;height:16px;stroke:var(--purple)}
+.svc-tag{
+  font-size:10px;font-weight:800;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--purple);
+  margin-bottom:6px;display:block;
+}
+.svc-card h3{font-size:16px;font-weight:900;color:var(--navy);margin-bottom:8px;line-height:1.3}
+.svc-card p{font-size:13px;color:#4B5563;line-height:1.65;margin-bottom:16px;flex:1}
+.svc-link{
+  font-size:12.5px;font-weight:700;color:var(--purple);
+  text-decoration:none;transition:all .15s;
+  display:inline-flex;align-items:center;gap:4px;
+  margin-top:auto;
+  background:rgba(124,58,237,0.1);
+  padding:7px 14px;border-radius:100px;
+  width:fit-content;
+}
+.svc-link:hover{background:var(--purple);color:#fff}
+
+/* ── HOW ── */
+.how-sec{background:var(--purple-bg)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative}
+.steps::before{
+  content:'';position:absolute;top:26px;right:12%;left:12%;
+  height:2px;background:linear-gradient(90deg,var(--purple),var(--navy));opacity:0.15;
+}
+.step{text-align:center;padding:0 12px;position:relative;z-index:1}
+.step-num{
+  width:52px;height:52px;border-radius:50%;
+  background:linear-gradient(135deg,var(--purple),var(--navy2));
+  color:#fff;font-size:18px;font-weight:900;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 20px;
+  box-shadow:0 4px 20px rgba(124,58,237,0.25);
+  transition:box-shadow .25s,transform .25s;
+}
+.step:hover .step-num{box-shadow:0 8px 24px rgba(124,58,237,0.32);transform:scale(1.06)}
+.step h4{font-size:16px;font-weight:800;color:var(--navy);margin-bottom:8px}
+.step p{font-size:13px;color:var(--gray);line-height:1.55}
+
+/* ── TESTIMONIALS ── */
+.testimonials-sec{
+  background:linear-gradient(180deg,#f0ecff 0%,#f8f6ff 100%);
+  padding:88px 0 80px;
+  overflow:hidden;
+  border-top:3px solid var(--purple);
+}
+.testimonials-sec .sec-label{color:var(--purple);display:inline-flex;margin-bottom:12px}
+.testimonials-sec .sec-title{margin-bottom:8px}
+.testimonials-sec .sec-header{padding:0 80px;margin-bottom:48px}
+
+/* carousel */
+.tcarousel-wrap{
+  position:relative;
+  padding:0 72px;
+}
+.tscroll-outer{
+  position:relative;
+  width:100%;
+  overflow:hidden;
+  padding:12px 0 20px;
+}
+.tscroll-track{
+  display:flex;
+  flex-direction:row;
+  gap:18px;
+  padding:6px 0;
+  transition:transform .4s cubic-bezier(.4,0,.2,1);
+}
+.tcarousel-btn{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:48px;height:48px;border-radius:50%;
+  background:#fff;border:1.5px solid rgba(124,58,237,0.25);
+  color:var(--purple);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 16px rgba(124,58,237,0.12);
+  transition:background .2s,box-shadow .2s,border-color .2s;
+  z-index:2;
+}
+.tcarousel-btn:hover{background:var(--purple);color:#fff;box-shadow:0 6px 24px rgba(124,58,237,0.25);border-color:var(--purple)}
+.tcarousel-btn:disabled{opacity:0.3;cursor:default;pointer-events:none}
+.tcarousel-btn.prev{right:12px}
+.tcarousel-btn.next{left:12px}
+.tcarousel-dots{
+  display:flex;justify-content:center;gap:8px;margin-top:24px;
+}
+.tcarousel-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:rgba(124,58,237,0.2);
+  transition:background .2s,width .2s;
+  cursor:pointer;border:none;padding:0;
+}
+.tcarousel-dot.active{background:var(--purple);width:22px;border-radius:4px}
+
+.tcard{
+  flex:0 0 300px;
+  background:#fff;
+  border:1.5px solid rgba(124,58,237,0.12);
+  border-radius:20px;
+  padding:24px 22px 20px;
+  text-align:right;
+  direction:rtl;
+  box-shadow:0 4px 20px rgba(124,58,237,0.08);
+  transition:transform .2s,box-shadow .2s,border-color .2s;
+  cursor:default;
+  position:relative;
+  overflow:hidden;
+}
+.tcard::before{
+  content:'';
+  position:absolute;top:0;right:0;left:0;height:3px;
+  background:linear-gradient(90deg,var(--purple),var(--purple3));
+}
+.tcard:hover{
+  transform:translateY(-4px);
+  box-shadow:0 14px 40px rgba(124,58,237,0.15);
+  border-color:var(--purple3);
+}
+.tcard-quote{
+  font-size:36px;line-height:1;
+  color:var(--purple);
+  margin-bottom:10px;
+  font-family:'Rubik',sans-serif;font-weight:900;
+  opacity:0.3;
+}
+.tcard-text{
+  font-size:14px;font-weight:500;line-height:1.7;
+  color:var(--navy);
+  margin-bottom:18px;
+}
+.tcard-who{
+  display:flex;align-items:center;gap:10px;
+  padding-top:14px;
+  border-top:1px solid var(--border);
+}
+.tcard-avatar{
+  width:36px;height:36px;border-radius:50%;
+  background:linear-gradient(135deg,var(--purple),var(--navy2));
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:800;color:#fff;flex-shrink:0;
+}
+.tcard-name{font-size:13px;font-weight:700;color:var(--navy)}
+.tcard-sub{font-size:11px;color:var(--gray);margin-top:2px}
+
+/* ── ARTICLES ── */
+.articles-sec{background:#fff;padding:96px 80px}
+.articles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+
+.article-card{
+  background:#fff;border:1.5px solid var(--border);
+  border-radius:24px;overflow:hidden;
+  cursor:pointer;
+  transition:transform .25s,box-shadow .25s,border-color .25s;
+  display:flex;flex-direction:column;
+}
+.article-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 20px 52px rgba(124,58,237,0.12);
+  border-color:var(--purple3);
+}
+.article-img{
+  width:100%;height:200px;
+  background:linear-gradient(135deg,var(--purple-bg2) 0%,var(--purple-bg) 100%);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+  flex-shrink:0;
+}
+.article-img-placeholder{
+  opacity:0.25;
+}
+.article-tag{
+  position:absolute;top:14px;right:14px;
+  background:var(--purple);color:#fff;
+  font-size:11px;font-weight:800;letter-spacing:1px;
+  padding:5px 12px;border-radius:100px;
+}
+.article-body{padding:24px 24px 20px;flex:1;display:flex;flex-direction:column}
+.article-title{
+  font-size:18px;font-weight:900;color:var(--navy);
+  line-height:1.35;margin-bottom:10px;
+}
+.article-desc{
+  font-size:14px;color:var(--gray);line-height:1.65;
+  flex:1;margin-bottom:18px;
+}
+.article-read{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:13px;font-weight:700;color:var(--purple);
+  background:var(--purple-bg);
+  border:none;cursor:pointer;
+  padding:10px 18px;border-radius:100px;
+  transition:background .2s,color .2s;
+  font-family:'Heebo',sans-serif;
+  align-self:flex-start;
+}
+.article-read:hover{background:var(--purple-bg2)}
+
+/* Modal */
+.article-modal-overlay{
+  position:fixed;inset:0;z-index:9999;
+  background:rgba(20,17,60,0.75);
+  backdrop-filter:blur(6px);
+  display:flex;align-items:center;justify-content:center;
+  padding:24px;
+  opacity:0;pointer-events:none;
+  transition:opacity .3s;
+}
+.article-modal-overlay.open{opacity:1;pointer-events:all}
+.article-modal{
+  background:#fff;border-radius:28px;
+  max-width:740px;width:100%;
+  max-height:88vh;overflow-y:auto;
+  padding:48px 52px;
+  position:relative;
+  transform:translateY(24px);
+  transition:transform .35s cubic-bezier(.4,0,.2,1);
+}
+.article-modal-overlay.open .article-modal{transform:translateY(0)}
+.modal-close{
+  position:sticky;top:0;float:left;
+  background:var(--purple-bg2);border:none;
+  width:36px;height:36px;border-radius:50%;
+  cursor:pointer;font-size:18px;font-weight:700;
+  color:var(--purple);display:flex;align-items:center;justify-content:center;
+  margin-bottom:16px;
+  font-family:'Heebo',sans-serif;
+}
+.modal-close:hover{background:var(--purple);color:#fff}
+.modal-tag{
+  display:inline-block;
+  background:var(--purple);color:#fff;
+  font-size:11px;font-weight:800;letter-spacing:1px;
+  padding:5px 14px;border-radius:100px;
+  margin-bottom:20px;
+}
+.modal-title{
+  font-size:28px;font-weight:900;color:var(--navy);
+  line-height:1.25;margin-bottom:24px;letter-spacing:-0.5px;
+}
+.modal-body{font-size:15.5px;color:#374151;line-height:1.85;direction:rtl}
+.modal-body h3{
+  font-size:18px;font-weight:800;color:var(--navy);
+  margin:28px 0 12px;
+}
+.modal-body p{margin-bottom:16px}
+.modal-body ul{padding-right:20px;margin-bottom:16px}
+.modal-body ul li{margin-bottom:6px}
+.modal-body .modal-keywords{
+  display:flex;flex-wrap:wrap;gap:8px;margin:20px 0;
+}
+.modal-body .modal-keywords span{
+  background:var(--purple-bg2);color:var(--purple);
+  font-size:12px;font-weight:600;
+  padding:5px 12px;border-radius:100px;
+}
+
+/* ── CTA ── */
+.cta-band{
+  background:#fff;padding:80px;
+  display:flex;align-items:center;justify-content:space-between;gap:40px;
+  border-top:1px solid var(--border);
+}
+.cta-band h2{font-size:36px;font-weight:900;letter-spacing:-1px;max-width:460px;line-height:1.2;color:var(--navy)}
+.cta-band h2 span{color:var(--purple)}
+.cta-btns{display:flex;gap:12px;flex-shrink:0}
+
+/* ── FOOTER ── */
+footer{background:var(--navy);padding:64px 80px 36px}
+.ft{
+  display:flex;justify-content:space-between;align-items:flex-start;
+  gap:48px;margin-bottom:52px;
+}
+.ft-logo-wrap{display:flex;flex-direction:column;gap:8px}
+.ft-name{font-size:22px;font-weight:900;color:#fff}
+.ft-tag{font-size:13px;color:rgba(255,255,255,0.75);margin-top:2px;line-height:1.5}
+.ft-desc{font-size:13px;color:rgba(255,255,255,0.6);line-height:1.7}
+
+.ft-cols{display:flex;gap:56px}
+.fc{min-width:100px}
+.fc h5{
+  font-size:10px;font-weight:800;letter-spacing:2.5px;
+  text-transform:uppercase;color:rgba(255,255,255,0.55);
+  margin-bottom:18px;
+}
+.fc a{
+  display:block;color:rgba(255,255,255,0.8);
+  text-decoration:none;font-size:14px;margin-bottom:12px;
+  transition:color .15s;
+}
+.fc a:hover{color:#fff}
+.ft-bottom{
+  border-top:1px solid rgba(255,255,255,0.08);
+  padding-top:24px;font-size:12px;
+  color:rgba(255,255,255,0.4);
+  letter-spacing:0.3px;
+}
+
+/* פוטר מובייל — עיצוב שונה לחלוטין */
+.ft-mobile{display:none}
+@media(max-width:768px){
+  .ft-desktop{display:none!important}
+  .ft-mobile{display:block}
+  footer{padding:36px 20px 28px}
+}
+.ft-mobile-logo{
+  display:flex;align-items:center;gap:14px;
+  margin-bottom:20px;
+  padding-bottom:20px;
+  border-bottom:1px solid rgba(255,255,255,0.1);
+}
+.ft-mobile-name{
+  font-family:'Rubik',sans-serif;font-size:26px;font-weight:900;
+  color:#fff;letter-spacing:3px;
+  line-height:1;
+}
+.ft-mobile-tag{
+  font-size:13px;color:rgba(255,255,255,0.55);
+  line-height:1.6;margin-top:5px;
+  font-weight:400;letter-spacing:0.2px;
+}
+.ft-chips{
+  display:flex;flex-wrap:wrap;gap:8px;
+  margin-bottom:24px;
+}
+.ft-chip{
+  display:inline-block;
+  padding:8px 15px;
+  border-radius:100px;
+  border:1px solid rgba(167,139,250,0.25);
+  color:rgba(255,255,255,0.75);
+  font-size:13px;font-weight:500;
+  text-decoration:none;
+  transition:background .2s,border-color .2s,color .2s;
+  background:rgba(124,58,237,0.12);
+  letter-spacing:0.1px;
+}
+.ft-chip:active{background:rgba(124,58,237,0.35);border-color:var(--purple3);color:#fff}
+.ft-wa-btn{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  width:100%;padding:16px;border-radius:16px;
+  background:#22c55e;color:#fff;
+  font-size:16px;font-weight:700;
+  text-decoration:none;margin-bottom:24px;
+  letter-spacing:0.2px;
+  box-shadow:0 6px 24px rgba(34,197,94,0.3);
+  transition:opacity .2s;
+}
+.ft-wa-btn:active{opacity:0.88}
+.ft-mobile-bottom{
+  border-top:1px solid rgba(255,255,255,0.08);
+  padding-top:16px;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:8px;
+}
+.ft-mobile-copy{font-size:12px;color:rgba(255,255,255,0.3);letter-spacing:0.2px}
+.ft-mobile-legal{display:flex;gap:14px}
+.ft-mobile-legal a{font-size:12px;color:rgba(255,255,255,0.45);text-decoration:none;letter-spacing:0.1px}
+
+.logo-svg{width:40px;height:40px;flex-shrink:0}
+
+/* ── FOOTER LEGAL ── */
+.ft-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.ft-legal-links{display:flex;gap:14px;align-items:center}
+.ft-legal-a{color:rgba(255,255,255,0.65);text-decoration:none;font-size:13px;transition:color .2s}
+.ft-legal-a:hover{color:#fff}
+
+/* ── ADD MAAN FLOATING BTN ── */
+#add-maan-btn{
+  position:fixed;bottom:28px;left:28px;z-index:400;
+  display:inline-flex;align-items:center;gap:8px;
+  background:#25D366;color:#fff;
+  padding:13px 22px;border-radius:100px;
+  font-family:'Heebo',sans-serif;font-size:14px;font-weight:700;
+  text-decoration:none;
+  box-shadow:0 6px 24px rgba(37,211,102,0.4);
+  transition:transform .2s,box-shadow .2s;
+}
+#add-maan-btn:hover{transform:translateY(-3px);box-shadow:0 10px 32px rgba(37,211,102,0.5)}
+
+/* ── ABOUT ── */
+.about-sec{
+  background:var(--navy);
+  padding:100px 80px;
+  position:relative;
+  overflow:hidden;
+}
+.about-sec::before{
+  content:'';position:absolute;
+  top:-120px;left:-120px;
+  width:500px;height:500px;
+  background:radial-gradient(circle,rgba(124,58,237,0.18) 0%,transparent 70%);
+  pointer-events:none;
+}
+.about-inner{
+  display:grid;
+  grid-template-columns:1fr 320px;
+  gap:64px;
+  align-items:stretch;
+  position:relative;z-index:1;
+}
+.about-text .sec-label{color:var(--purple3);margin-bottom:14px}
+.about-text .sec-title{
+  font-size:42px;font-weight:900;letter-spacing:-1.5px;
+  background:linear-gradient(135deg,#fff 0%,var(--purple3) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+  margin-bottom:28px;line-height:1.1;
+}
+.about-text p{
+  font-size:16.5px;color:rgba(255,255,255,0.72);line-height:1.85;
+  margin-bottom:20px;max-width:580px;
+}
+.about-text p:last-child{margin-bottom:0}
+
+.about-founder-card{
+  background:rgba(255,255,255,0.06);
+  border:1.5px solid rgba(255,255,255,0.12);
+  border-radius:28px;padding:40px 32px;
+  text-align:center;
+  backdrop-filter:blur(12px);
+}
+.about-avatar{
+  width:90px;height:90px;
+  border-radius:50%;margin:0 auto 20px;
+  background:linear-gradient(135deg,var(--purple),var(--navy2));
+  display:flex;align-items:center;justify-content:center;
+  font-size:32px;font-weight:900;color:#fff;
+  border:3px solid rgba(167,139,250,0.4);
+}
+.about-name{
+  font-size:24px;font-weight:900;color:#fff;
+  margin-bottom:6px;
+}
+.about-role{
+  font-size:14px;color:var(--purple3);font-weight:600;
+  margin-bottom:24px;
+}
+.about-tags{display:flex;flex-direction:column;gap:8px}
+.about-tags span{
+  background:rgba(124,58,237,0.25);
+  border:1px solid rgba(124,58,237,0.4);
+  color:rgba(255,255,255,0.85);
+  font-size:12.5px;font-weight:600;
+  padding:8px 16px;border-radius:100px;
+}
+
+/* ── ARC MOTIF — מוטיב קשתות הלוגו ── */
+
+/* SVG קשתות כ-divider בין סקשנים */
+.arc-divider{
+  display:block;
+  width:100%;
+  overflow:hidden;
+  line-height:0;
+  margin:0;
+}
+.arc-divider svg{display:block;width:100%}
+
+/* קשת דקורטיבית גדולה ברקע סקשן */
+.arc-bg{
+  position:absolute;
+  pointer-events:none;
+  opacity:0.06;
+}
+
+/* קו accent מעל כותרות סקשן */
+.sec-arc{
+  display:block;
+  margin-bottom:20px;
+}
+
+/* קשת קטנה בכרטיסי שירותים */
+.svc-card .card-arc{
+  position:absolute;
+  top:-2px;right:20px;
+  opacity:0.18;
+}
+
+/* ages — top accent arc */
+.ages-sec{position:relative;overflow:hidden}
+.ages-sec .arc-bg{top:-60px;right:-80px;width:340px;height:340px}
+
+
+/* ─── */
+/* שם המותג — בכל מקום שמוזכר */
+.brand{
+  font-family:'Rubik',sans-serif;
+  font-weight:900;
+  color:var(--purple);
+  letter-spacing:1px;
+}
+
+/* ══════════════════════════════════════
+   FLUID TYPOGRAPHY — גדל/קטן עם המסך
+══════════════════════════════════════ */
+.hero h1       { font-size: clamp(30px, 6vw, 74px) }
+.sec-title     { font-size: clamp(24px, 4vw, 46px); letter-spacing: clamp(-0.5px,-0.1em,0px) }
+.about-text .sec-title { font-size: clamp(22px, 3.5vw, 42px) }
+.cta-band h2   { font-size: clamp(20px, 3vw, 36px) }
+.stat-n        { font-size: clamp(28px, 4vw, 40px) }
+.sec           { padding: clamp(48px,7vw,96px) clamp(16px,6vw,80px) }
+
+/* ══ NAV HAMBURGER ══ */
+.nav-hamburger{
+  display:none;flex-direction:column;justify-content:center;gap:5px;
+  background:none;border:none;cursor:pointer;
+  padding:10px 8px;z-index:110;
+  -webkit-tap-highlight-color:transparent;
+}
+.nav-hamburger span{
+  display:block;width:23px;height:2.5px;
+  background:var(--navy);border-radius:2px;
+  transition:transform .28s ease,opacity .2s ease;
+  transform-origin:center;
+}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+.nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+
+/* ══ MOBILE SLIDE-DOWN MENU ══ */
+.nav-mobile-menu{
+  position:fixed;
+  top:var(--nav-h,60px);right:0;left:0;
+  z-index:98;
+  background:#fff;
+  border-top:1px solid var(--border);
+  flex-direction:column;
+  display:none;
+  max-height:calc(100vh - var(--nav-h,60px));
+  overflow-y:auto;
+  box-shadow:0 12px 40px rgba(20,17,60,0.12);
+  transform:translateY(-8px);
+  opacity:0;
+  transition:transform .28s cubic-bezier(.4,0,.2,1), opacity .22s ease;
+}
+.nav-mobile-menu.open{
+  display:flex;
+  transform:translateY(0);
+  opacity:1;
+}
+.nav-mobile-menu a{
+  display:flex;align-items:center;
+  padding:16px 24px;
+  font-size:16px;font-weight:700;color:var(--navy);
+  text-decoration:none;
+  border-bottom:1px solid var(--border);
+  transition:color .15s,background .15s,padding-right .15s;
+  -webkit-tap-highlight-color:transparent;
+}
+.nav-mobile-menu a:active{background:var(--purple-bg);color:var(--purple)}
+.nav-mobile-menu a.nav-mobile-cta{
+  margin:16px 16px 20px;
+  border:none;border-radius:100px;
+  background:var(--purple);color:#fff!important;
+  justify-content:center;
+  box-shadow:0 4px 18px rgba(124,58,237,0.3);
+  padding:15px 24px;
+}
+.nav-mobile-menu a.nav-mobile-cta:active{background:var(--purple2)}
+
+/* ══ TABLET 769–1024 ══ */
+@media(min-width:769px) and (max-width:1024px){
+  nav{padding:0 32px}
+  .nav-links{gap:20px}
+  .nav-links a{font-size:13px}
+  .about-inner{grid-template-columns:1fr 280px;gap:40px}
+  .ages-grid{grid-template-columns:repeat(3,1fr)!important;gap:14px}
+  .svc-grid{grid-template-columns:repeat(3,1fr)}
+  .articles-grid{grid-template-columns:repeat(2,1fr)}
+  footer{padding:52px 40px 28px}
+  .ft-cols{gap:32px}
+}
+
+/* ══ MOBILE ≤768 ══ */
+@media(max-width:768px){
+  :root{--nav-h:60px}
+
+  /* NAV */
+  nav{padding:0 16px;height:60px}
+  .logo-tag{display:none}
+  .logo-name{font-size:20px}
+  .nav-links{display:none}
+  .nav-hamburger{display:flex!important}
+
+  /* HERO */
+  .hero{height:auto;min-height:260px;padding:0}
+  .hero-content-wrap{padding:40px 20px 32px}
+  .hero-inner{max-width:100%}
+  .hero-pill{font-size:11px;padding:6px 14px;margin-bottom:16px}
+  .hero h1{margin-bottom:12px;line-height:1.1}
+  .hero-sub{font-size:14px;line-height:1.6;margin-bottom:0;max-width:100%}
+  .hero-btns{display:none}
+
+  /* SEARCH STRIP */
+  .hero-search-strip{padding:18px 16px 20px}
+  .hero-search-strip .hero-search{
+    border-radius:14px;margin-bottom:0;
+    padding:5px 5px 5px 12px;
+  }
+  .hero-search-strip .hero-search input{font-size:15px}
+  .hero-search-strip .hero-search button{padding:12px 18px;font-size:14px;border-radius:10px}
+  .hero-btns{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+  .btn-main,.btn-line{padding:11px 18px;font-size:13px;border-radius:100px}
+
+  /* STATS — 3 בשורה, קומפקטי */
+  .stats{flex-wrap:nowrap}
+  .stat{flex:1;padding:18px 6px}
+  .stat-n{font-size:24px;margin-bottom:3px}
+  .stat-l{font-size:10px}
+
+  /* SEC */
+  .sec-sub{font-size:14px;max-width:100%;margin-bottom:28px;line-height:1.6}
+  .testimonials-sec .sec-header{padding:0 16px}
+
+  /* AGES — 2 עמודות, scroll אופקי במסכים קטנים */
+  .ages-grid{
+    grid-template-columns:repeat(2,1fr)!important;
+    gap:10px;
+  }
+  .age-card{padding:18px 12px 14px;border-radius:16px}
+  .age-icon{width:38px;height:38px;border-radius:12px;margin-bottom:12px}
+  .age-num{font-size:16px}
+  .age-lbl{font-size:11px;margin-bottom:12px}
+  .age-cnt{font-size:12px}
+
+  /* SERVICES — 2 עמודות */
+  .svc-grid{grid-template-columns:1fr 1fr!important;gap:9px}
+  .svc-card{padding:16px 14px 13px;border-radius:12px}
+  .svc-ico{width:32px;height:32px;margin-bottom:10px}
+  .svc-card h3{font-size:13px;margin-bottom:4px}
+  .svc-card p{font-size:11.5px;line-height:1.5;margin-bottom:10px}
+  .svc-link{font-size:11.5px}
+
+  /* HOW — 2×2 */
+  .steps{grid-template-columns:1fr 1fr;gap:20px}
+  .steps::before{display:none}
+  .step-num{width:44px;height:44px;font-size:16px;margin-bottom:14px}
+  .step h4{font-size:14px}
+  .step p{font-size:12px}
+
+  /* TESTIMONIALS */
+  .tcard{flex:0 0 260px;padding:20px 18px}
+  .tcard-text{font-size:13.5px}
+
+  /* ABOUT */
+  .about-sec{padding:56px 16px}
+  .about-inner{grid-template-columns:1fr;gap:28px}
+  .about-founder-card{border-radius:20px!important}
+  .about-founder-card img{height:240px!important;border-radius:20px 20px 0 0!important}
+  .about-text p{font-size:14.5px;line-height:1.7}
+
+  /* ARTICLES */
+  .articles-sec{padding:56px 16px}
+  .articles-grid{grid-template-columns:1fr!important;gap:14px}
+  .article-img{height:170px}
+
+  /* CTA */
+  .cta-band{
+    padding:40px 16px;
+    flex-direction:column;gap:20px;
+    text-align:right;
+  }
+  .cta-band h2{max-width:100%;line-height:1.25}
+  .cta-btns{flex-wrap:wrap;gap:10px}
+  .cta-btns .btn-main,.cta-btns .btn-line{flex:1;text-align:center;min-width:120px}
+
+  /* FOOTER */
+  footer{padding:40px 16px 24px}
+  .ft{flex-direction:column;gap:24px;margin-bottom:28px}
+  .ft-cols{flex-direction:column;gap:20px}
+  .ft-bottom{flex-direction:column;align-items:flex-start;gap:8px;font-size:11px}
+  .ft-legal-links{gap:10px}
+
+  /* FLOATING BTN */
+  #add-maan-btn{bottom:20px;left:16px;padding:13px 16px;border-radius:50%;width:52px;height:52px;justify-content:center}
+  #add-maan-btn .add-maan-label{display:none}
+
+  /* MAANIM PANEL */
+  #maanim-panel{width:100vw!important;border-radius:0!important}
+  #maanim-panel > div:first-child{padding:14px 16px 12px!important}
+  #maanim-content{padding:16px 16px!important}
+  .mcat-card{padding:14px 16px;gap:14px}
+  .mcat-name{font-size:15px}
+  .mitem-card{padding:16px 16px}
+  .mitem-name{font-size:15px}
+
+  /* ARTICLE MODAL */
+  .article-modal{padding:28px 20px;border-radius:20px}
+  .modal-title{font-size:22px}
+  .modal-body{font-size:14.5px}
+}
+
+/* ══ XS ≤390 ══ */
+@media(max-width:390px){
+  .ages-grid{grid-template-columns:1fr 1fr!important}
+  .svc-grid{grid-template-columns:1fr!important;gap:8px}
+  .steps{grid-template-columns:1fr;gap:14px}
+  .stat-n{font-size:20px}
+  .stat-l{font-size:9.5px}
+}
+
+/* ══ STEP LINKS ══ */
+.step-link{
+  text-decoration:none;
+  display:block;
+  color:inherit;
+  cursor:pointer;
+  border-radius:16px;
+  transition:transform .25s,background .2s;
+  padding:20px 16px;
+  margin:-20px -16px;
+}
+.step-link:hover{
+  background:rgba(255,255,255,0.7);
+  transform:translateY(-4px);
+}
+.step-link:hover .step-num{
+  box-shadow:0 8px 24px rgba(124,58,237,0.32);
+  transform:scale(1.06);
+}
+.step-num{transition:box-shadow .25s,transform .25s}
+.step-cta{
+  display:none;
+  margin-top:10px;
+  font-size:13px;font-weight:700;
+  color:var(--purple);
+  background:none;
+  padding:0;
+  border-radius:0;
+  transition:color .15s,letter-spacing .15s;
+}
+.step-link:hover .step-cta{
+  color:var(--purple2);
+  letter-spacing:0.3px;
+}
+@media(max-width:768px){
+  .step-link{padding:16px 12px;margin:-16px -12px}
+  .step-link:hover{transform:none;background:none}
+  .step-link:active{background:rgba(255,255,255,0.8)}
+  .step-cta{font-size:12px}
+}
+
+/* ══ TOUCH IMPROVEMENTS ══ */
+@media(hover:none){
+  .age-card:hover{transform:none;box-shadow:none;border-color:var(--border)}
+  .svc-card:hover{transform:none;box-shadow:none}
+  .mcat-card:hover{transform:none;box-shadow:none}
+  .age-card:active{transform:scale(0.97);border-color:var(--purple)}
+  .svc-card:active{transform:scale(0.97)}
+  .mcat-card:active{border-color:var(--purple);background:var(--purple-bg)}
+  .article-card:active{transform:scale(0.98)}
+  .btn-main:active{transform:scale(0.96)}
+  .btn-line:active{transform:scale(0.96)}
+}
+
+@media(min-width:769px){
+  .nav-hamburger{display:none!important}
+  .nav-mobile-menu{display:none!important}
+}
+</style>
+</head>
+<body>
+
+<!-- SKIP LINK — נגישות -->
+<a href="#main-content" class="skip-link">דלג לתוכן הראשי</a>
+
+<!-- NAV -->
+<nav>
+  <!-- המבורגר — שמאל במובייל -->
+  <button class="nav-hamburger" id="nav-hamburger" onclick="toggleMobileMenu()" aria-label="תפריט">
+    <span></span><span></span><span></span>
+  </button>
+
+  <!-- לינקים — מסך רחב בלבד -->
+  <ul class="nav-links">
+    <li><a href="#ages" onclick="closeArticlesPage()">רצף גילאי</a></li>
+    <li><a href="#svc" onclick="closeArticlesPage()">רצף מענים</a></li>
+    <li><a href="#articles" onclick="toggleArticles(event)">רצף כתבות</a></li>
+    <li><a href="#about" onclick="closeArticlesPage()">אודות</a></li>
+  </ul>
+
+  <!-- לוגו — מרכז תמיד -->
+  <a href="#" class="logo" onclick="var p=document.getElementById('articles-page');if(p&&p.style.display!=='none'){p.style.display='none';document.body.style.overflow='';return false;}">
+    <svg class="logo-svg" viewBox="0 0 40 40" fill="none">
+      <path d="M4 36 C4 16 20 10 20 10 C20 10 36 16 36 36" stroke="#A78BFA" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <path d="M8.5 36 C8.5 19 20 14 20 14 C20 14 31.5 19 31.5 36" stroke="#312E81" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <path d="M13 36 C13 22 20 18 20 18 C20 18 27 22 27 36" stroke="#7C3AED" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+      <circle cx="20" cy="36" r="2.8" fill="#7C3AED"/>
+    </svg>
+    <div>
+      <div class="logo-name">רֶצֶף</div>
+      <div class="logo-tag">מענים לקהילה האוטיסטית ובני משפחותיהם לאורך כל שלבי החיים</div>
+    </div>
+  </a>
+
+  <!-- CTA — ימין תמיד -->
+  <a href="#ages" class="nav-btn nav-cta-btn" onclick="closeArticlesPage()">מצאו מענה</a>
+</nav>
+
+<!-- תפריט מובייל -->
+<div class="nav-mobile-menu" id="nav-mobile-menu">
+  <a href="#ages" onclick="closeMobileMenu();closeArticlesPage()">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+    רצף גילאי
+  </a>
+  <a href="#svc" onclick="closeMobileMenu();closeArticlesPage()">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+    רצף מענים
+  </a>
+  <a href="#articles" onclick="closeMobileMenu();toggleArticles(event)">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+    רצף כתבות
+  </a>
+  <a href="#about" onclick="closeMobileMenu();closeArticlesPage()">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    אודות
+  </a>
+  <a href="#ages" class="nav-mobile-cta" onclick="closeMobileMenu()">מצאו מענה ←</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="main-content">
+  <!-- תמונה -->
+  <div class="hero-image" id="heroSlideshow">
+    <div class="hero-slide active"><img src="hero4.png" alt="" style="object-position:center 20%"/></div>
+    <div class="hero-slide"><img src="hero5.png" alt="" style="object-position:center 20%"/></div>
+    <div class="hero-slide"><img src="hero6.png" alt="" style="object-position:center 20%"/></div>
+    <div class="hero-slide"><img src="hero7.png" alt="" style="object-position:center 20%"/></div>
+  </div>
+
+  <!-- תוכן -->
+  <div class="hero-content-wrap">
+  <div class="hero-inner">
+    <div class="hero-pill">
+      <span class="pill-dot"></span>
+      מעודכן 2026 · +<span id="hero-count">841</span> מענים ותוכניות
+    </div>
+
+    <h1>
+      כל שלב בחיים.<br/>
+      <span class="grad">המענה הנכון.</span>
+    </h1>
+
+    <p class="hero-sub">
+      המדריך המקיף ביותר למענים, תוכניות ושירותים<br>
+      <strong style="color:#fff;font-weight:900;font-size:1.08em;letter-spacing:-0.3px">לאנשים על הספקטרום האוטיסטי ולמשפחותיהם</strong><br>
+      <span style="opacity:0.75;font-size:0.88em;letter-spacing:0.5px">לפי גיל &nbsp;·&nbsp; לפי צורך &nbsp;·&nbsp; לפי מקום</span>
+    </p>
+
+  </div>
+  </div>
+</section>
+
+<!-- HERO SEARCH STRIP -->
+<div class="hero-search-strip">
+  <div class="hero-search">
+    <input type="text" id="hero-search-input" placeholder="חפשו לפי שם, עיר או סוג מענה..." aria-label="חיפוש מענים" onkeydown="if(event.key==='Enter')doSearch()"/>
+    <button onclick="doSearch()" aria-label="חפש">חיפוש</button>
+  </div>
+  <div class="hero-btns">
+    <a href="#ages" class="btn-main">כל המענים לפי גיל</a>
+    <a href="#svc" class="btn-line">תחומי מענה</a>
+    <a href="#how" class="btn-line">איך זה עובד</a>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><div class="stat-n" id="stat-count">842</div><div class="stat-l">מענים ותוכניות</div></div>
+  <div class="stat"><div class="stat-n">6</div><div class="stat-l">שלבי חיים</div></div>
+  <div class="stat"><div class="stat-n">חינם</div><div class="stat-l">מידע פתוח לכולם</div></div>
+</div>
+
+<!-- AGES -->
+<section class="sec ages-sec" id="ages">
+  <div class="sec-label">ספקטרום הגילאים</div>
+  <div class="sec-title">מענים לפי שלב החיים</div>
+  <div class="sec-sub">כי כל גיל מביא צרכים שונים. ואנחנו כאן לאורך כל הדרך</div>
+
+  <div class="ages-grid" style="grid-template-columns:repeat(6,1fr)">
+    <div class="age-card ac0" onclick="openMaanim('0-3')">
+      <div class="age-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/>
+        </svg>
+      </div>
+      <div class="age-num">0 עד 3</div>
+      <div class="age-lbl">גיל הרך</div>
+      <div class="age-prog"><div class="age-prog-fill"></div></div>
+      <div class="age-cnt" data-age="0-3"><span>512</span> מענים</div>
+    </div>
+    <div class="age-card ac1" onclick="openMaanim('3-6')">
+      <div class="age-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1E1B4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+      </div>
+      <div class="age-num">3 עד 6</div>
+      <div class="age-lbl">גן</div>
+      <div class="age-prog"><div class="age-prog-fill"></div></div>
+      <div class="age-cnt" data-age="3-6"><span>547</span> מענים</div>
+    </div>
+    <div class="age-card ac2" onclick="openMaanim('6-13')">
+      <div class="age-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+        </svg>
+      </div>
+      <div class="age-num">6 עד 13</div>
+      <div class="age-lbl">בית ספר יסודי</div>
+      <div class="age-prog"><div class="age-prog-fill"></div></div>
+      <div class="age-cnt" data-age="6-13"><span>614</span> מענים</div>
+    </div>
+    <div class="age-card ac3" onclick="openMaanim('13-18')">
+      <div class="age-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1E1B4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+      </div>
+      <div class="age-num">13 עד 18</div>
+      <div class="age-lbl">תיכון</div>
+      <div class="age-prog"><div class="age-prog-fill"></div></div>
+      <div class="age-cnt" data-age="13-18"><span>607</span> מענים</div>
+    </div>
+    <div class="age-card ac4" onclick="openMaanim('18-21')">
+      <div class="age-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>
+        </svg>
+      </div>
+      <div class="age-num">18 עד 21</div>
+      <div class="age-lbl">בגרות מוקדמת</div>
+      <div class="age-prog"><div class="age-prog-fill"></div></div>
+      <div class="age-cnt" data-age="18-21"><span>618</span> מענים</div>
+    </div>
+    <div class="age-card ac0" onclick="openMaanim('21+')">
+      <div class="age-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+        </svg>
+      </div>
+      <div class="age-num">21 ומעלה</div>
+      <div class="age-lbl">בגרות</div>
+      <div class="age-prog"><div class="age-prog-fill"></div></div>
+      <div class="age-cnt" data-age="21+"><span>687</span> מענים</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="sec svc-sec" id="svc">
+  <div class="sec-label">רצף מענים</div>
+  <div class="sec-title">מה תמצאו כאן</div>
+  <div class="sec-sub">מחינוך ותעסוקה ועד דיור וזכויות. הכל במקום אחד</div>
+
+  <div class="svc-grid">
+    <div class="svc-card" style="cursor:pointer">
+      <div class="svc-ico">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+      </div>
+      <span class="svc-tag">חינוך</span>
+      <h3>חינוך והכלה</h3>
+      <p>מסגרות חינוכיות מיוחדות, חינוך משלב, סל שילוב, סייעות לכל גיל ולכל רמת תפקוד. כי כל ילד זכאי ללמוד בסביבה המתאימה לו.</p>
+      <a href="#" class="svc-link" onclick="event.preventDefault();openMaanimByCategory('מסגרות חינוך')">133 מענים ←</a>
+    </div>
+    <div class="svc-card" style="cursor:pointer" onclick="openMaanimByCategory('שירותים לבוגרים')">
+      <div class="svc-ico">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+      </div>
+      <span class="svc-tag">תעסוקה ובגרות</span>
+      <h3>תעסוקה נתמכת</h3>
+      <p>הכשרות, ליווי תעסוקתי ומעסיקים מכילים לצעירים ומבוגרים.</p>
+      <a href="#" class="svc-link" onclick="event.stopPropagation();event.preventDefault();openMaanimByCategory('שירותים לבוגרים')">102 מענים ←</a>
+    </div>
+    <div class="svc-card" style="cursor:pointer" onclick="openMaanimByCategory('שירותים לבוגרים')">
+      <div class="svc-ico">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <span class="svc-tag">דיור</span>
+      <h3>דיור ועצמאות</h3>
+      <p>דיור מוגן, דיור בקהילה, תמיכה בחיים עצמאיים למבוגרים.</p>
+      <a href="#" class="svc-link" onclick="event.stopPropagation();event.preventDefault();openMaanimByCategory('שירותים לבוגרים')">102 מענים ←</a>
+    </div>
+    <div class="svc-card" style="cursor:pointer" onclick="openMaanimByCategory('טיפולים ומטפלים')">
+      <div class="svc-ico">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </div>
+      <span class="svc-tag">טיפול ובריאות הנפש</span>
+      <h3>תמיכה רגשית</h3>
+      <p>טיפול, קבוצות תמיכה, ייעוץ להורים ולאחים.</p>
+      <a href="#" class="svc-link" onclick="event.stopPropagation();event.preventDefault();openMaanimByCategory('טיפולים ומטפלים')">229 מענים ←</a>
+    </div>
+    <div class="svc-card" style="cursor:pointer" onclick="openMaanimByCategory('זכויות ורווחה')">
+      <div class="svc-ico">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      </div>
+      <span class="svc-tag">זכויות</span>
+      <h3>זכויות וסיוע</h3>
+      <p>קצבאות, סל שיקום, ועדות השמה. כי כל אחד זכאי לדעת.</p>
+      <a href="#" class="svc-link" onclick="event.stopPropagation();event.preventDefault();openMaanimByCategory('זכויות ורווחה')">84 מענים ←</a>
+    </div>
+    <div class="svc-card" style="cursor:pointer" onclick="openMaanimByCategory('קייטנות ופנאי')">
+      <div class="svc-ico">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg>
+      </div>
+      <span class="svc-tag">פנאי</span>
+      <h3>פנאי וקהילה</h3>
+      <p>חוגים, קייטנות, מועדוני ספורט. כי שייכות היא זכות.</p>
+      <a href="#" class="svc-link" onclick="event.stopPropagation();event.preventDefault();openMaanimByCategory('קייטנות ופנאי')">43 מענים ←</a>
+    </div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section class="sec how-sec" id="how">
+  <div class="sec-label">תהליך</div>
+  <div class="sec-title">איך מוצאים מענה</div>
+  <div class="sec-sub">ארבעה צעדים פשוטים</div>
+  <div class="steps">
+    <div class="step step-link" onclick="document.getElementById('ages').scrollIntoView({behavior:'smooth'})" role="button" tabindex="0">
+      <div class="step-num">1</div>
+      <h4>בחרו גיל</h4>
+      <p>בחרו את שלב החיים הרלוונטי לאדם שאתם מחפשים עבורו</p>
+      <span class="step-cta">לכרטיסי הגיל ←</span>
+    </div>
+    <div class="step step-link" onclick="document.getElementById('svc').scrollIntoView({behavior:'smooth'})" role="button" tabindex="0">
+      <div class="step-num">2</div>
+      <h4>סננו לפי צורך</h4>
+      <p>חינוך, תעסוקה, דיור, בריאות. בחרו את תחום המענה</p>
+      <span class="step-cta">לתחומי המענה ←</span>
+    </div>
+    <div class="step step-link" onclick="openMaanim(null)" role="button" tabindex="0">
+      <div class="step-num">3</div>
+      <h4>מצאו ליד הבית</h4>
+      <p>סננו לפי אזור ומצאו שירותים זמינים בקרבתכם</p>
+      <span class="step-cta">לחיפוש לפי אזור ←</span>
+    </div>
+    <div class="step step-link" onclick="window.open('https://wa.me/972536256653?text=שלום%20מיטל%2C%20אשמח%20לעזרה%20במציאת%20מענה','_blank')" role="button" tabindex="0">
+      <div class="step-num">4</div>
+      <h4>צרו קשר</h4>
+      <p>פנו ישירות לארגון או קבלו ליווי מצוות <span class="brand">רֶצֶף</span></p>
+      <span class="step-cta">וואטסאפ למיטל ←</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-sec" id="about">
+  <!-- arc watermark ענק ברקע -->
+  <svg style="position:absolute;bottom:-40px;left:50%;transform:translateX(-50%);width:700px;height:400px;opacity:0.07;pointer-events:none;z-index:0" viewBox="0 0 200 120" fill="none">
+    <path d="M5 115 C5 40 100 10 100 10 C100 10 195 40 195 115" stroke="#A78BFA" stroke-width="4" stroke-linecap="round" fill="none"/>
+    <path d="M22 115 C22 55 100 28 100 28 C100 28 178 55 178 115" stroke="white" stroke-width="4" stroke-linecap="round" fill="none"/>
+    <path d="M40 115 C40 68 100 46 100 46 C100 46 160 68 160 115" stroke="white" stroke-width="5" stroke-linecap="round" fill="none"/>
+    <circle cx="100" cy="115" r="6" fill="white"/>
+  </svg>
+  <div class="about-inner">
+    <div class="about-text">
+      <div class="sec-label">אודות</div>
+      <div class="sec-title">מי עומדת מאחורי <span class="brand">רֶצֶף</span></div>
+      <p>שמי מיטל פלג, ירושלמית ואמא לשלושה. בתי הבכורה, ליהי, בת 23, אובחנה על הספקטרום בגיל שלוש, ומאז אני מכירה מקרוב את הדרך שהורים ומשפחות עוברים — מהרגע הראשון של האבחון ועד שלבי הבגרות והחיים העצמאיים.</p>
+      <p>את <span class="brand">רֶצֶף</span> הקמתי מתוך צורך אישי וקהילתי, במטרה לאגד במקום אחד את כל המענים, התוכניות, השירותים והאפשרויות הקיימות בארץ עבור אנשים על הספקטרום ובני משפחותיהם, לאורך כל שלבי החיים.</p>
+      <p>הבנתי שהבעיה המרכזית אינה מחסור במענים, אלא הקושי למצוא אותם בזמן, להבין מה מתאים, למי לפנות ואיך להתקדם בביטחון. <span class="brand">רֶצֶף</span> נבנתה כדי להפוך מידע מורכב לנגיש, ברור ומועיל — ולאפשר למשפחות לקבל החלטות טובות יותר, בדרך רגועה ופשוטה יותר.</p>
+    </div>
+    <div class="about-founder-card" style="padding:0;overflow:hidden;background:transparent;border:none;display:flex;flex-direction:column;">
+      <img src="mital.png" alt="מיטל פלג" style="width:100%;flex:1;min-height:280px;object-fit:cover;object-position:center top;display:block;border-radius:24px 24px 0 0;"/>
+      <div style="padding:20px 24px 24px;background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.12);border-top:none;border-radius:0 0 24px 24px;text-align:center;flex-shrink:0;">
+        <div class="about-name">מיטל פלג</div>
+        <div class="about-role">מייסדת <span class="brand">רֶצֶף</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-sec">
+  <div class="sec-header">
+    <div class="sec-label">מה אומרים עלינו</div>
+    <div class="sec-title">משפחות שמצאו את הדרך ב<span style="font-family:'Rubik',sans-serif;letter-spacing:2px">רֶצֶף</span></div>
+
+  <div class="tcarousel-wrap">
+    <button class="tcarousel-btn prev" onclick="tCarousel(-1)" aria-label="הקודם">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <button class="tcarousel-btn next" onclick="tCarousel(1)" aria-label="הבא">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <div class="tscroll-outer">
+      <div class="tscroll-track" id="tscrollTrack">
+        <div class="tcard"><div class="tcard-quote">"</div><div class="tcard-text">סוף סוף מקום אחד שמרכז את כל מה שחיפשנו. חסכנו שבועות של חיפושים מייאשים.</div><div class="tcard-who"><div class="tcard-avatar">א</div><div><div class="tcard-name">אמא לילד בן 7</div><div class="tcard-sub">תל אביב</div></div></div></div>
+        <div class="tcard"><div class="tcard-quote">"</div><div class="tcard-text">הייתי אבודה לגמרי אחרי האבחון. רצף נתן לי מפה ברורה לפי גיל, לפי צורך, ולפי מקום. זה שינה הכל.</div><div class="tcard-who"><div class="tcard-avatar">ר</div><div><div class="tcard-name">רחל, אמא לנערה בת 14</div><div class="tcard-sub">ירושלים</div></div></div></div>
+        <div class="tcard"><div class="tcard-quote">"</div><div class="tcard-text">הבן שלי עומד לעבור לחיים עצמאיים. מצאתי דרך רצף תוכניות שלא ידעתי שקיימות.</div><div class="tcard-who"><div class="tcard-avatar">ד</div><div><div class="tcard-name">דנה, אמא לבן בן 20</div><div class="tcard-sub">חיפה</div></div></div></div>
+        <div class="tcard"><div class="tcard-quote">"</div><div class="tcard-text">כמטפלת, אני ממליצה על רצף להורים. הם חוסכים זמן יקר ומוצאים שירותים שמתאימים בדיוק.</div><div class="tcard-who"><div class="tcard-avatar">מ</div><div><div class="tcard-name">מיכל, מטפלת התנהגותית</div><div class="tcard-sub">ראשון לציון</div></div></div></div>
+        <div class="tcard"><div class="tcard-quote">"</div><div class="tcard-text">קיבלתי אבחון בגיל 32. חיפשתי תמיכה לבוגרים ולא מצאתי כלום עד שנכנסתי לרצף. יש מקום גם לנו.</div><div class="tcard-who"><div class="tcard-avatar">י</div><div><div class="tcard-name">יונתן, על הספקטרום</div><div class="tcard-sub">באר שבע</div></div></div></div>
+        <div class="tcard"><div class="tcard-quote">"</div><div class="tcard-text">הילדה שלנו אובחנה בגיל 5. תוך יומיים מצאנו גן מתאים, מרפאה ומסגרת שעות. לא ידעתי שזה אפשרי.</div><div class="tcard-who"><div class="tcard-avatar">נ</div><div><div class="tcard-name">נועה ואמיר</div><div class="tcard-sub">פתח תקווה</div></div></div></div>
+        <div class="tcard"><div class="tcard-quote">"</div><div class="tcard-text">סוף סוף הבנתי מה הזכויות שמגיעות לנו. המידע היה ברור, מסודר ולא מכריע.</div><div class="tcard-who"><div class="tcard-avatar">ש</div><div><div class="tcard-name">שרה, אמא לבת בת 9</div><div class="tcard-sub">נתניה</div></div></div></div>
+      </div>
+    </div>
+    <div class="tcarousel-dots" id="tcarouselDots"></div>
+  </div>
+</section>
+
+<!-- ARTICLES PAGE (מחוץ לזרימה) -->
+<div id="articles-page" style="display:none;position:fixed;top:var(--nav-h,68px);inset-inline:0;bottom:0;z-index:200;background:#fff;overflow-y:auto;">
+<section class="articles-sec" id="articles">
+  <div class="sec-label">רצף כתבות</div>
+  <div class="sec-title">כתבות ומאמרים</div>
+  <div class="sec-sub">מידע מקצועי, סיפורי הורים וכלים מעשיים לאורך כל הדרך</div>
+
+  <div class="articles-grid">
+
+    <!-- כתבה 4 -->
+    <div class="article-card" onclick="openArticle('a4')">
+      <div class="article-img" style="position:relative;overflow:hidden;background:#1e3a5f">
+        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=680&q=80&auto=format&fit=crop" alt="מסמכים וזכויות" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center"/>
+        <div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(30,58,95,0.55) 0%,rgba(29,78,216,0.45) 100%)"></div>
+        <span class="article-tag">קצבאות וזכויות</span>
+      </div>
+      <div class="article-body">
+        <div class="article-title">קצבת ילד נכה לילדים עם אוטיזם: מדריך להורים</div>
+        <div class="article-desc">מהי קצבת ילד נכה, מי זכאי, אילו מסמכים להגיש ומה חשוב לדעת לפני שפונים לביטוח לאומי.</div>
+        <button class="article-read">קראו את הכתבה ←</button>
+      </div>
+    </div>
+
+    <!-- כתבה 5 -->
+    <div class="article-card" onclick="openArticle('a5')">
+      <div class="article-img" style="position:relative;overflow:hidden;background:#064e3b">
+        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=680&q=80&auto=format&fit=crop" alt="ועדת זכאות וחינוך" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%"/>
+        <div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(6,78,59,0.6) 0%,rgba(5,150,105,0.4) 100%)"></div>
+        <span class="article-tag">חינוך</span>
+      </div>
+      <div class="article-body">
+        <div class="article-title">ועדת זכאות ואפיון לילדים עם אוטיזם: איך מתכוננים נכון?</div>
+        <div class="article-desc">מה מטרת הוועדה, אילו מסמכים להביא, מה חשוב לומר ואיך מגיעים ממקום בטוח.</div>
+        <button class="article-read">קראו את הכתבה ←</button>
+      </div>
+    </div>
+
+    <!-- כתבה 6 -->
+    <div class="article-card" onclick="openArticle('a6')">
+      <div class="article-img" style="position:relative;overflow:hidden;background:#4a1942">
+        <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=680&q=80&auto=format&fit=crop" alt="ילד בגן ובית ספר" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%"/>
+        <div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(74,25,66,0.55) 0%,rgba(126,34,206,0.4) 100%)"></div>
+        <span class="article-tag">חינוך</span>
+      </div>
+      <div class="article-body">
+        <div class="article-title">גן תקשורת או שילוב: איך לבחור מסגרת לילד עם אוטיזם?</div>
+        <div class="article-desc">הורים מתלבטים בין גן תקשורת לשילוב. מדריך שיעזור להבין מה מתאים לילד שלכם.</div>
+        <button class="article-read">קראו את הכתבה ←</button>
+      </div>
+    </div>
+
+    <!-- כתבה 7 -->
+    <div class="article-card" onclick="openArticle('a7')">
+      <div class="article-img" style="position:relative;overflow:hidden;background:#7c2d12">
+        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=680&q=80&auto=format&fit=crop" alt="טיפול פרא-רפואי" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%"/>
+        <div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(124,45,18,0.55) 0%,rgba(194,65,12,0.4) 100%)"></div>
+        <span class="article-tag">טיפולים</span>
+      </div>
+      <div class="article-body">
+        <div class="article-title">טיפולים פרא רפואיים לילדים עם אוטיזם: מה מתאים ומתי?</div>
+        <div class="article-desc">קלינאית תקשורת, ריפוי בעיסוק, טיפול רגשי — מדריך להורים שרוצים להבין אילו טיפולים מתאימים.</div>
+        <button class="article-read">קראו את הכתבה ←</button>
+      </div>
+    </div>
+
+    <!-- כתבה 8 -->
+    <div class="article-card" onclick="openArticle('a8')">
+      <div class="article-img" style="position:relative;overflow:hidden;background:#134e4a">
+        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=680&q=80&auto=format&fit=crop" alt="מטפל ומטופל" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%"/>
+        <div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(19,78,74,0.6) 0%,rgba(15,118,110,0.4) 100%)"></div>
+        <span class="article-tag">טיפולים</span>
+      </div>
+      <div class="article-body">
+        <div class="article-title">איך למצוא מטפל לילד עם אוטיזם: מדריך להורים</div>
+        <div class="article-desc">איך בוחרים קלינאית תקשורת, מרפאה בעיסוק או מטפל רגשי? מה לשאול, ומה מסגיר מטפל שמתאים.</div>
+        <button class="article-read">קראו את הכתבה ←</button>
+      </div>
+    </div>
+
+    <!-- כתבה 1 -->
+    <div class="article-card" onclick="openArticle('a1')">
+      <div class="article-img" style="position:relative;overflow:hidden;background:#2d1b69">
+        <img src="https://images.unsplash.com/photo-1491013516836-7db643ee125a?w=680&q=80&auto=format&fit=crop" alt="הורה וילד" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%"/>
+        <div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(45,27,105,0.6) 0%,rgba(124,58,237,0.4) 100%)"></div>
+        <span class="article-tag">אבחון</span>
+      </div>
+      <div class="article-body">
+        <div class="article-title">הילד אובחן על הרצף. מה עושים עכשיו?</div>
+        <div class="article-desc">קיבלתם אבחנת אוטיזם. הלב שוקע, השאלות מציפות, ואתם לא יודעים מאיפה להתחיל. מדריך מעשי לצעדים הראשונים — בלי עומס, בלי פחד.</div>
+        <button class="article-read">קראו את הכתבה ←</button>
+      </div>
+    </div>
+
+    <div class="article-card" onclick="openArticle('a9')"><div class="article-img" style="position:relative;overflow:hidden;background:#2d1b69"><img src="https://images.unsplash.com/photo-1529390079861-591de354faf5?w=680&q=80&auto=format&fit=crop" alt="נער מתבגר" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%"/><div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(45,27,105,0.6) 0%,rgba(124,58,237,0.4) 100%)"></div><span class="article-tag">התבגרות</span></div><div class="article-body"><div class="article-title">אוטיזם בגיל ההתבגרות: כשהגוף משתנה ומה שהיה עובד — לא תמיד עובד יותר</div><div class="article-desc">גיל ההתבגרות הוא תקופת מעבר מאתגרת לכל בני הנוער — ולבני הנוער על הרצף, האתגרים יכולים להיות מוכפלים.</div><button class="article-read">קראו את הכתבה ←</button></div></div>
+    <div class="article-card" onclick="openArticle('a10')"><div class="article-img" style="position:relative;overflow:hidden;background:#2d1b69"><img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=680&q=80&auto=format&fit=crop" alt="כיתה" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%"/><div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(45,27,105,0.6) 0%,rgba(124,58,237,0.4) 100%)"></div><span class="article-tag">חינוך</span></div><div class="article-body"><div class="article-title">הכנה למעבר לחטיבה ולתיכון: איך עוברים חלק יותר</div><div class="article-desc">המעבר מיסודי לחטיבה, ומחטיבה לתיכון — אחד השינויים המורכבים ביותר עבור ילדים על הרצף. איך מכינים נכון?</div><button class="article-read">קראו את הכתבה ←</button></div></div>
+    <div class="article-card" onclick="openArticle('a11')"><div class="article-img" style="position:relative;overflow:hidden;background:#2d1b69"><img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=680&q=80&auto=format&fit=crop" alt="נער לבד" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%"/><div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(45,27,105,0.6) 0%,rgba(124,58,237,0.4) 100%)"></div><span class="article-tag">חברה</span></div><div class="article-body"><div class="article-title">אוטיזם ובדידות חברתית: כשהלב רוצה אבל הכלים חסרים</div><div class="article-desc">בדידות חברתית היא אחד הכאבים הגדולים ביותר של אנשים על הרצף. איך מזהים אותה, איך עוזרים, ומה עובד.</div><button class="article-read">קראו את הכתבה ←</button></div></div>
+    <div class="article-card" onclick="openArticle('a12')"><div class="article-img" style="position:relative;overflow:hidden;background:#2d1b69"><img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=680&q=80&auto=format&fit=crop" alt="מסמכים" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%"/><div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(45,27,105,0.6) 0%,rgba(124,58,237,0.4) 100%)"></div><span class="article-tag">זכויות</span></div><div class="article-body"><div class="article-title">מה קורה כשהבן או הבת שלכם מגיעים לגיל 18? מדריך לזכויות הבוגר</div><div class="article-desc">גיל 18 הוא נקודת מפנה משפטית ורגשית. מה משתנה, אילו זכויות ממשיכות ואיך עוברים את המעבר בשלום.</div><button class="article-read">קראו את הכתבה ←</button></div></div>
+    <div class="article-card" onclick="openArticle('a13')"><div class="article-img" style="position:relative;overflow:hidden;background:#2d1b69"><img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=680&q=80&auto=format&fit=crop" alt="עבודה" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%"/><div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(45,27,105,0.6) 0%,rgba(124,58,237,0.4) 100%)"></div><span class="article-tag">תעסוקה</span></div><div class="article-body"><div class="article-title">תעסוקה לאנשים על הרצף: אפשרויות, זכויות ותמיכות</div><div class="article-desc">עבודה היא לא רק פרנסה — היא זהות, שגרה ושייכות. איך מוצאים מקום עבודה מתאים ואילו תמיכות קיימות.</div><button class="article-read">קראו את הכתבה ←</button></div></div>
+    <div class="article-card" onclick="openArticle('a14')"><div class="article-img" style="position:relative;overflow:hidden;background:#2d1b69"><img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?w=680&q=80&auto=format&fit=crop" alt="דירה" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%"/><div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(45,27,105,0.6) 0%,rgba(124,58,237,0.4) 100%)"></div><span class="article-tag">דיור</span></div><div class="article-body"><div class="article-title">דיור נתמך וחיים עצמאיים לאנשים על הרצף: המדריך המלא</div><div class="article-desc">גר לבד? בדיור נתמך? בהוסטל? מה ההבדלים, למי זה מתאים, ואיך מתחילים את התהליך.</div><button class="article-read">קראו את הכתבה ←</button></div></div>
+    <div class="article-card" onclick="openArticle('a15')"><div class="article-img" style="position:relative;overflow:hidden;background:#2d1b69"><img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=680&q=80&auto=format&fit=crop" alt="צוות" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%"/><div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(45,27,105,0.6) 0%,rgba(124,58,237,0.4) 100%)"></div><span class="article-tag">שירות</span></div><div class="article-body"><div class="article-title">שירות צבאי ושירות לאומי לצעירים על הרצף: מה האפשרויות?</div><div class="article-desc">גיוס, פטור, שירות לאומי אזרחי — הדרכים רבות. איך מתמצאים ומה מגיע לכם.</div><button class="article-read">קראו את הכתבה ←</button></div></div>
+    <div class="article-card" onclick="openArticle('a16')"><div class="article-img" style="position:relative;overflow:hidden;background:#2d1b69"><img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=680&q=80&auto=format&fit=crop" alt="אחים" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%"/><div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(45,27,105,0.6) 0%,rgba(124,58,237,0.4) 100%)"></div><span class="article-tag">משפחה</span></div><div class="article-body"><div class="article-title">איך לדבר עם אחים ואחיות על אוטיזם בגיל שמבינים</div><div class="article-desc">האחים גדלים בבית שבו אוטיזם הוא חלק מהחיים — אבל לא תמיד מדברים איתם. כשלדבר, מה לומר, ואיך לשמור גם עליהם.</div><button class="article-read">קראו את הכתבה ←</button></div></div>
+    <div class="article-card" onclick="openArticle('a17')"><div class="article-img" style="position:relative;overflow:hidden;background:#2d1b69"><img src="https://images.unsplash.com/photo-1474552226712-ac0f0961a954?w=680&q=80&auto=format&fit=crop" alt="הורה עייף" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%"/><div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(45,27,105,0.6) 0%,rgba(124,58,237,0.4) 100%)"></div><span class="article-tag">הורים</span></div><div class="article-body"><div class="article-title">שחיקה הורית: כשאתם כל כך עסוקים בילד שאתם שוכחים את עצמכם</div><div class="article-desc">הורות לילד על הרצף היא מרתון, לא ספרינט. שחיקה היא לא חולשה — היא סימן שצריך עזרה. איך מזהים ואיך מתחזקים.</div><button class="article-read">קראו את הכתבה ←</button></div></div>
+
+  </div>
+</section>
+</div>
+
+<!-- MODALS a9-a17 -->
+<div class="article-modal-overlay" id="modal-a9" onclick="if(event.target===this)closeArticle('a9')"><div class="article-modal"><button class="modal-close" onclick="closeArticle('a9')">&#x2715;</button><span class="modal-tag">התבגרות</span><div class="modal-title">אוטיזם בגיל ההתבגרות: כשהגוף משתנה ומה שהיה עובד — לא תמיד עובד יותר</div><div class="modal-body"><p>גיל ההתבגרות הוא תקופת מעבר מאתגרת לכל בני הנוער — ולבני הנוער על הרצף, האתגרים יכולים להיות מוכפלים. שינויים גופניים, הורמונליים וחברתיים מגיעים בו-זמנית.</p><h3>מה משתנה?</h3><p>השינויים הגופניים מגיעים לכולם — אבל לבני נוער על הרצף הם עלולים להגיע כהלם חושי ממשי. אם לילד יש רגישויות חושיות — ההתבגרות מוסיפה עוד שכבה.</p><h3>קשיים חברתיים מוגברים</h3><p>בגיל זה, הקוד החברתי נעשה מורכב בהרבה — פלירטוט, נורמות קבוצתיות, חברויות שמשתנות. בני נוער שהצליחו לתפקד חברתית בילדות עלולים להרגיש אבודים יותר.</p><h3>בריאות נפשית</h3><p>חרדה ודיכאון נפוצים יותר בגיל זה. חשוב לשים לב לסימנים: נסיגה, עצבנות, שינויים בשינה.</p><h3>מה עוזר?</h3><ul><li>שיח פתוח ולא שיפוטי על הגוף והשינויים</li><li>הכנה מוקדמת</li><li>מטפל שמכיר אוטיזם</li><li>קבוצה עם בני נוער דומים</li></ul><p style="margin-top:32px;padding-top:20px;border-top:1px solid var(--border);font-size:14px;color:var(--gray)"><span style="color:var(--purple);font-weight:700">רצף</span> יכול לעזור למצוא תמיכה מותאמת לגיל ההתבגרות.</p></div></div></div>
+<div class="article-modal-overlay" id="modal-a10" onclick="if(event.target===this)closeArticle('a10')"><div class="article-modal"><button class="modal-close" onclick="closeArticle('a10')">&#x2715;</button><span class="modal-tag">חינוך</span><div class="modal-title">הכנה למעבר לחטיבה ולתיכון: איך עוברים חלק יותר</div><div class="modal-body"><p>מורים חדשים, מסגרת חדשה, לוח זמנים שונה, ציפיות גדולות יותר לעצמאות. ילדים על הרצף מסתמכים על שגרה — ומעבר לבית ספר חדש מאתגר את כולם.</p><h3>מה עוזר להתכונן?</h3><ul><li>ביקור בבית הספר החדש לפני תחילת השנה</li><li>הכרת המורה העיקרית מראש</li><li>מפת בית הספר — לדעת לאן ללכת לפני שמגיעים</li><li>שיחה על מה יהיה שונה ומה יישאר דומה</li></ul><h3>מה לדרוש מהמסגרת?</h3><p>ילדכם זכאי לליווי בתקופת המעבר. תוכנית מעבר, רכז נגישות, שעות תמיכה — שאלו, בקשו, עמדו על הזכויות.</p><p style="margin-top:32px;padding-top:20px;border-top:1px solid var(--border);font-size:14px;color:var(--gray)"><span style="color:var(--purple);font-weight:700">רצף</span> יכול לעזור למצוא ליווי לתקופות מעבר.</p></div></div></div>
+<div class="article-modal-overlay" id="modal-a11" onclick="if(event.target===this)closeArticle('a11')"><div class="article-modal"><button class="modal-close" onclick="closeArticle('a11')">&#x2715;</button><span class="modal-tag">חברה</span><div class="modal-title">אוטיזם ובדידות חברתית: כשהלב רוצה אבל הכלים חסרים</div><div class="modal-body"><p>בדידות חברתית היא אחד הכאבים הגדולים ביותר של אנשים על הרצף. לא בגלל שלא רוצים חברים — אלא כי הדרך לשם מורכבת.</p><h3>למה זה קורה?</h3><p>תקשורת חברתית דורשת פענוח מרומז — הבעות פנים, טון דיבור, כוונות סמויות. עבור אנשים על הרצף, הפענוח הזה דורש מאמץ גדול, ולפעמים עדיין נכשל. התוצאה: אי-הבנות ונסיגה.</p><h3>מה עוזר?</h3><ul><li>קבוצות חברתיות מובנות — כשיש כללים ברורים, קל יותר להשתתף</li><li>תחביב משותף — כשיש נושא מוגדר, השיחה זורמת</li><li>טיפול CBT מותאם לאוטיזם</li><li>חברות עם בני נוער/מבוגרים על הרצף</li></ul><p style="margin-top:32px;padding-top:20px;border-top:1px solid var(--border);font-size:14px;color:var(--gray)"><span style="color:var(--purple);font-weight:700">רצף</span> יכול לעזור למצוא קבוצות חברתיות ותמיכה.</p></div></div></div>
+<div class="article-modal-overlay" id="modal-a12" onclick="if(event.target===this)closeArticle('a12')"><div class="article-modal"><button class="modal-close" onclick="closeArticle('a12')">&#x2715;</button><span class="modal-tag">זכויות</span><div class="modal-title">מה קורה כשהבן או הבת שלכם מגיעים לגיל 18? מדריך לזכויות הבוגר</div><div class="modal-body"><p>גיל 18 הוא נקודת מפנה. מבחינה משפטית הילד הופך לאדם בוגר. מה זה אומר לזכויות, לטיפולים, לאפוטרופסות?</p><h3>מה משתנה בגיל 18?</h3><ul><li>סל שירותים של משרד הבריאות מסתיים — עוברים לסל של משרד הרווחה</li><li>זכאות לדיור נתמך ותעסוקה נתמכת מתחילה</li><li>קצבת נכות כללית מביטוח לאומי — בדיקת זכאות חדשה</li><li>שאלת אפוטרופסות — האם להגיש בקשה?</li></ul><h3>על אפוטרופסות</h3><p>אפוטרופסות היא לא תמיד הפתרון הנכון. ישנן חלופות — ייפוי כוח מתמשך, תמיכה בקבלת החלטות — שמאפשרות לבוגר שמירה על אוטונומיה עם ליווי.</p><h3>מה לעשות לפני גיל 18?</h3><p>לא לחכות — להתחיל תכנון שנה-שנתיים לפני: לברר על דיור, תעסוקה, קצבאות.</p><p style="margin-top:32px;padding-top:20px;border-top:1px solid var(--border);font-size:14px;color:var(--gray)"><span style="color:var(--purple);font-weight:700">רצף</span> יכול לעזור להתמצא בזכויות הבוגר.</p></div></div></div>
+<div class="article-modal-overlay" id="modal-a13" onclick="if(event.target===this)closeArticle('a13')"><div class="article-modal"><button class="modal-close" onclick="closeArticle('a13')">&#x2715;</button><span class="modal-tag">תעסוקה</span><div class="modal-title">תעסוקה לאנשים על הרצף: אפשרויות, זכויות ותמיכות</div><div class="modal-body"><p>עבודה היא לא רק פרנסה — היא זהות, שגרה ושייכות. רבים על הרצף יכולים לעבוד ורוצים לעבוד — אבל צריכים את התנאים הנכונים.</p><h3>סוגי תעסוקה</h3><ul><li><strong>שוק הפתוח</strong> — עם או בלי גילוי, עם התאמות סבירות</li><li><strong>תעסוקה נתמכת</strong> — ליווי של מדריך תעסוקה בעבודה ממשית</li><li><strong>מפעל מוגן</strong> — סביבת עבודה מותאמת</li><li><strong>עצמאות</strong> — חלק מהאנשים על הרצף מצטיינים בעבודה עצמאית</li></ul><h3>מה המעסיק צריך לדעת?</h3><p>לא חייבים לחשוף — זו זכות. אבל כשחושפים, ניתן לדרוש התאמות: שקט, גמישות בלוח זמנים, הנחיות כתובות.</p><p style="margin-top:32px;padding-top:20px;border-top:1px solid var(--border);font-size:14px;color:var(--gray)"><span style="color:var(--purple);font-weight:700">רצף</span> יכול לעזור למצוא שירותי תעסוקה נתמכת לפי אזור.</p></div></div></div>
+<div class="article-modal-overlay" id="modal-a14" onclick="if(event.target===this)closeArticle('a14')"><div class="article-modal"><button class="modal-close" onclick="closeArticle('a14')">&#x2715;</button><span class="modal-tag">דיור</span><div class="modal-title">דיור נתמך וחיים עצמאיים לאנשים על הרצף: המדריך המלא</div><div class="modal-body"><p>לגור לבד, עם תמיכה, או בסביבה שיתופית — זו שאלה של מה מתאים לאדם הספציפי.</p><h3>סוגי דיור</h3><ul><li><strong>דיור עצמאי עם ליווי</strong> — גר לבד, מקבל ביקורים של מלווה</li><li><strong>דיור נתמך</strong> — דירה שיתופית עם מספר דיירים וצוות תומך</li><li><strong>הוסטל</strong> — מסגרת דיורית טיפולית</li><li><strong>בבית הורים</strong> — לפעמים הבחירה הנכונה</li></ul><h3>איך נכנסים לדיור נתמך?</h3><p>דרך משרד הרווחה — ועדת אפיון, המתנה ומציאת מסגרת מתאימה. מומלץ להתחיל שנה-שנתיים לפני.</p><p style="margin-top:32px;padding-top:20px;border-top:1px solid var(--border);font-size:14px;color:var(--gray)"><span style="color:var(--purple);font-weight:700">רצף</span> יכול לעזור להתמצא באפשרויות הדיור.</p></div></div></div>
+<div class="article-modal-overlay" id="modal-a15" onclick="if(event.target===this)closeArticle('a15')"><div class="article-modal"><button class="modal-close" onclick="closeArticle('a15')">&#x2715;</button><span class="modal-tag">שירות</span><div class="modal-title">שירות צבאי ושירות לאומי לצעירים על הרצף: מה האפשרויות?</div><div class="modal-body"><p>גיוס לצבא — שאלה שמלווה משפחות רבות על הרצף. אין תשובה אחת. חשוב להכיר את כל האפשרויות.</p><h3>האפשרויות</h3><ul><li><strong>שירות מלא</strong> — אפשרי עבור חלק מהצעירים, לעיתים עם התאמות</li><li><strong>פטור רפואי</strong> — ניתן לבקש על בסיס אבחנת אוטיזם</li><li><strong>שירות לאומי אזרחי</strong> — שנה-שנתיים בשירות לקהילה, ללא הסביבה הצבאית</li></ul><h3>שירות לאומי — יתרונות</h3><p>עבור צעירים שאינם מתאימים לסביבה הצבאית, שירות לאומי יכול להיות חוויה מעצבת חיובית — שגרה, תרומה, ניסיון תעסוקתי.</p><p style="margin-top:32px;padding-top:20px;border-top:1px solid var(--border);font-size:14px;color:var(--gray)"><span style="color:var(--purple);font-weight:700">רצף</span> יכול לעזור למצוא ייעוץ לגיוס ושירות לאומי.</p></div></div></div>
+<div class="article-modal-overlay" id="modal-a16" onclick="if(event.target===this)closeArticle('a16')"><div class="article-modal"><button class="modal-close" onclick="closeArticle('a16')">&#x2715;</button><span class="modal-tag">משפחה</span><div class="modal-title">איך לדבר עם אחים ואחיות על אוטיזם בגיל שמבינים</div><div class="modal-body"><p>האחים והאחיות גדלים בבית שבו אוטיזם הוא חלק מהחיים. הם רואים, שומעים, מרגישים — אבל לא תמיד מישהו מדבר איתם ישירות.</p><h3>מתי לדבר?</h3><p>ילדים בגיל 4-5 כבר מבינים ש"האח שלי שונה". עדיף לתת הסבר פשוט ואמיתי מוקדם מאשר להשאיר אותם עם שאלות ובלבול.</p><h3>מה לומר?</h3><ul><li>שפה פשוטה: "המוח של האח שלך עובד בצורה קצת שונה"</li><li>לאפשר שאלות ולא לחשוש מהן</li><li>להבטיח שגם לאח/אחות יש זמן ותשומת לב שלכם</li><li>לאפשר גם כעס, עייפות ותסכול — תחושות לגיטימיות</li></ul><h3>קבוצות לאחים</h3><p>קיימות קבוצות תמיכה לאחים של ילדים על הרצף — מקום לדבר ולהרגיש פחות לבד.</p><p style="margin-top:32px;padding-top:20px;border-top:1px solid var(--border);font-size:14px;color:var(--gray)"><span style="color:var(--purple);font-weight:700">רצף</span> יכול לעזור למצוא קבוצות תמיכה לאחים ולהורים.</p></div></div></div>
+<div class="article-modal-overlay" id="modal-a17" onclick="if(event.target===this)closeArticle('a17')"><div class="article-modal"><button class="modal-close" onclick="closeArticle('a17')">&#x2715;</button><span class="modal-tag">הורים</span><div class="modal-title">שחיקה הורית: כשאתם כל כך עסוקים בילד שאתם שוכחים את עצמכם</div><div class="modal-body"><p>הורות לילד על הרצף היא מרתון, לא ספרינט. שחיקה הורית היא לא חולשה — היא תוצאה של מאמץ עצום לאורך זמן.</p><h3>איך מזהים שחיקה?</h3><ul><li>עייפות שלא עוברת גם אחרי שינה</li><li>כעס או עצבנות שמגיעים מהר מדי</li><li>תחושה שאתם "על אוטומט" בלי להרגיש כלום</li><li>ניתוק רגשי מהילד או מבן/בת הזוג</li></ul><h3>מה עוזר?</h3><ul><li>לבקש עזרה — מהמשפחה, מהמדינה, מקבוצות הורים</li><li>שעות פנאי ממשיות</li><li>טיפול רגשי לכם — ההורה צריך תמיכה בדיוק כמו הילד</li><li>קבוצת הורים — להרגיש פחות לבד</li></ul><p style="margin-top:32px;padding-top:20px;border-top:1px solid var(--border);font-size:14px;color:var(--gray)"><span style="color:var(--purple);font-weight:700">רצף</span> יכול לעזור למצוא קבוצות הורים ותמיכה מקצועית.</p></div></div></div>
+
+<!-- ARTICLE MODALS -->
+<div class="article-modal-overlay" id="modal-a1" onclick="if(event.target===this)closeArticle('a1')">
+  <div class="article-modal">
+    <button class="modal-close" onclick="closeArticle('a1')">✕</button>
+    <span class="modal-tag">אבחון</span>
+    <div class="modal-title">הילד אובחן על הרצף. מה עושים עכשיו?</div>
+    <div class="modal-body">
+      <p>קיבלתם את הדוח. ישבתם עם הפסיכולוגית, שמעתם את המילים, חתמתם על הטפסים. ועכשיו אתם יושבים בבית — ולא יודעים מאיפה להתחיל.</p>
+      <p>זה המקום הכי מוכר של כל הורה שעבר תהליך אבחון עם ילד. הרגשה שהעולם התהפך, ועם זאת — שום דבר לא השתנה בחוץ. הילד אותו ילד. הבית אותו בית. אבל המפה שהחזקתם בראש השתנתה לגמרי.</p>
+      <p>הכתבה הזו כאן כדי לתת לכם את אותה מפה — ברורה, שלב אחר שלב, בלי עומס מיותר.</p>
+
+      <h3>שלב 1: לנשום לפני שרצים</h3>
+      <p>לפני כל רשימת מטלות — תנו לעצמכם כמה ימים. לא לחפש, לא לרוץ למומחים. לעכל. לדבר עם בן/בת הזוג. לבכות אם צריך. האבחון הוא לא סוף — הוא התחלה של הבנה.</p>
+      <p>הדחף לפעול מיד הוא טבעי. אבל ילדים שמחכים שבועיים לא מאבדים שום דבר שאי אפשר להשיג. ההורים שמתמוטטים — מאבדים הרבה. אז קודם כל: נשמו.</p>
+
+      <h3>שלב 2: להבין את הדוח האבחוני</h3>
+      <p>הדוח מכיל מידע רב ומונחים קליניים שיכולים להיות מפחידים. לא חייבים להבין הכל לבד. בקשו מהמאבחן פגישת הסבר — זה חלק מהתהליך, ומגיע לכם.</p>
+      <div class="modal-keywords">
+        <span>פרופיל חוזקות</span>
+        <span>המלצות טיפוליות</span>
+        <span>רמת תפקוד</span>
+        <span>צרכים חינוכיים</span>
+        <span>היכולות הלא מילוליות</span>
+        <span>פרופיל קשב</span>
+      </div>
+      <p>שימו לב במיוחד לחוזקות שמוזכרות בדוח — לא רק לקשיים. כי ילדכם הוא לא רק האתגרים שלו.</p>
+
+      <h3>שלב 3: להבין אילו זכויות מגיעות לכם</h3>
+      <p>בישראל קיימת מסגרת זכויות משמעותית לילדים עם אוטיזם:</p>
+      <ul>
+        <li><strong>סל שירותים משרד הבריאות</strong> — מימון טיפולים כמו קלינאות תקשורת, ריפוי בעיסוק, ABA</li>
+        <li><strong>קצבת ילד נכה מביטוח לאומי</strong> — לפי רמת התפקוד והצרכים</li>
+        <li><strong>חינוך מיוחד</strong> — ועדת השמה קובעת את המסגרת המתאימה</li>
+        <li><strong>סייעת אישית</strong> — לעיתים קרובות ניתן לקבל ממשרד החינוך</li>
+        <li><strong>פטור ממס</strong> — עבור משפחות הזכאיות על פי חוות דעת רפואית</li>
+      </ul>
+      <p>חשוב לדעת: הזכויות לא מגיעות אוטומטית. צריך לדעת לבקש. <span style="color:var(--purple);font-weight:700">רצף</span> מרכז את כל השירותים לפי גיל וצורך — כדי שלא תצטרכו לחפש לבד.</p>
+
+      <h3>שלב 4: לבנות את הצוות הטיפולי</h3>
+      <p>טיפול באוטיזם הוא עבודת צוות. אבל לא כל ילד צריך הכל — ולא כל בית יכול לשאת הכל. בנו בהדרגה, לפי הצרכים הדחופים ביותר קודם.</p>
+      <ul>
+        <li><strong>קלינאית תקשורת</strong> — אם יש קשיים בשפה, תקשורת או פרגמטיקה</li>
+        <li><strong>מרפאה בעיסוק</strong> — עבור ויסות חושי, מיומנויות יומיום, כתיבה</li>
+        <li><strong>ABA / טיפול התנהגותי</strong> — לפי הצרכים הספציפיים ובדיקת התאמה</li>
+        <li><strong>פסיכולוג / פסיכותרפיסט</strong> — תמיכה רגשית לילד ולמשפחה</li>
+      </ul>
+
+      <h3>שלב 5: לדבר עם המסגרת החינוכית</h3>
+      <p>הגן, בית הספר, המורה — כולם צריכים לדעת. לא כדי "לתייג", אלא כדי שהילד יקבל הכלה ותמיכה אמיתית. שתפו רק מה שנחוץ, ובנו שיח פתוח עם הצוות החינוכי.</p>
+      <p>יש לכם זכות לבקש ועדת השמה שתבחן האם המסגרת הנוכחית מתאימה — או שיש מסגרת טובה יותר.</p>
+
+      <h3>שלב 6: לטפל גם בכם</h3>
+      <p>הורים למשפחה עם ילד על הספקטרום עוברים תהליך רגשי מורכב — כעס, עצב, אשמה, ולפעמים גם הקלה. כל אחת מהתחושות האלה לגיטימית לחלוטין.</p>
+      <p>קבוצות תמיכה להורים, ייעוץ פסיכולוגי ואפילו שיחה עם הורים אחרים שעברו את זה — יכולים לשנות הרבה. אל תישארו עם זה לבד.</p>
+
+      <h3>שלב 7: לקחת את זה שלב אחד בכל פעם</h3>
+      <p>אתם לא חייבים לפתור הכל עכשיו. האבחון נתן לכם שם למה שכבר ידעתם — ועכשיו אפשר להתחיל לבנות. לאט לאט. בהדרגה.</p>
+      <p>ילדכם הוא עדיין אותו ילד שאהבתם לפני האבחון. האהבה לא השתנתה. המסלול רק הפך ברור יותר.</p>
+
+      <h3>שאלות נפוצות</h3>
+      <p><strong>האם כדאי לספר לילד על האבחון?</strong><br/>כן — בגיל המתאים ובשפה מתאימה. ילדים שיודעים מי הם מצליחים בדרך כלל טוב יותר לאורך זמן. יש ספרים ואנשי מקצוע שיכולים לעזור בשיחה הזו.</p>
+      <p><strong>האם האבחון שווה לכל החיים?</strong><br/>כן, באופן כללי. אבחנת אוטיזם היא לא משהו שעוברת — אבל התמונה, הצרכים והחוזקות משתנים עם הזמן.</p>
+      <p><strong>מה אם לא מסכימים עם האבחון?</strong><br/>זכותכם לבקש חוות דעת שנייה. זה לגיטימי לחלוטין, ולפעמים אף מומלץ.</p>
+
+      <p style="margin-top:32px;padding-top:20px;border-top:1px solid var(--border);font-size:14px;color:var(--gray)"><span style="color:var(--purple);font-weight:700">רצף</span> כאן כדי לעזור לכם למצוא את השירותים המתאימים — לפי הגיל, הצורך והאזור שלכם. בלחיצה אחת.</p>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL a4 -->
+<div class="article-modal-overlay" id="modal-a4" onclick="if(event.target===this)closeArticle('a4')"><div class="article-modal"><button class="modal-close" onclick="closeArticle('a4')">✕</button><span class="modal-tag">קצבאות וזכויות</span><div class="modal-title">קצבת ילד נכה לילדים עם אוטיזם: מדריך להורים</div><div class="modal-body"><p>אחת השאלות הראשונות שעולות אצל הורים אחרי אבחון אוטיזם היא האם הילד זכאי לקצבת ילד נכה. לצד ההתמודדות הרגשית, יש מציאות יומיומית שדורשת זמן, כסף, טיפולים, נסיעות וליווי.</p><p>לפי ביטוח לאומי, ילד שאובחן על הספקטרום עשוי להיות זכאי לקצבה בשיעור 100%, ועד שנה רטרואקטיבית.</p><h3>מה להגיש?</h3><p>אבחון מלא, חוות דעת מקצועיות, דוחות טיפוליים, סיכום מהגן או בית הספר ותיאור הורי. חשוב לתאר: קושי בהתארגנות, תגובות חזקות לשינויים, חרדה, קושי חברתי, צורך בהשגחה מוגברת.</p><h3>שאלות נפוצות</h3><p><strong>כל ילד שאובחן זכאי?</strong><br/>עשוי להיות זכאי, בכפוף לתנאים.</p><p><strong>קצבה רטרואקטיבית?</strong><br/>כן, עד שנה ממועד ההגשה.</p><p><strong>צריך עורך דין?</strong><br/>לא תמיד.</p><p style="margin-top:32px;padding-top:20px;border-top:1px solid var(--border);font-size:14px;color:var(--gray)"><span style="color:var(--purple);font-weight:700">רצף</span> מרכז מענים לפי גיל וצורך.</p></div></div></div>
+
+<!-- MODAL a5 -->
+<div class="article-modal-overlay" id="modal-a5" onclick="if(event.target===this)closeArticle('a5')"><div class="article-modal"><button class="modal-close" onclick="closeArticle('a5')">✕</button><span class="modal-tag">חינוך</span><div class="modal-title">ועדת זכאות ואפיון לילדים עם אוטיזם: איך מתכוננים נכון?</div><div class="modal-body"><p>ועדת זכאות ואפיון משפיעה על המסגרת החינוכית של הילד והתמיכות שיקבל.</p><h3>מה להביא?</h3><p>אבחון מלא ועדכני, חוות דעת, דוחות מהגן, סיכומי טיפול ותיאור הורי קצר.</p><h3>מה לומר?</h3><p>לא רק "קשה לו" — מתי, באילו מצבים, מה עוזר ומה קורה בלי תמיכה. לכסות: תקשורת, חברה, ויסות חושי, למידה, עצמאות, חרדה. ולציין גם מה עובד טוב.</p><h3>שאלות נפוצות</h3><p><strong>הוועדה קובעת חינוך מיוחד?</strong><br/>יכולה להשפיע על סוג המסגרת.</p><p><strong>אפשר לערער?</strong><br/>כן.</p><p style="margin-top:32px;padding-top:20px;border-top:1px solid var(--border);font-size:14px;color:var(--gray)"><span style="color:var(--purple);font-weight:700">רצף</span> יכול לעזור להבין את שלבי הדרך.</p></div></div></div>
+
+<!-- MODAL a6 -->
+<div class="article-modal-overlay" id="modal-a6" onclick="if(event.target===this)closeArticle('a6')"><div class="article-modal"><button class="modal-close" onclick="closeArticle('a6')">✕</button><span class="modal-tag">חינוך</span><div class="modal-title">גן תקשורת או שילוב: איך לבחור מסגרת לילד עם אוטיזם?</div><div class="modal-body"><p>אין תשובה אחת נכונה. מסגרת טובה היא המסגרת שמתאימה לילד המסוים שלכם.</p><h3>גן תקשורת</h3><p>מתאים לילדים שזקוקים לסביבה קטנה ומובנית — הרבה תיווך, מוצפים מרעש, מתקשים בקבוצה גדולה.</p><h3>שילוב</h3><p>מתאים לילדים שיכולים להיתרם מקבוצת ילדים רגילה ולתפקד עם תמיכות. שילוב טוב דורש צוות שמבין, תיווך והתאמות.</p><h3>שאלות נפוצות</h3><p><strong>גן תקשורת לכולם?</strong><br/>לא.</p><p><strong>שילוב תמיד עדיף?</strong><br/>לא בהכרח.</p><p><strong>אפשר לשנות?</strong><br/>במקרים רבים כן.</p><p style="margin-top:32px;padding-top:20px;border-top:1px solid var(--border);font-size:14px;color:var(--gray)"><span style="color:var(--purple);font-weight:700">רצף</span> יכול לעזור להכיר מסגרות ומענים לפי גיל.</p></div></div></div>
+
+<!-- MODAL a7 -->
+<div class="article-modal-overlay" id="modal-a7" onclick="if(event.target===this)closeArticle('a7')"><div class="article-modal"><button class="modal-close" onclick="closeArticle('a7')">✕</button><span class="modal-tag">טיפולים</span><div class="modal-title">טיפולים פרא רפואיים לילדים עם אוטיזם: מה מתאים ומתי?</div><div class="modal-body"><p>קלינאית תקשורת, ריפוי בעיסוק, טיפול רגשי, הדרכת הורים — הרשימה יכולה להיות מבלבלת.</p><h3>קלינאית תקשורת</h3><p>שפה, תקשורת, הבנה, הבעה, שיחה ומשחק משותף.</p><h3>ריפוי בעיסוק</h3><p>ויסות חושי, מוטוריקה עדינה, התארגנות, עצמאות, כתיבה ואכילה.</p><h3>טיפול רגשי</h3><p>לחרדה, תסכול, בדידות או קושי חברתי. חשוב שהמטפל יכיר אוטיזם.</p><h3>מה מגיע דרך קופת החולים?</h3><p>עד 3 מפגשים שבועיים בתחומים כמו ריפוי בעיסוק וקלינאות תקשורת.</p><h3>שאלות נפוצות</h3><p><strong>כמה טיפולים בשבוע?</strong><br/>תלוי בגיל וצרכים.</p><p><strong>הדרכת הורים חשובה?</strong><br/>כן — רוב החיים בבית.</p><p style="margin-top:32px;padding-top:20px;border-top:1px solid var(--border);font-size:14px;color:var(--gray)"><span style="color:var(--purple);font-weight:700">רצף</span> יכול לעזור למצוא אנשי מקצוע לפי גיל, תחום ואזור.</p></div></div></div>
+
+<!-- MODAL a8 -->
+<div class="article-modal-overlay" id="modal-a8" onclick="if(event.target===this)closeArticle('a8')"><div class="article-modal"><button class="modal-close" onclick="closeArticle('a8')">✕</button><span class="modal-tag">טיפולים</span><div class="modal-title">איך למצוא מטפל לילד עם אוטיזם: מדריך להורים</div><div class="modal-body"><p>מטפל טוב אינו רק מי שיש לו תעודה. חשוב שיבין אוטיזם ויכבד את הדרך שבה הילד מתקשר.</p><h3>קודם כל — מה הצורך?</h3><p>שפה? ויסות חושי? חרדה? קושי חברתי? כשהצורך ברור — החיפוש הופך מדויק.</p><h3>שאלות לשאול מטפל</h3><p>ניסיון עם ילדים על הרצף? גישה טיפולית? מעורבות הורים? איך בודקים התקדמות?</p><h3>מתי לשקול להחליף?</h3><p>מצוקה קבועה, אין שיתוף עם ההורים, אין מטרות, או המטפל מבטל את תחושות הילד.</p><h3>שאלות נפוצות</h3><p><strong>המלצה מהורים מספיקה?</strong><br/>יכולה לעזור — לא מספיקה.</p><p><strong>טיפול אונליין?</strong><br/>לפעמים, בעיקר להדרכת הורים.</p><p style="margin-top:32px;padding-top:20px;border-top:1px solid var(--border);font-size:14px;color:var(--gray)"><span style="color:var(--purple);font-weight:700">רצף</span> יכול לעזור למצוא מטפלים לפי גיל, תחום ואזור.</p></div></div></div>
+
+<!-- CTA -->
+<div class="cta-band">
+  <h2>לא יודעים מאיפה להתחיל? <span>אנחנו כאן.</span></h2>
+  <div class="cta-btns">
+    <a href="https://wa.me/972536256653?text=שלום%20מיטל%2C%20הגעתי%20דרך%20אתר%20רצף%20ואשמח%20לקבל%20עזרה" target="_blank" class="btn-main" style="display:inline-flex;align-items:center;gap:10px">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      דברו איתי
+    </a>
+    <a href="#ages" class="btn-line">לכל המאגר</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+
+  <!-- ── DESKTOP FOOTER ── -->
+  <div class="ft ft-desktop">
+    <a href="#" class="logo">
+      <svg class="logo-svg" viewBox="0 0 40 40" fill="none">
+        <path d="M4 36 C4 16 20 10 20 10 C20 10 36 16 36 36" stroke="#A78BFA" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        <path d="M8.5 36 C8.5 19 20 14 20 14 C20 14 31.5 19 31.5 36" stroke="#312E81" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        <path d="M13 36 C13 22 20 18 20 18 C20 18 27 22 27 36" stroke="#7C3AED" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+        <circle cx="20" cy="36" r="2.8" fill="#7C3AED"/>
+      </svg>
+      <div class="ft-logo-wrap">
+        <div class="ft-name" style="font-family:'Rubik',sans-serif;letter-spacing:2px">רֶצֶף</div>
+        <div class="ft-tag">מענים לקהילה האוטיסטית ובני משפחותיהם לאורך כל שלבי החיים</div>
+      </div>
+    </a>
+    <div class="ft-cols">
+      <div class="fc">
+        <h5>רצף גילאי</h5>
+        <a href="#ages">גיל הרך 0–3</a>
+        <a href="#ages">גיל בית הספר 3–12</a>
+        <a href="#ages">התבגרות 12–18</a>
+        <a href="#ages">בגרות מוקדמת 18–21</a>
+        <a href="#ages">בגרות 21+</a>
+      </div>
+      <div class="fc">
+        <h5>רצף מענים</h5>
+        <a href="#svc">חינוך והכלה</a>
+        <a href="#svc">תעסוקה נתמכת</a>
+        <a href="#svc">דיור ועצמאות</a>
+        <a href="#svc">זכויות וסיוע</a>
+      </div>
+      <div class="fc">
+        <h5>אודות</h5>
+        <a href="#about">מי אנחנו</a>
+        <a href="#how">איך זה עובד</a>
+        <a href="javascript:toggleArticles(event||{preventDefault:()=>{}})">רצף כתבות</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── MOBILE FOOTER ── -->
+  <div class="ft-mobile">
+    <div class="ft-mobile-logo">
+      <svg class="logo-svg" viewBox="0 0 40 40" fill="none" style="width:32px;height:32px">
+        <path d="M4 36 C4 16 20 10 20 10 C20 10 36 16 36 36" stroke="#A78BFA" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        <path d="M8.5 36 C8.5 19 20 14 20 14 C20 14 31.5 19 31.5 36" stroke="#312E81" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        <path d="M13 36 C13 22 20 18 20 18 C20 18 27 22 27 36" stroke="#7C3AED" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+        <circle cx="20" cy="36" r="2.8" fill="#7C3AED"/>
+      </svg>
+      <div>
+        <div class="ft-mobile-name">רֶצֶף</div>
+        <div class="ft-mobile-tag">מלווים אנשים אוטיסטים<br>ומשפחותיהם — בכל שלב בחיים</div>
+      </div>
+    </div>
+
+    <a href="https://wa.me/972536256653?text=שלום%20מיטל%2C%20הגעתי%20דרך%20אתר%20רצף%20ואשמח%20לעזרה" target="_blank" class="ft-wa-btn">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      דברו עם מיטל בוואטסאפ
+    </a>
+
+    <div class="ft-chips">
+      <a href="#ages" class="ft-chip">גיל הרך</a>
+      <a href="#ages" class="ft-chip">בית ספר</a>
+      <a href="#ages" class="ft-chip">תיכון</a>
+      <a href="#ages" class="ft-chip">בגרות 18–21</a>
+      <a href="#ages" class="ft-chip">בגרות 21+</a>
+      <a href="#svc" class="ft-chip">חינוך</a>
+      <a href="#svc" class="ft-chip">תעסוקה</a>
+      <a href="#svc" class="ft-chip">דיור</a>
+      <a href="#svc" class="ft-chip">זכויות</a>
+      <a href="#about" class="ft-chip">אודות</a>
+      <a href="javascript:toggleArticles(event||{preventDefault:()=>{}})" class="ft-chip">כתבות</a>
+    </div>
+
+    <div class="ft-mobile-bottom">
+      <span class="ft-mobile-copy">© 2026 רֶצֶף · מיטל פלג</span>
+      <div class="ft-mobile-legal">
+        <a href="javascript:openPrivacy()">פרטיות</a>
+        <a href="javascript:openTerms()">תנאי שימוש</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- shared bottom bar — desktop only -->
+  <div class="ft-bottom ft-desktop">
+    <span>© 2026 <span style="font-family:'Rubik',sans-serif;font-weight:700;color:rgba(255,255,255,0.6)">רֶצֶף</span> · מיטל פלג · כל הזכויות שמורות</span>
+    <span class="ft-legal-links">
+      <a href="javascript:openPrivacy()" class="ft-legal-a">מדיניות פרטיות</a>
+      <span style="color:rgba(255,255,255,0.3)">·</span>
+      <a href="javascript:openTerms()" class="ft-legal-a">תנאי שימוש</a>
+    </span>
+  </div>
+  <div style="margin-top:12px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08);text-align:center">
+    <p style="font-size:10px;color:rgba(255,255,255,0.25);line-height:1.5;max-width:560px;margin:0 auto">
+      המידע מוצג לצורכי אוריינטציה בלבד ואינו מהווה המלצה מקצועית. רצף אינו אחראי לנכונות או עדכניות המענים.
+    </p>
+  </div>
+</footer>
+
+<!-- ══ ADD MAAN FLOATING BTN ══ -->
+<a href="https://wa.me/972536256653?text=שלום%20מיטל%2C%20אני%20רוצה%20להוסיף%20מענה%20לאתר%20רצף" target="_blank" id="add-maan-btn" title="הוסיפו מענה לאתר" aria-label="הוסיפו מענה לאתר רצף דרך וואטסאפ">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+  <span class="add-maan-label">הוסיפו מענה</span>
+</a>
+
+<!-- ══ BACK TO TOP BTN ══ -->
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="חזרה לראש הדף" title="חזרה לראש הדף">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<!-- ══ MAANIM PANEL ══ -->
+<div id="maanim-overlay" style="display:none;position:fixed;inset:0;z-index:5000;background:rgba(20,17,60,0.6);backdrop-filter:blur(6px)" onclick="closeMaanim()"></div>
+
+<div id="maanim-panel" style="display:none;position:fixed;top:0;left:0;bottom:0;z-index:5001;width:min(780px,100vw);background:#fff;overflow-y:auto;box-shadow:-8px 0 48px rgba(20,17,60,0.18);direction:rtl">
+
+  <!-- header -->
+  <div style="position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid #EDE9FE;padding:20px 28px 16px;display:flex;align-items:center;gap:16px">
+    <button id="maanim-back" onclick="maanimBack()" style="display:none;background:var(--purple-bg);border:none;border-radius:10px;padding:8px 14px;font-family:'Heebo',sans-serif;font-size:14px;font-weight:700;color:var(--purple);cursor:pointer">→ חזרה</button>
+    <div style="flex:1">
+      <div id="maanim-breadcrumb" style="font-size:12px;color:var(--gray);margin-bottom:4px"></div>
+      <div id="maanim-title" style="font-size:20px;font-weight:900;color:var(--navy)"></div>
+    </div>
+    <!-- פילטר אזור -->
+    <select id="maanim-region" onchange="renderCurrent()" style="border:1.5px solid #EDE9FE;border-radius:10px;padding:8px 12px;font-family:'Heebo',sans-serif;font-size:13px;color:var(--navy);background:#fff;cursor:pointer">
+      <option value="">כל האזורים</option>
+    </select>
+    <button onclick="closeMaanim()" aria-label="סגור פאנל מענים" style="background:none;border:none;cursor:pointer;font-size:22px;color:var(--gray);line-height:1;padding:4px">✕</button>
+  </div>
+
+  <!-- content -->
+  <div id="maanim-content" style="padding:24px 28px"></div>
+</div>
+
+<style>
+/* ══ BACK TO TOP ══ */
+#back-to-top{
+  position:fixed;bottom:90px;left:24px;z-index:4999;
+  width:48px;height:48px;border-radius:50%;
+  background:#7C3AED;color:#fff;border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(124,58,237,0.35);
+  opacity:0;transform:translateY(12px);pointer-events:none;
+  transition:opacity .25s,transform .25s;
+}
+#back-to-top.visible{opacity:1;transform:translateY(0);pointer-events:auto}
+#back-to-top:hover{background:#6D28D9;box-shadow:0 6px 28px rgba(124,58,237,0.45)}
+#back-to-top:focus-visible{outline:3px solid #A78BFA;outline-offset:3px}
+
+/* ══ SKIP LINK — נגישות ══ */
+.skip-link{
+  position:absolute;top:-60px;right:0;left:0;z-index:9999;
+  background:#7C3AED;color:#fff;font-weight:700;font-size:15px;
+  padding:12px 24px;text-align:center;text-decoration:none;
+  transition:top .2s;
+}
+.skip-link:focus{top:0}
+
+/* ══ FOCUS VISIBLE ══ */
+:focus-visible{outline:3px solid #7C3AED;outline-offset:2px;border-radius:4px}
+
+/* כרטיסי קטגוריות */
+.mcat-card{display:flex;align-items:center;gap:18px;background:#fff;border:1.5px solid #EDE9FE;border-radius:14px;padding:16px 22px;cursor:pointer;transition:border-color .2s,box-shadow .2s,transform .2s;margin-bottom:10px;box-shadow:0 2px 8px rgba(124,58,237,0.04)}
+.mcat-card:hover{border-color:#7C3AED;box-shadow:0 6px 24px rgba(124,58,237,0.13);transform:translateY(-2px)}
+.mcat-icon{width:42px;height:42px;border-radius:11px;background:linear-gradient(135deg,#EDE9FE,#F8F6FF);border:1.5px solid #E5E0FC;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mcat-icon svg{width:20px;height:20px;stroke:#7C3AED;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.mcat-info{flex:1}
+.mcat-name{font-size:16px;font-weight:800;color:#1E1B4B;margin-bottom:3px}
+.mcat-count{font-size:12px;color:#6B7280}
+.mcat-arrow{color:#A78BFA;font-size:16px;transition:color .2s}
+.mcat-card:hover .mcat-arrow{color:#7C3AED}
+
+/* תתי-קטגוריות */
+.msub-chip{display:inline-block;background:#fff;border:1.5px solid #EDE9FE;border-radius:100px;padding:10px 18px;font-size:13px;font-weight:700;color:#1E1B4B;cursor:pointer;transition:all .2s;margin:6px 6px 0 0}
+.msub-chip:hover{background:#7C3AED;color:#fff;border-color:#7C3AED}
+
+/* כרטיסי מענים */
+.mitem-card{background:#fff;border:1.5px solid #EDE9FE;border-radius:14px;padding:20px 22px;margin-bottom:10px;transition:box-shadow .2s,border-color .2s}
+.mitem-card:hover{border-color:#A78BFA;box-shadow:0 4px 16px rgba(124,58,237,0.09)}
+.mitem-name{font-size:16px;font-weight:800;color:#1E1B4B;margin-bottom:6px}
+.mitem-sub{font-size:12px;color:#7C3AED;font-weight:700;margin-bottom:10px}
+.mitem-desc{font-size:13px;color:#6B7280;line-height:1.6;margin-bottom:14px}
+.mitem-meta{display:flex;flex-wrap:wrap;gap:8px}
+.mitem-tag{background:#F8F6FF;border-radius:100px;padding:5px 12px;font-size:11.5px;color:#6B7280;font-weight:600}
+.mitem-tag a{color:#7C3AED;text-decoration:none;font-weight:700}
+.rec-pos{border-right:3px solid #10B981}
+.rec-mix{border-right:3px solid #F59E0B}
+.rec-neg{border-right:3px solid #EF4444}
+</style>
+
+<script>
+// ══ DATA ══
+let MAANIM = [];
+let mState = { age: null, ageLabel: '', cat: null, sub: null };
+
+const AGE_CONFIG = [
+  { key:'0-3',   label:'0 עד 3',   sub:'גיל הרך',       icon:'😊' },
+  { key:'3-6',   label:'3 עד 6',   sub:'גן',             icon:'🎒' },
+  { key:'6-13',  label:'6 עד 13',  sub:'בית הספר',      icon:'📚' },
+  { key:'13-18', label:'13 עד 18', sub:'גיל ההתבגרות',  icon:'👥' },
+  { key:'18-21', label:'18 עד 21', sub:'בגרות מוקדמת',  icon:'🎓' },
+  { key:'21+',   label:'21 ומעלה', sub:'בגרות',          icon:'💼' },
+];
+
+const CAT_ICONS = {
+  'אבחון והערכה':     `<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>`,
+  'טיפולים ומטפלים': `<svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>`,
+  'מסגרות חינוך':    `<svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>`,
+  'זכויות ורווחה':   `<svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+  'ארגונים ועמותות': `<svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+  'שירותים לבוגרים': `<svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>`,
+  'קייטנות ופנאי':   `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>`,
+  'ציוד ועזרים':     `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>`,
+};
+
+function normalizeCity(raw) {
+  if (!raw || !raw.trim()) return 'ארצי';
+  const r = raw.trim();
+  if (/^ארצי|כל הארץ/.test(r)) return 'ארצי';
+  if (/אונליין|און-ליין|זום|מקוון|דיגיטלי|אינטרנט/.test(r)) return 'ארצי';
+  // 5 אזורים + ירושלים
+  if (/ירושלים|גבעת שאול|גבעת מרדכי|בית הכרם|רמות|קטמון|גילה|ארמון|עין כרם|קרית יובל|בקעה|רחביה|בוכרים|מלחה|אגריפס|מבשרת|גוש עציון|אפרת|אלון שבות|בית שמש|מעלה אדומים|בית אל|אריאל|פסגות/.test(r)) return 'ירושלים והסביבה';
+  if (/תל אביב|ת"א|רמת גן|גבעתיים|בני ברק|חולון|בת ים|פתח תקו|פ"ת|ראשון לציון|ראשל"צ|הרצליה|רעננה|כפר סבא|הוד השרון|ראש העין|אלקנה|נתניה|מודיעין|מכבים|פלורנטין|נווה צדק/.test(r)) return 'מרכז';
+  if (/נס ציונה|רחובות|יבנה|גדרה|לוד|רמלה|אשדוד|אשקלון|קרית גת|קרית מלאכי/.test(r)) return 'שפלה';
+  if (/באר שבע|סורוקה|נגב|אופקים|שדרות|אשל|אילת|ערבה/.test(r)) return 'דרום';
+  if (/חיפה|קרית|כרמל|נשר|טירת|עפולה|יזרעאל|נצרת|שפרעם|כפר קאסם|בועיינה|חורה|טמרה|טבריה|כרמיאל|נהריה|עכו|צפת|חדרה|פרדס חנה|זכרון/.test(r)) return 'צפון';
+  return 'ארצי';
+}
+
+function cleanUrl(raw) {
+  if (!raw || !raw.trim()) return '';
+  // קח רק ה-URL הראשון אם יש כמה מופרדים ב-" / "
+  const first = raw.split(' / ')[0].trim();
+  // מייל → mailto:
+  if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(first)) return 'mailto:' + first;
+  // URL ללא http → הוסף https://
+  if (!/^https?:\/\//i.test(first) && first.includes('.')) return 'https://' + first;
+  return first;
+}
+
+function initMaanim() {
+  if (typeof MAANIM_RAW === 'undefined') return;
+  MAANIM = MAANIM_RAW.map(d => ({
+    name: d.n, category: d.c, subcategory: d.s,
+    ages: d.a, region: normalizeCity(d.r), phone: d.p,
+    website: cleanUrl(d.w), recommendation: d.rec, description: d.d,
+  }));
+  const ORDER = ['ארצי','ירושלים והסביבה','מרכז','שפלה','דרום','צפון'];
+  const used = new Set(MAANIM.map(d=>d.region));
+  const sorted = ORDER.filter(r=>used.has(r));
+  const sel = document.getElementById('maanim-region');
+  sorted.forEach(r => {
+    const o = document.createElement('option'); o.value = r; o.textContent = r; sel.appendChild(o);
+  });
+  // הסר ספירות — יוצגו רק בתוך הפאנל
+  document.querySelectorAll('.age-cnt[data-age]').forEach(el => {
+    el.innerHTML = `לחצו לגילוי המענים`;
+  });
+  const total = MAANIM.length;
+  const hc = document.getElementById('hero-count');
+  if (hc) hc.textContent = total;
+  const sc = document.getElementById('stat-count');
+  if (sc) sc.textContent = total;
+}
+document.addEventListener('DOMContentLoaded', initMaanim);
+
+/* ── HERO SLIDESHOW ── */
+(function(){
+  var cur=0;
+  function tick(){
+    var slides=document.querySelectorAll('#heroSlideshow .hero-slide');
+    if(!slides.length) return;
+    slides[cur].classList.remove('active');
+    cur=(cur+1)%slides.length;
+    slides[cur].classList.add('active');
+  }
+  setInterval(tick,4500);
+})();
+
+/* ── TESTIMONIALS CAROUSEL ── */
+(function(){
+  var track, cards, dots, cur=0, perView=3;
+  function init(){
+    track = document.getElementById('tscrollTrack');
+    if(!track) return;
+    cards = Array.from(track.querySelectorAll('.tcard'));
+    var dotsEl = document.getElementById('tcarouselDots');
+    var total = cards.length;
+    function calcPer(){
+      var w = window.innerWidth;
+      return w < 600 ? 1 : w < 900 ? 2 : 3;
+    }
+    function render(){
+      perView = calcPer();
+      var cardW = cards[0].offsetWidth + 18;
+      track.style.transform = 'translateX(' + (cur * cardW) + 'px)';
+      // dots
+      var pages = Math.ceil(total / perView);
+      dotsEl.innerHTML='';
+      for(var i=0;i<pages;i++){
+        var d=document.createElement('button');
+        d.className='tcarousel-dot'+(Math.floor(cur/perView)===i?' active':'');
+        d.setAttribute('aria-label','עמוד '+(i+1));
+        (function(idx){d.onclick=function(){cur=idx*perView;render();}})(i);
+        dotsEl.appendChild(d);
+      }
+      // btns
+      var prev=document.querySelector('.tcarousel-btn.prev');
+      var next=document.querySelector('.tcarousel-btn.next');
+      if(prev) prev.disabled = cur<=0;
+      if(next) next.disabled = cur+perView>=total;
+    }
+    window.tCarousel = function(dir){
+      perView = calcPer();
+      cur = Math.max(0, Math.min(cur + dir*perView, cards.length - perView));
+      render();
+    };
+    window.addEventListener('resize', render);
+    render();
+  }
+  document.addEventListener('DOMContentLoaded', init);
+})();
+
+function openMaanim(ageKey) {
+  const cfg = AGE_CONFIG.find(a => a.key === ageKey);
+  mState = { age: ageKey, ageLabel: cfg ? cfg.sub : ageKey, cat: null, sub: null };
+  document.getElementById('maanim-back').style.display = 'none';
+  document.getElementById('maanim-overlay').style.display = 'block';
+  document.getElementById('maanim-panel').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+  renderCurrent();
+}
+
+function openMaanimByCategory(cat) {
+  mState = { age: null, ageLabel: 'כל הגילאים', cat: cat, sub: null };
+  document.getElementById('maanim-back').style.display = 'inline-flex';
+  document.getElementById('maanim-overlay').style.display = 'block';
+  document.getElementById('maanim-panel').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+  renderCurrent();
+}
+
+function closeMaanim() {
+  document.getElementById('maanim-overlay').style.display = 'none';
+  document.getElementById('maanim-panel').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+function maanimBack() {
+  if (mState.cat === '__search__') { closeMaanim(); return; }
+  if (mState.sub) { mState.sub = null; }
+  else if (mState.cat) { mState.cat = null; }
+  renderCurrent();
+}
+
+function filtered() {
+  const region = document.getElementById('maanim-region').value;
+  return MAANIM.filter(d => {
+    // כלל: קטגוריה מותרת לגיל רק אם:
+    // 1. הגיל מצוין ספציפית ברשומה
+    // 2. מסומן "כל הגילאים" — אבל רק אם הקטגוריה הגיונית לגיל הזה
+    const CAT_MIN_AGE = {
+      'שירותים לבוגרים': '18-21',  // לא לפני 18
+    };
+    const AGE_ORDER = ['0-3','3-6','6-13','13-18','18-21','21+'];
+    const ageIdx = AGE_ORDER.indexOf(mState.age);
+    const minAge = CAT_MIN_AGE[d.category];
+    const minIdx = minAge ? AGE_ORDER.indexOf(minAge) : 0;
+    const blockedByMinAge = mState.age && minAge && ageIdx < minIdx;
+    const ageOk = !mState.age
+      || d.ages.includes(mState.age)
+      || (d.ages.includes('כל הגילאים') && !blockedByMinAge);
+    const catOk = !mState.cat || d.category === mState.cat;
+    let subOk = true;
+    if (mState.sub) {
+      // find the regex for this label
+      const groups = mState.subGroups || [];
+      const group = groups.find(g => g.label === mState.sub);
+      if (group) {
+        const text = (d.subcategory||'') + ' ' + (d.name||'') + ' ' + (d.description||'');
+        subOk = group.match.test(text);
+      } else if (mState.sub === 'אחר') {
+        const text = (d.subcategory||'') + ' ' + (d.name||'') + ' ' + (d.description||'');
+        subOk = !groups.some(g => g.match.test(text));
+      } else {
+        subOk = false;
+      }
+    }
+    const regOk = !region || d.region === region;
+    return ageOk && catOk && subOk && regOk;
+  });
+}
+
+function renderCurrent() {
+  const backBtn = document.getElementById('maanim-back');
+  const bc = document.getElementById('maanim-breadcrumb');
+  const title = document.getElementById('maanim-title');
+  const content = document.getElementById('maanim-content');
+
+  if (mState.cat === '__search__') {
+    // מצב חיפוש
+    backBtn.style.display = 'inline-flex';
+    bc.textContent = 'חיפוש';
+    title.textContent = `תוצאות עבור "${mState.searchQuery}"`;
+    const region = document.getElementById('maanim-region').value;
+    const items = (mState.searchResults || []).filter(d => !region || d.region === region);
+    if (!items.length) {
+      content.innerHTML = `<div style="text-align:center;padding:60px 0;color:#6B7280">
+        <div style="font-size:48px;margin-bottom:16px">🔍</div>
+        <div style="font-size:18px;font-weight:700;color:#1E1B4B;margin-bottom:8px">לא נמצאו תוצאות</div>
+        <div style="font-size:14px">נסו מילה אחרת או <a href="#" onclick="closeMaanim();return false;" style="color:#7C3AED">חפשו לפי גיל</a></div>
+      </div>`;
+      return;
+    }
+    let html = `<div style="font-size:13px;color:#6B7280;margin-bottom:16px">${items.length} מענים נמצאו</div>`;
+    items.forEach(d => {
+      const recBadge = d.recommendation==='positive'
+        ? `<span style="font-size:11px;font-weight:700;color:#10B981;background:#ECFDF5;padding:2px 8px;border-radius:20px">✓ מומלץ</span>`
+        : d.recommendation==='mixed'
+        ? `<span style="font-size:11px;font-weight:700;color:#D97706;background:#FFFBEB;padding:2px 8px;border-radius:20px">~ חוות דעת מעורבת</span>`
+        : '';
+      const siteLabel = d.website && d.website.startsWith('mailto:') ? '✉️ מייל' : '🌐 אתר';
+      const siteTarget = d.website && d.website.startsWith('mailto:') ? '' : 'target="_blank"';
+      const site = d.website ? `<span class="mitem-tag"><a href="${d.website}" ${siteTarget}>${siteLabel}</a></span>` : '';
+      const phone = d.phone ? `<span class="mitem-tag">📞 <a href="tel:${d.phone}">${d.phone}</a></span>` : '';
+      const region2 = d.region ? `<span class="mitem-tag">📍 ${d.region}</span>` : '';
+      const desc = d.description ? `<div class="mitem-desc">${d.description.substring(0,180)}${d.description.length>180?'...':''}</div>` : '';
+      const recClass = d.recommendation==='positive'?'rec-pos':d.recommendation==='mixed'?'rec-mix':'';
+      // הדגש את מילת החיפוש
+      const q = mState.searchQuery;
+      const nameHl = d.name.replace(new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')', 'gi'), '<mark style="background:#EDE9FE;color:#7C3AED;border-radius:3px;padding:0 2px">$1</mark>');
+      html += `<div class="mitem-card ${recClass}">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:4px">
+          <div class="mitem-name">${nameHl}</div>
+          ${recBadge}
+        </div>
+        <div class="mitem-sub">${d.category} · ${d.subcategory||''}</div>
+        ${desc}
+        <div class="mitem-meta">${region2}${phone}${site}</div>
+      </div>`;
+    });
+    content.innerHTML = html;
+    return;
+  }
+
+  if (!mState.cat) {
+    // רמה 2: קטגוריות
+    backBtn.style.display = 'none';
+    bc.textContent = mState.ageLabel;
+    title.textContent = 'בחרו תחום מענה';
+    const items = filtered();
+    // count per category
+    const cats = {};
+    items.forEach(d => { cats[d.category] = (cats[d.category]||0)+1; });
+    let html = '';
+    Object.entries(cats).sort((a,b)=>b[1]-a[1]).forEach(([cat, count]) => {
+      const icon = CAT_ICONS[cat] || `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>`;
+      html += `<div class="mcat-card" onclick="selectCat('${cat.replace(/'/g,"\\'")}')">
+        <div class="mcat-icon">${icon}</div>
+        <div class="mcat-info">
+          <div class="mcat-name">${cat}</div>
+          <div class="mcat-count">${count} מענים</div>
+        </div>
+        <div class="mcat-arrow">←</div>
+      </div>`;
+    });
+    content.innerHTML = html || '<p style="color:#6B7280;text-align:center;padding:40px 0">אין מענים לגיל זה</p>';
+  } else {
+    // רמה 3: קטגוריה נבחרה — שבבים + כרטיסיות
+    backBtn.style.display = 'flex';
+    bc.textContent = mState.ageLabel ? mState.ageLabel + ' ← ' + mState.cat : mState.cat;
+    title.textContent = mState.sub || mState.cat;
+
+    const SUB_GROUPS = {
+      'טיפולים ומטפלים': [
+        { label:'קלינאית תקשורת',           match:/קלינא/ },
+        { label:'פסיכולוג ופסיכותרפיסט',    match:/פסיכולוג|פסיכותרפ/ },
+        { label:'פסיכיאטר',                  match:/פסיכיאטר/ },
+        { label:'ריפוי בעיסוק',              match:/ריפוי בעיסוק|מרפאה בעיסוק/ },
+        { label:'ABA והתנהגות',              match:/ABA|התנהגות|DIR|PRT|פלורטיים/ },
+        { label:'רפואת שיניים',              match:/שיניים|דנטל/ },
+        { label:'נוירולוגיה ורפואה',         match:/נוירולוג|אנדוקרינ|גסטרו|אורתופד|נפרולוג|רופא/ },
+        { label:'רפואת נשים וגינקולוגיה',   match:/נשים|גינקולוג/ },
+        { label:'תזונה',                     match:/תזונ/ },
+        { label:'טיפול באמנות ותנועה',       match:/אמנות|מוזיקה|תנועה|דרמה|בעלי חיים/ },
+        { label:'ייעוץ והדרכת הורים',        match:/הורים|משפחה|זוגי|הדרכה/ },
+        { label:'בריאות הנפש וטיפול נפשי',   match:/נפש|טיפול נפשי|סיוע רגשי/ },
+      ],
+      'אבחון והערכה': [
+        { label:'אבחון פסיכולוגי',           match:/פסיכולוג|מאבחנ/ },
+        { label:'אבחון פסיכיאטרי',           match:/פסיכיאטר/ },
+        { label:'מרפאת התפתחות הילד',        match:/התפתחות הילד|מרפאת|מכון/ },
+        { label:'מרפאת אוטיזם',              match:/מרפאת אוטיזם|מרכז אוטיזם/ },
+        { label:'נוירולוג ילדים',             match:/נוירולוג/ },
+        { label:'מחקר ואקדמיה',              match:/מחקר|אקדמ|אוניברסיט/ },
+      ],
+      'מסגרות חינוך': [
+        { label:'מעון וגיל הרך',             match:/מעון|פעוטון|צהרון|גיל הרך/ },
+        { label:'גן תקשורת',                 match:/גן תקשורת|גני תקשורת/ },
+        { label:'כיתת תקשורת',               match:/כיתת תקשורת|כיתות תקשורת|עם כיתת|כיתות מיוחדות|כיתה מקדמת/ },
+        { label:'חינוך מיוחד',               match:/חינוך מיוחד|בי"ס מיוחד|בית ספר מיוחד|לאוטיסטים|ליקויי למידה|כוללני|מסגרת חינוכית/ },
+        { label:'בית ספר משלב',              match:/משלב|שילוב|ממלכתי מכיל|מכיל/ },
+        { label:'בית ספר יסודי',             match:/יסודי/ },
+        { label:'בית ספר דתי',               match:/ממ"ד|דתי|ישיבה|אולפנה/ },
+        { label:'תיכון וחטיבה',              match:/תיכון|חטיבה/ },
+        { label:'חווה וטיפול',               match:/חווה|טיפולית|מסגרת יומית/ },
+        { label:'אקדמיה ומכינות',            match:/אקדמיה|אוניברסיט|מכינה|תוכנית ממשלתית|ניסויי|לימודים אקדמיים/ },
+        { label:'מתי"א ותמיכה חינוכית',     match:/מתי"א|פדגוגי|מרכז תמיכה חינוכי|שפ"י/ },
+        { label:'בית ספר לאוטיזם',          match:/תקשורת ואוטיזם|תוכנית בית ספרית|גיל בית ספר|ASD|גוונים/ },
+        { label:'חינוך דתי',                match:/חרדי|לבנות חרדי|סולם|שתילים/ },
+        { label:'בית ספר לצרכים מיוחדים',  match:/רגשיים|התנהגותיים|מאושפז|אקשטיין|אפיק/ },
+        { label:'הכשרה מקצועית',            match:/הכשרה|מקצועי|קורס/ },
+        { label:'רפורמות ועדכונים',         match:/רפורמה|שכר|עדכון/ },
+      ],
+      'ארגונים ועמותות': [
+        { label:'עמותות אוטיזם',             match:/עמות|ארגון|אלו"ט|אגודה/ },
+        { label:'קהילת הורים',               match:/הורים|קהילה/ },
+        { label:'דיור ותעסוקה',              match:/דיור|תעסוקה|שיקום/ },
+        { label:'נגישות ותרבות',             match:/נגישות|פנאי|תרבות|תיאטרון/ },
+        { label:'מדיה ומידע',                match:/מדיה|עיתון|מידע|פודקאסט/ },
+        { label:'חירום',                     match:/חירום|חמ"ל/ },
+      ],
+      'זכויות ורווחה': [
+        { label:'קצבאות ומיצוי זכויות',      match:/קצב|מיצוי|ביטוח לאומי|זכאות|גמלא|הטבה|נכות|יועץ פיננסי|פיננסי/ },
+        { label:'ייעוץ משפטי',               match:/עורך דין|עורכת דין|ייעוץ משפטי|עו"ד|משפט|ייעוץ זכויות/ },
+        { label:'אפוטרופסות ותכנון עתיד',    match:/אפוטרופ|צוואה|יפוי כוח|תכנון עתיד/ },
+        { label:'ועדות והשמה',               match:/ועדה|השמה|סל שיקום|סל חינוך|חינוך מיוחד עירוני/ },
+        { label:'שירותי רווחה וסיוע',        match:/רווחה|עירייה|מחלקה|שירות מדינה|שיקום|מרכז סיוע|דיור ושירותים/ },
+        { label:'מוקדי מידע וחירום',         match:/מוקד|קו חירום|חירום נפשי|תמיכה נפשית חירום/ },
+        { label:'מידע וחקיקה',               match:/אתר|מאגר|חוק|תקנ|רפורמה|פורטל|מידע ממשלתי|ארגון זכויות|נגישות/ },
+      ],
+      'שירותים לבוגרים': [
+        { label:'תעסוקה ושוק עבודה',          match:/תעסוקה|עבודה|מעסיק|הכשרה/ },
+        { label:'דיור בקהילה',               match:/דיור|מגורים|מכינה לחיים/ },
+        { label:'גיוס וצבא',                 match:/צבא|גיוס|צה"ל|שירות לאומי/ },
+        { label:'קבוצות חברתיות',            match:/חברתי|חוברים|מפגש/ },
+        { label:'פנאי ותרבות',               match:/פנאי|תרבות|ספורט/ },
+        { label:'בריאות הנפש לבוגרים',       match:/בריאות הנפש|פסיכיאטר|תמיכה/ },
+      ],
+      'קייטנות ופנאי': [
+        { label:'קייטנות',                   match:/קייטנ/ },
+        { label:'חוגים ופעילויות',           match:/חוג|פעילות|ספורט|אמנות/ },
+        { label:'מוזיאונים ותרבות',          match:/מוזיאון|תרבות|תיאטרון/ },
+        { label:'נופשונים וכנסים',           match:/נופש|כנס/ },
+      ],
+      'ציוד ועזרים': [
+        { label:'אפליקציות ותוכנות',         match:/אפליקצי|תוכנה|דיגיטל|AI|GPS|מכשיר|פלטפורמ/ },
+        { label:'ציוד שיקומי וחושי',         match:/שיקומי|חושי|סנסורי|כבד|שמיכה|ויסות|אביזר|מזרן|נעלי|רהיט|מגע/ },
+        { label:'תקשורת תומכת',              match:/תקשורת תומכת|AAC|לוח תקשורת/ },
+        { label:'חנויות ומוצרים',            match:/חנות|מוצר|קניה|חנן/ },
+        { label:'מימון וסיוע',               match:/מימון|סיוע|קרן|השאל/ },
+      ],
+    };
+
+    mState.subGroups = SUB_GROUPS[mState.cat] || [];
+    const items = filtered(); // עכשיו subGroups מוגדר — filtered() יכול לסנן נכון
+
+    const groups = SUB_GROUPS[mState.cat] || [];
+    // ספירה לפי קבוצה — תמיד על כל הפריטים ללא סינון sub
+    const allItems = (() => { const s = mState.sub; mState.sub = null; const r = filtered(); mState.sub = s; return r; })();
+    const labelCounts = {};
+    allItems.forEach(d => {
+      const text = (d.subcategory||'') + ' ' + (d.name||'');
+      let matched = false;
+      for (const g of groups) {
+        if (g.match.test(text)) {
+          labelCounts[g.label] = (labelCounts[g.label]||0)+1;
+          matched = true; break;
+        }
+      }
+      if (!matched) labelCounts['אחר'] = (labelCounts['אחר']||0)+1;
+    });
+
+    // שבבי תת-קטגוריה מעל הכרטיסיות
+    let html = '<div style="margin-bottom:20px;display:flex;flex-wrap:wrap;gap:8px">';
+    const activeChip = mState.sub || null;
+    const allStyle = !activeChip ? 'background:#7C3AED;color:#fff;border-color:#7C3AED' : '';
+    html += `<span class="msub-chip" onclick="selectSub(null)" style="${allStyle}">הכל (${allItems.length})</span>`;
+    [...groups.map(g=>g.label), 'אחר'].forEach(label => {
+      if (labelCounts[label]) {
+        const active = activeChip === label ? 'background:#7C3AED;color:#fff;border-color:#7C3AED' : '';
+        html += `<span class="msub-chip" onclick="selectSub('${label.replace(/'/g,"\\'")}');" style="${active}">${label} (${labelCounts[label]})</span>`;
+      }
+    });
+    html += '</div>';
+    // הצג כרטיסיות — items כבר מסונן לפי mState.sub דרך filtered()
+    let cardsHtml = `<div style="font-size:13px;color:#6B7280;margin-bottom:16px">${items.length} מענים נמצאו</div>`;
+    items.forEach(d => {
+      const recBadge = d.recommendation==='positive'
+        ? `<span style="font-size:11px;font-weight:700;color:#10B981;background:#ECFDF5;padding:2px 8px;border-radius:20px">✓ מומלץ</span>`
+        : d.recommendation==='mixed'
+        ? `<span style="font-size:11px;font-weight:700;color:#D97706;background:#FFFBEB;padding:2px 8px;border-radius:20px">~ חוות דעת מעורבת</span>`
+        : '';
+      const phone = d.phone ? `<span class="mitem-tag">📞 <a href="tel:${d.phone}">${d.phone}</a></span>` : '';
+      const siteLabel = d.website && d.website.startsWith('mailto:') ? '✉️ מייל' : '🌐 אתר';
+      const siteTarget = d.website && d.website.startsWith('mailto:') ? '' : 'target="_blank"';
+      const site = d.website ? `<span class="mitem-tag"><a href="${d.website}" ${siteTarget}>${siteLabel}</a></span>` : '';
+      const region = d.region ? `<span class="mitem-tag">📍 ${d.region}</span>` : '';
+      const desc = d.description ? `<div class="mitem-desc">${d.description.substring(0,180)}${d.description.length>180?'...':''}</div>` : '';
+      const recClass = d.recommendation==='positive'?'rec-pos':d.recommendation==='mixed'?'rec-mix':'';
+      cardsHtml += `<div class="mitem-card ${recClass}">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:4px">
+          <div class="mitem-name">${d.name}</div>
+          ${recBadge}
+        </div>
+        <div class="mitem-sub">${d.subcategory||d.category}</div>
+        ${desc}
+        <div class="mitem-meta">${region}${phone}${site}</div>
+      </div>`;
+    });
+    content.innerHTML = html + cardsHtml;
+  }
+}
+
+function selectCat(cat) {
+  mState.cat = cat;
+  mState.sub = null;
+  renderCurrent();
+}
+
+function selectSub(sub) {
+  mState.sub = sub;
+  renderCurrent();
+  const panel = document.getElementById('maanim-panel');
+  if (panel) panel.scrollTop = 0;
+}
+
+function renderCards(items) {
+  const content = document.getElementById('maanim-content');
+  if (!items.length) {
+    content.innerHTML = '<p style="color:#6B7280;text-align:center;padding:40px 0">לא נמצאו מענים</p>';
+    return;
+  }
+  let html = `<div style="font-size:13px;color:#6B7280;margin-bottom:16px">${items.length} מענים נמצאו</div>`;
+  items.forEach(d => {
+    const recClass = d.recommendation==='positive'?'rec-pos':d.recommendation==='mixed'?'rec-mix':'';
+    const recBadge = d.recommendation==='positive'
+      ? `<span style="font-size:11px;font-weight:700;color:#10B981;background:#ECFDF5;padding:2px 8px;border-radius:20px">✓ מומלץ</span>`
+      : d.recommendation==='mixed'
+      ? `<span style="font-size:11px;font-weight:700;color:#D97706;background:#FFFBEB;padding:2px 8px;border-radius:20px">~ חוות דעת מעורבת</span>`
+      : '';
+    const phone = d.phone ? `<span class="mitem-tag">📞 <a href="tel:${d.phone}">${d.phone}</a></span>` : '';
+    const site = d.website ? `<span class="mitem-tag">🌐 <a href="${d.website}" target="_blank">אתר</a></span>` : '';
+    const region = d.region ? `<span class="mitem-tag">📍 ${d.region}</span>` : '';
+    const desc = d.description ? `<div class="mitem-desc">${d.description.substring(0,180)}${d.description.length>180?'...':''}</div>` : '';
+    html += `<div class="mitem-card ${recClass}">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:4px">
+        <div class="mitem-name">${d.name}</div>
+        ${recBadge}
+      </div>
+      <div class="mitem-sub">${d.category}</div>
+      ${desc}
+      <div class="mitem-meta">${region}${phone}${site}</div>
+    </div>`;
+  });
+  document.getElementById('maanim-content').innerHTML = html;
+}
+
+function toggleArticles(e){
+  e.preventDefault();
+  var page = document.getElementById('articles-page');
+  var isHidden = page.style.display === 'none';
+  page.style.display = isHidden ? 'block' : 'none';
+  document.body.style.overflow = isHidden ? 'hidden' : '';
+  page.scrollTop = 0;
+}
+function closeArticlesPage(){
+  var page = document.getElementById('articles-page');
+  if(page && page.style.display !== 'none'){
+    page.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+}
+
+/* ── Testimonials track fix — מבטיח שהכרטיסים תמיד נראים ── */
+document.addEventListener('DOMContentLoaded', function(){
+  var track = document.getElementById('tscrollTrack');
+  if(!track) return;
+  var origCards = Array.from(track.children);
+  var n = Math.floor(origCards.length / 2); /* חצי הם הכפל */
+  var origSet = origCards.slice(0, n || origCards.length);
+
+  /* בנה 4 עותקים לגלישה חלקה */
+  track.innerHTML = '';
+  for(var s=0;s<4;s++){
+    origSet.forEach(function(c){ track.appendChild(c.cloneNode(true)); });
+  }
+
+  /* חשב רוחב סט אחד ועדכן keyframes */
+  requestAnimationFrame(function(){
+    var gap = 18;
+    var setW = 0;
+    Array.from(track.children).slice(0, origSet.length).forEach(function(c){
+      setW += c.getBoundingClientRect().width + gap;
+    });
+    if(setW < 10) return;
+    var st = document.createElement('style');
+    st.textContent = '@keyframes scrollInfinite{from{transform:translateX(0)}to{transform:translateX(-'+Math.round(setW)+'px)}}';
+    document.head.appendChild(st);
+  });
+});
+
+function openArticle(id){
+  document.getElementById('modal-'+id).classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeArticle(id){
+  document.getElementById('modal-'+id).classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){
+    document.querySelectorAll('.article-modal-overlay.open').forEach(function(m){
+      m.classList.remove('open');
+    });
+    closePrivacy();closeTerms();
+    document.body.style.overflow='';
+  }
+});
+
+/* ── PRIVACY / TERMS ── */
+function openPrivacy(){
+  var m=document.getElementById('privacy-modal');
+  m.style.display='flex';
+  document.body.style.overflow='hidden';
+}
+function closePrivacy(){
+  var m=document.getElementById('privacy-modal');
+  if(m){m.style.display='none';document.body.style.overflow='';}
+}
+function openTerms(){
+  var m=document.getElementById('terms-modal');
+  m.style.display='flex';
+  document.body.style.overflow='hidden';
+}
+function closeTerms(){
+  var m=document.getElementById('terms-modal');
+  if(m){m.style.display='none';document.body.style.overflow='';}
+}
+
+/* ── MOBILE NAV ── */
+function toggleMobileMenu(){
+  var menu=document.getElementById('nav-mobile-menu');
+  var btn=document.getElementById('nav-hamburger');
+  var isOpen=menu.classList.toggle('open');
+  btn.classList.toggle('open',isOpen);
+  document.body.style.overflow=isOpen?'hidden':'';
+}
+function closeMobileMenu(){
+  var menu=document.getElementById('nav-mobile-menu');
+  var btn=document.getElementById('nav-hamburger');
+  menu.classList.remove('open');
+  btn.classList.remove('open');
+  document.body.style.overflow='';
+}
+</script>
+<script src="_maanim_inline.js?v=2"></script>
+
+<!-- COOKIE BANNER -->
+<div id="cookie-banner" style="
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
+  z-index:99999;
+  background:#fff;
+  border:1.5px solid var(--border);
+  border-radius:20px;
+  box-shadow:0 8px 48px rgba(20,17,60,0.14);
+  padding:20px 28px;
+  display:flex;align-items:center;gap:20px;
+  max-width:680px;width:calc(100% - 48px);
+  direction:rtl;
+  animation:cookieSlideUp .4s cubic-bezier(.34,1.56,.64,1);
+">
+  <span style="font-size:28px;flex-shrink:0">🍪</span>
+  <div style="flex:1">
+    <div style="font-size:14px;font-weight:700;color:var(--navy);margin-bottom:4px">אנחנו משתמשים בעוגיות</div>
+    <div style="font-size:13px;color:var(--gray);line-height:1.55">האתר משתמש בעוגיות לשיפור חווית הגלישה ולניתוח תנועה. המידע אינו נמסר לצדדים שלישיים.</div>
+  </div>
+  <div style="display:flex;gap:10px;flex-shrink:0">
+    <button onclick="acceptCookies()" style="
+      background:var(--purple);color:#fff;border:none;
+      padding:10px 22px;border-radius:100px;
+      font-family:'Heebo',sans-serif;font-size:13px;font-weight:700;
+      cursor:pointer;white-space:nowrap;
+      transition:background .2s;
+    " onmouseover="this.style.background='#6D28D9'" onmouseout="this.style.background='#7C3AED'">אישור</button>
+    <button onclick="declineCookies()" style="
+      background:var(--purple-bg);color:var(--gray);border:1.5px solid var(--border);
+      padding:10px 18px;border-radius:100px;
+      font-family:'Heebo',sans-serif;font-size:13px;font-weight:600;
+      cursor:pointer;white-space:nowrap;
+    ">דחייה</button>
+  </div>
+</div>
+
+<style>
+@keyframes cookieSlideUp{
+  from{opacity:0;transform:translateX(-50%) translateY(30px)}
+  to{opacity:1;transform:translateX(-50%) translateY(0)}
+}
+</style>
+
+<script>
+(function(){
+  if(localStorage.getItem('cookies_consent')){
+    document.getElementById('cookie-banner').style.display='none';
+  }
+})();
+function acceptCookies(){
+  localStorage.setItem('cookies_consent','accepted');
+  hideCookieBanner();
+}
+function declineCookies(){
+  localStorage.setItem('cookies_consent','declined');
+  hideCookieBanner();
+}
+function hideCookieBanner(){
+  var b=document.getElementById('cookie-banner');
+  b.style.transition='opacity .3s,transform .3s';
+  b.style.opacity='0';
+  b.style.transform='translateX(-50%) translateY(20px)';
+  setTimeout(function(){b.style.display='none'},300);
+}
+
+// ══ SEARCH ══
+function doSearch() {
+  var q = (document.getElementById('hero-search-input').value || '').trim();
+  if (!q) return;
+  var results = MAANIM.filter(function(d) {
+    var hay = [d.name, d.category, d.subcategory, d.region, d.description].join(' ').toLowerCase();
+    return q.toLowerCase().split(/\s+/).every(function(w){ return hay.includes(w); });
+  });
+  // פתח פאנל במצב חיפוש
+  mState = { age: null, ageLabel: 'תוצאות חיפוש', cat: '__search__', sub: null, subGroups: [], searchResults: results, searchQuery: q };
+  document.getElementById('maanim-back').style.display = 'inline-flex';
+  document.getElementById('maanim-overlay').style.display = 'block';
+  document.getElementById('maanim-panel').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+  renderCurrent();
+}
+
+// ══ BACK TO TOP ══
+(function(){
+  var btn = document.getElementById('back-to-top');
+  if (!btn) return;
+  window.addEventListener('scroll', function(){
+    if (window.scrollY > 400) btn.classList.add('visible');
+    else btn.classList.remove('visible');
+  }, {passive:true});
+})();
+</script>
+
+<!-- ══ PRIVACY MODAL ══ -->
+<div id="privacy-modal" style="display:none;position:fixed;inset:0;z-index:9500;background:rgba(20,17,60,0.65);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:20px" onclick="if(event.target===this)closePrivacy()">
+  <div style="background:#fff;border-radius:20px;width:min(680px,100%);max-height:88vh;overflow-y:auto;padding:40px 32px;direction:rtl;position:relative">
+    <button onclick="closePrivacy()" style="position:absolute;top:14px;left:18px;background:var(--purple-bg2);border:none;width:34px;height:34px;border-radius:50%;font-size:18px;cursor:pointer;color:var(--purple);display:flex;align-items:center;justify-content:center">✕</button>
+    <h2 style="font-size:21px;font-weight:900;color:#1E1B4B;margin:0 0 4px">מדיניות פרטיות</h2>
+    <p style="font-size:12px;color:#9CA3AF;margin:0 0 22px">עדכון אחרון: ינואר 2026</p>
+    <div style="font-size:14px;line-height:1.8;color:#374151">
+      <h3 style="font-size:15px;font-weight:800;color:#1E1B4B;margin:0 0 8px">1. כללי</h3>
+      <p>אתר רֶצֶף מופעל על-ידי מיטל פלג ומספק מאגר מידע לשירותים לאנשים על הספקטרום. מדיניות זו מסבירה כיצד אנו אוספים, משתמשים ומגנים על המידע שלכם.</p>
+      <h3 style="font-size:15px;font-weight:800;color:#1E1B4B;margin:18px 0 8px">2. מידע שאנו אוספים</h3>
+      <p>האתר אינו מחייב הרשמה. אנו עשויים לאסוף מידע אנונימי כגון דפי צפייה וזמן שהייה לצורכי שיפור השירות בלבד. איננו אוספים מידע מזהה ללא הסכמה.</p>
+      <h3 style="font-size:15px;font-weight:800;color:#1E1B4B;margin:18px 0 8px">3. עוגיות</h3>
+      <p>האתר משתמש בעוגיות טכניות הכרחיות ובעוגיות אנליטיקה אנונימיות. ניתן לדחות עוגיות שאינן הכרחיות דרך באנר ההסכמה.</p>
+      <h3 style="font-size:15px;font-weight:800;color:#1E1B4B;margin:18px 0 8px">4. שיתוף מידע</h3>
+      <p>אנו לא מוכרים או מעבירים מידע אישי לצדדים חיצוניים.</p>
+      <h3 style="font-size:15px;font-weight:800;color:#1E1B4B;margin:18px 0 8px">5. זכויות המשתמש</h3>
+      <p>יש לכם הזכות לעיין, לתקן או לבקש מחיקת מידע. לפניות: rezef.autism@gmail.com</p>
+    </div>
+    <button onclick="closePrivacy()" style="margin-top:24px;background:#7C3AED;color:#fff;border:none;border-radius:12px;padding:12px;font-family:'Heebo',sans-serif;font-size:14px;font-weight:700;cursor:pointer;width:100%">הבנתי, סגור</button>
+  </div>
+</div>
+
+<!-- ══ TERMS MODAL ══ -->
+<div id="terms-modal" style="display:none;position:fixed;inset:0;z-index:9500;background:rgba(20,17,60,0.65);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:20px" onclick="if(event.target===this)closeTerms()">
+  <div style="background:#fff;border-radius:20px;width:min(680px,100%);max-height:88vh;overflow-y:auto;padding:40px 32px;direction:rtl;position:relative">
+    <button onclick="closeTerms()" style="position:absolute;top:14px;left:18px;background:var(--purple-bg2);border:none;width:34px;height:34px;border-radius:50%;font-size:18px;cursor:pointer;color:var(--purple);display:flex;align-items:center;justify-content:center">✕</button>
+    <h2 style="font-size:21px;font-weight:900;color:#1E1B4B;margin:0 0 4px">תנאי שימוש</h2>
+    <p style="font-size:12px;color:#9CA3AF;margin:0 0 22px">עדכון אחרון: ינואר 2026</p>
+    <div style="font-size:14px;line-height:1.8;color:#374151">
+      <h3 style="font-size:15px;font-weight:800;color:#1E1B4B;margin:0 0 8px">1. קבלת התנאים</h3>
+      <p>השימוש באתר מהווה הסכמה לתנאי שימוש אלה.</p>
+      <h3 style="font-size:15px;font-weight:800;color:#1E1B4B;margin:18px 0 8px">2. מטרת האתר</h3>
+      <p>רֶצֶף משמש כמאגר מידע בלבד. התכנים אינם מהווים ייעוץ רפואי, טיפולי, משפטי או פיננסי.</p>
+      <h3 style="font-size:15px;font-weight:800;color:#1E1B4B;margin:18px 0 8px">3. קניין רוחני</h3>
+      <p>כל תכני האתר הם רכוש בלעדי של מיטל פלג. אין להעתיק או לשכפל ללא אישור מפורש.</p>
+      <h3 style="font-size:15px;font-weight:800;color:#1E1B4B;margin:18px 0 8px">4. הגבלת אחריות</h3>
+      <p>המידע מסופק "כפי שהוא". מפעילי האתר לא יישאו באחריות לנזק הנובע מהסתמכות עליו.</p>
+      <h3 style="font-size:15px;font-weight:800;color:#1E1B4B;margin:18px 0 8px">5. דין וסמכות</h3>
+      <p>תנאים אלה כפופים לדיני מדינת ישראל. כל סכסוך יידון בבתי המשפט המוסמכים בישראל.</p>
+    </div>
+    <button onclick="closeTerms()" style="margin-top:24px;background:#7C3AED;color:#fff;border:none;border-radius:12px;padding:12px;font-family:'Heebo',sans-serif;font-size:14px;font-weight:700;cursor:pointer;width:100%">הבנתי, סגור</button>
+  </div>
+</div>
+
+<!-- ══ PROMO BANNER ══ -->
+<div id="promo-banner" style="display:none;position:fixed;bottom:28px;right:28px;z-index:8000;width:min(380px,calc(100vw - 32px));border-radius:24px;box-shadow:0 20px 60px rgba(20,17,60,0.22),0 4px 16px rgba(124,58,237,0.14);direction:rtl;overflow:hidden;animation:promoPop .5s cubic-bezier(.34,1.56,.64,1)">
+
+  <!-- תמונה עליונה -->
+  <div style="position:relative;height:140px;overflow:hidden">
+    <img src="https://images.unsplash.com/photo-1531983412531-1f49a365ffed?w=760&q=80&auto=format&fit=crop&crop=top" alt="קהילה" style="width:100%;height:100%;object-fit:cover;object-position:center 30%"/>
+    <div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(45,27,105,0.72) 0%,rgba(124,58,237,0.55) 100%)"></div>
+    <!-- לוגו + כותרת על התמונה -->
+    <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:20px 22px 16px">
+      <div style="font-size:11px;font-weight:800;letter-spacing:2px;color:rgba(255,255,255,0.7);text-transform:uppercase;margin-bottom:6px">הזדמנות לארגונים ומטפלים</div>
+      <div style="font-size:20px;font-weight:900;color:#fff;line-height:1.25">רוצים להיות חלק<br/>מ<span style="font-family:'Rubik',sans-serif;letter-spacing:2px">רֶצֶף</span>?</div>
+    </div>
+    <!-- כפתור סגירה -->
+    <button onclick="closePromo()" aria-label="סגור" style="position:absolute;top:12px;left:14px;background:rgba(255,255,255,0.2);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.3);width:30px;height:30px;border-radius:50%;font-size:14px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Heebo',sans-serif;transition:background .2s">✕</button>
+  </div>
+
+  <!-- תוכן תחתון -->
+  <div style="background:#fff;padding:20px 22px 22px">
+
+    <!-- שני בלוקי יתרון -->
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:18px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="width:34px;height:34px;border-radius:10px;background:var(--purple-bg2);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <div style="font-size:13px;color:#374151;line-height:1.45"><strong style="color:var(--navy)">פרסמו את המענה שלכם</strong> — הגיעו לאלפי משפחות שמחפשות בדיוק מה שאתם מציעים</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="width:34px;height:34px;border-radius:10px;background:var(--purple-bg2);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <div style="font-size:13px;color:#374151;line-height:1.45"><strong style="color:var(--navy)">תמכו בפעילות</strong> — עזרו לנו להמשיך ולהנגיש מידע לכל משפחה שזקוקה לו</div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <a href="https://wa.me/972536256653?text=שלום%20מיטל%2C%20אני%20מעוניין%20לפרסם%20את%20המענה%20שלי%20באתר%20רצף" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,var(--purple),var(--navy2));color:#fff;border-radius:14px;padding:13px 16px;font-family:'Heebo',sans-serif;font-size:14px;font-weight:800;text-decoration:none;box-shadow:0 4px 18px rgba(124,58,237,0.35);letter-spacing:0.2px">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        דברו עם מיטל בוואטסאפ
+      </a>
+    </div>
+
+    <!-- מספר -->
+    <div style="margin-top:14px;display:flex;align-items:center;justify-content:center;gap:8px">
+      <a href="tel:0536256653" style="display:inline-flex;align-items:center;gap:5px;color:var(--purple);font-weight:700;text-decoration:none;font-size:13px;font-family:'Heebo',sans-serif">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 11.22 19.79 19.79 0 0 1 1.92 2.59 2 2 0 0 1 3.89.5h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 7.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 14.92z"/></svg>
+        053-625-6653
+      </a>
+      <span style="color:var(--gray2);font-size:12px">· מיטל פלג</span>
+    </div>
+  </div>
+</div>
+
+<style>
+@keyframes promoPop{
+  from{opacity:0;transform:translateY(24px) scale(0.94)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+@media(max-width:768px){
+  #promo-banner{bottom:16px;right:16px;width:calc(100vw - 32px)}
+}
+</style>
+<script>
+(function(){
+  var today=new Date().toDateString();
+  if(localStorage.getItem('promo_closed')===today) return;
+  setTimeout(function(){
+    var b=document.getElementById('promo-banner');
+    if(b) b.style.display='block';
+  },2000);
+})();
+function closePromo(){
+  var b=document.getElementById('promo-banner');
+  b.style.transition='opacity .25s,transform .25s';
+  b.style.opacity='0';
+  b.style.transform='translateY(16px) scale(0.96)';
+  setTimeout(function(){b.style.display='none';},250);
+  localStorage.setItem('promo_closed',new Date().toDateString());
+}
+</script>
+
+<script>
+// Parallax scroll effect on article card images
+(function(){
+  function updateParallax(){
+    var imgs = document.querySelectorAll('.article-img img');
+    imgs.forEach(function(img){
+      var rect = img.closest('.article-img').getBoundingClientRect();
+      var center = rect.top + rect.height / 2;
+      var vhCenter = window.innerHeight / 2;
+      var offset = (center - vhCenter) * 0.12;
+      img.style.transform = 'translateY(' + offset + 'px) scale(1.08)';
+    });
+  }
+  var ticking = false;
+  window.addEventListener('scroll', function(){
+    if(!ticking){ requestAnimationFrame(function(){ updateParallax(); ticking=false; }); ticking=true; }
+  }, {passive:true});
+  updateParallax();
+})();
+</script>
+
+</body>
+</html>
