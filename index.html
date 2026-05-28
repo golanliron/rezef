@@ -1913,9 +1913,18 @@ document.addEventListener('DOMContentLoaded', initMaanim);
       var w = window.innerWidth;
       return w < 600 ? 1 : w < 900 ? 2 : 3;
     }
+    function getCardW(){
+      // measure from DOM or fallback to outer width / perView
+      var w = cards[0] ? cards[0].getBoundingClientRect().width : 0;
+      if(!w){
+        var outer = track.parentElement;
+        w = outer ? outer.offsetWidth / calcPer() - 18 : 300;
+      }
+      return w + 18;
+    }
     function render(){
       perView = calcPer();
-      var cardW = cards[0].offsetWidth + 18;
+      var cardW = getCardW();
       track.style.transform = 'translateX(' + (cur * cardW) + 'px)';
       // dots
       var pages = Math.ceil(total / perView);
@@ -1938,13 +1947,13 @@ document.addEventListener('DOMContentLoaded', initMaanim);
       cur = Math.max(0, Math.min(cur + dir*perView, cards.length - perView));
       render();
     };
-    window.addEventListener('resize', render);
+    window.addEventListener('resize', function(){ cur=0; render(); });
     render();
-    // autoplay — infinite, no gaps
+    // autoplay infinite
     setInterval(function(){
       perView = calcPer();
-      if(cur + perView >= cards.length) cur = 0;
-      else cur = cur + 1;
+      if(cur + perView >= total) cur = 0;
+      else cur += 1;
       render();
     }, 3500);
   }
