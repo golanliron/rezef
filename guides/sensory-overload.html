@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>עומס חושי ומלטדאון — מדריך אוטי</title>
+<meta name="description" content="מדריך אינטראקטיבי לעומס חושי — מד 0–10, סימני אזהרה מוקדמים, ערכת חירום חושית, טכניקות הרגעה, ותרחישים אמיתיים.">
+<style>
+  /* Sensory meter — ייחודי למדריך זה */
+  .meter-wrap {
+    background: var(--white);
+    border: 1.5px solid var(--border-soft);
+    border-radius: 22px;
+    padding: 2rem 1.8rem;
+    margin: 1rem 0 2rem;
+    box-shadow: var(--shadow-sm);
+  }
+  .meter-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 1rem;
+  }
+  .meter-head h3 { font-size: 1.2rem; font-family: 'Heebo', sans-serif; margin: 0; }
+  .meter-head .meter-value {
+    font-family: 'Bellefair', sans-serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--terracotta-deep);
+    line-height: 1;
+  }
+  .meter-scale {
+    position: relative;
+    height: 22px;
+    background: linear-gradient(270deg, #7FA650 0%, #E9A23B 50%, #C23B3B 100%);
+    border-radius: 999px;
+    margin-bottom: 0.5rem;
+  }
+  .meter-marks {
+    display: flex; justify-content: space-between;
+    font-size: 0.75rem;
+    color: var(--ink-soft);
+    font-family: 'Heebo', sans-serif;
+    margin-bottom: 1.2rem;
+  }
+  .meter-slider {
+    -webkit-appearance: none; appearance: none;
+    width: 100%; height: 22px;
+    background: transparent; margin: 0;
+    position: absolute; top: 0; left: 0;
+    cursor: pointer;
+    direction: rtl;
+  }
+  .meter-slider::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none;
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 4px solid var(--terracotta-deep);
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(60, 40, 25, 0.25);
+    margin-top: -6px;
+  }
+  .meter-slider::-moz-range-thumb {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 4px solid var(--terracotta-deep);
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(60, 40, 25, 0.25);
+  }
+  .meter-advice {
+    background: var(--paper-deep);
+    border-radius: 14px;
+    padding: 1.2rem 1.4rem;
+    margin-top: 1.2rem;
+    border-inline-start: 4px solid var(--terracotta-deep);
+  }
+  .meter-advice h4 {
+    font-size: 1rem;
+    font-family: 'Heebo', sans-serif;
+    margin-bottom: 0.4rem;
+    color: var(--ink);
+  }
+  .meter-advice p { font-size: 0.95rem; color: var(--ink-soft); margin: 0; line-height: 1.6; }
+
+  /* Signs — סימני אזהרה מוקדמים */
+  .signs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.9rem;
+    margin: 1rem 0 2rem;
+  }
+  .sign {
+    background: var(--white);
+    border: 1.5px solid var(--border-soft);
+    border-radius: 16px;
+    padding: 1.2rem 1.3rem;
+    position: relative;
+  }
+  .sign.body    { border-inline-start: 4px solid var(--terracotta); }
+  .sign.mind    { border-inline-start: 4px solid var(--olive); }
+  .sign.behave  { border-inline-start: 4px solid var(--pumpkin); }
+  .sign-cat {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+    font-family: 'Heebo', sans-serif;
+  }
+  .sign.body .sign-cat    { color: var(--terracotta-deep); }
+  .sign.mind .sign-cat    { color: var(--olive-deep); }
+  .sign.behave .sign-cat  { color: #8a5420; }
+  .sign h4 {
+    font-size: 1.02rem;
+    font-family: 'Heebo', sans-serif;
+    margin-bottom: 0.4rem;
+    color: var(--ink);
+  }
+  .sign p { font-size: 0.88rem; color: var(--ink-soft); margin: 0; line-height: 1.55; }
+
+  /* Emergency kit — ערכת חירום חושית */
+  .kit {
+    background: linear-gradient(135deg, var(--olive-pale) 0%, var(--paper-cream) 100%);
+    border: 1.5px solid var(--olive-soft);
+    border-radius: 22px;
+    padding: 1.8rem;
+    margin: 1rem 0 2rem;
+  }
+  .kit h3 {
+    text-align: center;
+    font-family: 'Bellefair', sans-serif;
+    font-size: 1.4rem;
+    color: var(--olive-deep);
+    margin-bottom: 0.4rem;
+  }
+  .kit .kit-sub {
+    text-align: center;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    margin-bottom: 1.4rem;
+  }
+  .kit-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.8rem;
+  }
+  .kit-item {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 1rem 0.9rem;
+    text-align: center;
+    border: 1px solid var(--olive-soft);
+    transition: transform 0.2s;
+  }
+  .kit-item:hover { transform: translateY(-2px); }
+  .kit-item .kit-ic {
+    width: 44px; height: 44px;
+    background: var(--olive-pale);
+    color: var(--olive-deep);
+    border-radius: 12px;
+    display: grid; place-items: center;
+    margin: 0 auto 0.6rem;
+  }
+  .kit-item .kit-ic svg { width: 22px; height: 22px; }
+  .kit-item h4 {
+    font-size: 0.95rem;
+    font-family: 'Heebo', sans-serif;
+    margin-bottom: 0.25rem;
+    color: var(--ink);
+  }
+  .kit-item p { font-size: 0.78rem; color: var(--ink-soft); margin: 0; line-height: 1.5; }
+
+  /* Meltdown vs shutdown — השוואה */
+  .vs-compare {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 1.2rem;
+    align-items: stretch;
+    margin: 1rem 0 2rem;
+  }
+  .vs-card {
+    background: var(--white);
+    border: 2px solid var(--border-soft);
+    border-radius: 20px;
+    padding: 1.5rem 1.5rem;
+  }
+  .vs-card.melt     { border-color: #EDD1CA; background: linear-gradient(180deg, #FBEEEA 0%, var(--white) 40%); }
+  .vs-card.shut     { border-color: #C8CDD6; background: linear-gradient(180deg, #E8EBEF 0%, var(--white) 40%); }
+  .vs-card h3 {
+    font-family: 'Bellefair', sans-serif;
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+  }
+  .vs-card.melt h3 { color: #B8604B; }
+  .vs-card.shut h3 { color: #4A5964; }
+  .vs-card ul { list-style: none; padding: 0; margin: 0; }
+  .vs-card li {
+    font-size: 0.93rem;
+    padding: 0.45rem 0;
+    padding-inline-start: 1.5rem;
+    position: relative;
+    color: var(--ink-soft);
+  }
+  .vs-card li::before {
+    content: "—";
+    position: absolute;
+    inset-inline-start: 0;
+    top: 0.45rem;
+  }
+  .vs-card.melt li::before { color: #B8604B; }
+  .vs-card.shut li::before { color: #4A5964; }
+  .vs-divider {
+    display: grid;
+    place-items: center;
+    font-family: 'Bellefair', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--ink-light);
+  }
+  @media (max-width: 720px) {
+    .vs-compare { grid-template-columns: 1fr; }
+    .vs-divider { padding: 0.2rem 0; }
+  }
+</style>
+<link rel="stylesheet" href="rezef-guides.css">
+</head>
+<body>
+
+<nav class="rezef-nav">
+  <a href="../index.html#" class="logo">
+    <svg class="logo-svg" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+      <path d="M4 36 C4 16 20 10 20 10 C20 10 36 16 36 36" stroke="#A78BFA" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <path d="M8.5 36 C8.5 19 20 14 20 14 C20 14 31.5 19 31.5 36" stroke="#312E81" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <path d="M13 36 C13 22 20 18 20 18 C20 18 27 22 27 36" stroke="#7C3AED" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+      <circle cx="20" cy="36" r="2.8" fill="#7C3AED"/>
+    </svg>
+    <div>
+      <div class="logo-name">רֶצֶף</div>
+      <div class="logo-tag">מענים לקהילה האוטיסטית ובני משפחותיהם לאורך כל שלבי החיים</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html#ages">רצף גילאי</a></li>
+    <li><a href="../index.html#svc">רצף מענים</a></li>
+    <li><a href="../index.html#articles">רצף כתבות</a></li>
+    <li><a href="index.html" class="active">רצף מדריכים</a></li>
+    <li><a href="../index.html#about">אודות</a></li>
+  </ul>
+  <a href="../index.html#ages" class="nav-cta">מצאו מענה</a>
+</nav>
+
+<nav class="rezef-breadcrumb" aria-label="פירורי לחם">
+  <a href="../index.html">רצף</a>
+  <span class="sep">›</span>
+  <a href="index.html">מדריכים</a>
+  <span class="sep">›</span>
+  <span class="current">עומס חושי ומלטדאון — מדריך אוטי</span>
+</nav>
+
+<main class="guide-wrap">
+
+  <header class="guide-hero">
+    <span class="guide-eyebrow">מדריך פרקטי · מצבי חירום חושיים</span>
+    <h1>עומס חושי ומלטדאון — לזהות בזמן.</h1>
+    <p class="lede">
+      המטרה היא לא "לא להגיע למלטדאון". המטרה היא <strong>לזהות בזמן</strong>
+      כדי לעצור בעומס 5–6, לא ב-9. כאן יש מד אינטראקטיבי, סימני אזהרה מוקדמים,
+      וערכת חירום חושית.
+    </p>
+    <nav class="nav-pills">
+      <a href="#meter" class="nav-pill">מד 0–10</a>
+      <a href="#signs" class="nav-pill">סימני אזהרה מוקדמים</a>
+      <a href="#kit" class="nav-pill">ערכת חירום</a>
+      <a href="#vs" class="nav-pill">מלטדאון vs shutdown</a>
+      <a href="#scenarios" class="nav-pill">תרחישים</a>
+      <a href="#recovery" class="nav-pill">התאוששות</a>
+    </nav>
+  </header>
+
+  <!-- METER -->
+  <section class="gs" id="meter">
+    <div class="section-head">
+      <h2>מד עומס חושי — איפה אני עכשיו?</h2>
+      <p>הזיזו את הסליידר. כל ציון נותן תיאור של המצב ופעולה מדויקת.</p>
+    </div>
+    <div class="meter-wrap">
+      <div class="meter-head">
+        <h3>רמת עומס כרגע</h3>
+        <div class="meter-value" id="meter-val">3</div>
+      </div>
+      <div class="meter-scale">
+        <input type="range" min="0" max="10" value="3" class="meter-slider" id="meter-slider">
+      </div>
+      <div class="meter-marks">
+        <span>0 · רגוע</span>
+        <span>5 · תחילת עומס</span>
+        <span>10 · מלטדאון</span>
+      </div>
+      <div class="meter-advice" id="meter-advice">
+        <h4 id="meter-state">תחושה רגועה</h4>
+        <p id="meter-action">המצב הבסיסי. אפשר לעשות פעילויות רגילות. הזמן האידיאלי לתכנן — מה הטריגרים הצפויים היום?</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EARLY SIGNS -->
+  <section class="gs" id="signs">
+    <div class="section-head">
+      <h2>סימני אזהרה מוקדמים</h2>
+      <p>הסימנים שגוף, מוח והתנהגות נותנים לפני שהעומס הופך לבלתי נשלט. לשים לב אליהם = להתערב בזמן.</p>
+    </div>
+    <div class="signs-grid">
+      <div class="sign body">
+        <div class="sign-cat">גוף</div>
+        <h4>מתח בשרירים</h4>
+        <p>כתפיים מתקשות, אגרופים נסגרים, לסת לחוצה. נסו לשים לב — יש מתח שלא שמתם לב אליו?</p>
+      </div>
+      <div class="sign body">
+        <div class="sign-cat">גוף</div>
+        <h4>דופק מהיר</h4>
+        <p>הלב פועם חזק יותר בלי סיבה ברורה. סימן שהמערכת העצבית עוברת לכוננות.</p>
+      </div>
+      <div class="sign body">
+        <div class="sign-cat">גוף</div>
+        <h4>חום / קור חריג</h4>
+        <p>פתאום חם בפנים, או קור בידיים. הגוף עובד יותר מהרגיל — צריך הפסקה.</p>
+      </div>
+      <div class="sign mind">
+        <div class="sign-cat">מוח</div>
+        <h4>"ערפול מחשבתי"</h4>
+        <p>קשה לעקוב אחרי שיחה, לענות, לבחור מילים. המוח מתחיל לקרוס.</p>
+      </div>
+      <div class="sign mind">
+        <div class="sign-cat">מוח</div>
+        <h4>רגישות יתר לרעש</h4>
+        <p>צלילים שלא הפריעו קודם פתאום בלתי נסבלים. סימן ברור לעומס מצטבר.</p>
+      </div>
+      <div class="sign mind">
+        <div class="sign-cat">מוח</div>
+        <h4>תחושת "אני צריך לברוח"</h4>
+        <p>דחף פתאומי לעזוב את החדר, את השיחה, את המקום. המוח יודע לפני שאתם יודעים.</p>
+      </div>
+      <div class="sign behave">
+        <div class="sign-cat">התנהגות</div>
+        <h4>סטים (stimming) מתחזקים</h4>
+        <p>יותר נענוע, תנועת רגליים, תופפנות על שולחן. זה ניסיון לויסות — לא להילחם בזה.</p>
+      </div>
+      <div class="sign behave">
+        <div class="sign-cat">התנהגות</div>
+        <h4>קוצר רוח עם אנשים</h4>
+        <p>פתאום משפטים קצרים, טון חד, פחות סבלנות. המנוע של החברתי מתחיל להיעצר.</p>
+      </div>
+      <div class="sign behave">
+        <div class="sign-cat">התנהגות</div>
+        <h4>השתתקות</h4>
+        <p>לא מוצאים מילים, עונים ב"אוקיי" או לא עונים בכלל. זה שלב מוקדם של shutdown.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EMERGENCY KIT -->
+  <section class="gs" id="kit">
+    <div class="section-head">
+      <h2>ערכת חירום חושית</h2>
+      <p>10 פריטים פיזיים שכדאי שיהיו בתיק / במגירה / ברכב. כשצריך אין זמן לחפש.</p>
+    </div>
+    <div class="kit">
+      <h3>מה שכדאי שתמיד יהיה נגיש</h3>
+      <p class="kit-sub">שימו את הפריטים האלה במקום אחד. כשאתם בעומס 6, אין יכולת לחפש.</p>
+      <div class="kit-items">
+        <div class="kit-item">
+          <div class="kit-ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18M5 12h14"/></svg></div>
+          <h4>אוזניות מבטלות רעש</h4>
+          <p>בלי מוזיקה — סתם שקט. הדבר הכי חשוב.</p>
+        </div>
+        <div class="kit-item">
+          <div class="kit-ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+          <h4>משקפי שמש</h4>
+          <p>גם בפנים. אור מלאכותי יכול להיות טריגר.</p>
+        </div>
+        <div class="kit-item">
+          <div class="kit-ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div>
+          <h4>פידג'ט / חפץ מרקמי</h4>
+          <p>קובייה, טבעת, שרוכים. לסטים לא נראה — זה עוזר.</p>
+        </div>
+        <div class="kit-item">
+          <div class="kit-ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <h4>כובע / קפוצ'ון</h4>
+          <p>להסתיר, להקטין שדה ראייה, לחוש עטוף.</p>
+        </div>
+        <div class="kit-item">
+          <div class="kit-ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
+          <h4>חטיף דחוס / מרקם</h4>
+          <p>משהו קשה לגיסה — גזר, אגוז, קרח. לחיצת לסת מווסתת.</p>
+        </div>
+        <div class="kit-item">
+          <div class="kit-ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
+          <h4>פלייליסט "חירום"</h4>
+          <p>3–4 שירים מוכנים ש<em>תמיד</em> עוזרים לכם. מורד מסלולים.</p>
+        </div>
+        <div class="kit-item">
+          <div class="kit-ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v10m0 0l-4-4m4 4l4-4M3 17v2a2 2 0 002 2h14a2 2 0 002-2v-2"/></svg></div>
+          <h4>מים + קשית</h4>
+          <p>לשתות דרך קשית = נשימה איטית יותר + מרקם פה.</p>
+        </div>
+        <div class="kit-item">
+          <div class="kit-ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path stroke-linecap="round" stroke-linejoin="round" d="M9 9h6v6H9z"/></svg></div>
+          <h4>כרטיס "אני זקוק לעזרה"</h4>
+          <p>טקסט מוכן: "אני אוטיסט/ית, יש לי עומס, אני צריך/ה חדר שקט." להראות למישהו.</p>
+        </div>
+        <div class="kit-item">
+          <div class="kit-ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 2v5M8 2v5M3 10h18M5 4h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2z"/></svg></div>
+          <h4>מפה של מקומות שקטים</h4>
+          <p>בעיר/עבודה/אקדמיה. שירותים, חדר אם, גינה. איפה אפשר להיעלם ל-10 דק'.</p>
+        </div>
+        <div class="kit-item">
+          <div class="kit-ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3l2 5-2.5 1.5a11 11 0 005 5L12 12l5 2v3a2 2 0 01-2 2A17 17 0 013 5z"/></svg></div>
+          <h4>מספר של אדם אחד</h4>
+          <p>שמור בראש המסך. אדם שיודע עליכם, שאפשר לסמס לו "עומס, תתקשר/י אלי?"</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MELTDOWN VS SHUTDOWN -->
+  <section class="gs" id="vs">
+    <div class="section-head">
+      <h2>מלטדאון או Shutdown — מה שונה?</h2>
+      <p>שני קצוות של אותה תופעה. זיהוי נכון = תגובה נכונה.</p>
+    </div>
+    <div class="vs-compare">
+      <div class="vs-card melt">
+        <h3>מלטדאון — פיצוץ החוצה</h3>
+        <ul>
+          <li>בכי בלתי נשלט, צעקה, התפרצות</li>
+          <li>תנועה חדה — זריקה, בעיטה, ריצה</li>
+          <li>מילים שלא נגידו במצב רגיל</li>
+          <li>נראה ככעס / חוסר שליטה</li>
+          <li>עוזב מחסני אנרגיה בבת אחת</li>
+          <li>לאחר מכן: התמוטטות פיזית</li>
+        </ul>
+      </div>
+      <div class="vs-divider">או</div>
+      <div class="vs-card shut">
+        <h3>Shutdown — סגירה פנימה</h3>
+        <ul>
+          <li>השתקה מוחלטת, אין תגובה</li>
+          <li>הסתגרות במקום — פינה, מיטה, רכב</li>
+          <li>חוסר יכולת לנוע או להחליט</li>
+          <li>נראה כמו דיכאון חריף / פסיביות</li>
+          <li>המערכת "מתנתקת" כדי להגן</li>
+          <li>לאחר מכן: שעות של שינה</li>
+        </ul>
+      </div>
+    </div>
+    <div class="gcard tone-butter">
+      <h3>חשוב לזכור</h3>
+      <p>
+        שניהם <strong>לא בחירה</strong>. הם לא כעס או "תשומת לב". הם המערכת העצבית שעברה את הקו האדום.
+        מי שמלווה אוטיסט/ית במצב הזה — <strong>להישאר בשקט ליד</strong>, בלי לדבר, בלי לגעת בלי רשות,
+        בלי לנסות "לתקן". רק להיות.
+      </p>
+    </div>
+  </section>
+
+  <!-- SCENARIOS -->
+  <section class="gs" id="scenarios">
+    <div class="section-head">
+      <h2>תרחישים אמיתיים</h2>
+      <p>מצבים שקורים. לחצו לראות מה כדאי לעשות.</p>
+    </div>
+    <div class="scenarios">
+
+      <div class="scn">
+        <div class="scn-q">
+          <div class="q-ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/></svg></div>
+          <div class="q-text">
+            <h4>אני במסעדה ומרגיש/ה שאני קורס/ת</h4>
+            <div class="hint">לחצו לתשובה</div>
+          </div>
+          <span class="toggle"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></span>
+        </div>
+        <div class="scn-a"><div class="a-inner">
+          <span class="verdict yellow"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01"/></svg> לעצור לפני שזה גרוע</span>
+          <p>במסעדה יש רעש, ריחות חזקים, אור חלש-חזק. אם הגעתם ל-6 — לצאת עכשיו, לא אחרי המנה הבאה.</p>
+          <div class="answer-block">
+            <strong class="lbl">מה להגיד למי שאתם איתם</strong>
+            "יש לי עומס חושי. אני יוצא/ת ל-5 דק' החוצה, תזמין/י לי משהו קל. תודה."
+          </div>
+          <div class="answer-block">
+            <strong class="lbl">בחוץ</strong>
+            אוזניות, להסתכל על משהו אחד רחוק (עץ, שלט), לנשום 4 שניות → 6 שניות. חוזרים אחרי 10 דק' או לא חוזרים. שניהם בסדר.
+          </div>
+        </div></div>
+      </div>
+
+      <div class="scn">
+        <div class="scn-q">
+          <div class="q-ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+          <div class="q-text">
+            <h4>בפגישה חשובה בעבודה, מרגיש/ה שאני מאבד/ת מילים</h4>
+            <div class="hint">לחצו לתשובה</div>
+          </div>
+          <span class="toggle"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></span>
+        </div>
+        <div class="scn-a"><div class="a-inner">
+          <span class="verdict yellow"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01"/></svg> לבקש דקה</span>
+          <p>אובדן מילים הוא סימן ל-shutdown שמתחיל. לא להמשיך "להחזיק את עצמי" — זה יחמיר.</p>
+          <div class="answer-block">
+            <strong class="lbl">לבקש הפסקה</strong>
+            "אני צריך/ה דקה, תיכף אחזור." קמים, הולכים לשירותים / מסדרון. 3 דקות בלי שיחה.
+          </div>
+          <div class="answer-block">
+            <strong class="lbl">לחזור לפגישה</strong>
+            אם אפשר — לבקש לעבור לדיון בצ'אט ולא בדיבור. "אני מקשיב/ה יותר טוב בכתב, אפשר שאשלח את התגובה שלי אחרי הפגישה?"
+          </div>
+        </div></div>
+      </div>
+
+      <div class="scn">
+        <div class="scn-q">
+          <div class="q-ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <div class="q-text">
+            <h4>המלטדאון כבר התחיל, איך לעצור?</h4>
+            <div class="hint">לחצו לתשובה</div>
+          </div>
+          <span class="toggle"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></span>
+        </div>
+        <div class="scn-a"><div class="a-inner">
+          <span class="verdict red"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg> לעבור, לא לעצור</span>
+          <p>בשלב הזה כבר אי אפשר "לעצור". אפשר רק לעבור אותו בטוח. בושה ואשמה מחמירים — לזרוק אותן לרגע.</p>
+          <div class="answer-block">
+            <strong class="lbl">מיד</strong>
+            לצאת ממקום של אנשים. חדר, שירותים, רכב. חושך, שקט, להיות לבד.
+          </div>
+          <div class="answer-block">
+            <strong class="lbl">בזמן</strong>
+            אם יש משהו לחוץ על הגוף (שמיכה כבדה, חיבוק עצמי, קיר בגב) — זה מרגיע. לא לדבר. לא לשפוט.
+          </div>
+          <div class="answer-block">
+            <strong class="lbl">אחרי</strong>
+            שינה. אכילה. הרבה מים. לא לנסות לחזור מיד לפעילות — הגוף זקוק ל-6 עד 24 שעות.
+          </div>
+        </div></div>
+      </div>
+
+      <div class="scn">
+        <div class="scn-q">
+          <div class="q-ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2a10 10 0 00-10 10 10 10 0 0010 10 10 10 0 0010-10A10 10 0 0012 2z"/><path stroke-linecap="round" stroke-linejoin="round" d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg></div>
+          <div class="q-text">
+            <h4>בן/בת הזוג רואה אותי במלטדאון ולא יודע/ת מה לעשות</h4>
+            <div class="hint">לחצו לתשובה</div>
+          </div>
+          <span class="toggle"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></span>
+        </div>
+        <div class="scn-a"><div class="a-inner">
+          <span class="verdict green"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> לתאם מראש</span>
+          <p>שיחה <em>לפני</em> המלטדאון הבא — עדיפה על כל ניסיון באמצע. המוח לא קולט כלום באמצע.</p>
+          <div class="answer-block">
+            <strong class="lbl">להסביר מראש</strong>
+            "כשאני במלטדאון, הכי עוזר לי: שקט, להיות לבד, לא לגעת בלי לשאול. אל תפחד/י — אני יוצא/ת מזה בתוך 30–90 דק'. אל תדבר/י איתי, תהיה/י בחדר השני."
+          </div>
+          <div class="answer-block">
+            <strong class="lbl">להסכים על מילה</strong>
+            מילת קוד — "עומס". אומרים אותה, בן/בת הזוג יודע/ת בלי להסביר שצריך מרחב. חוסך 95% מהחיכוך.
+          </div>
+        </div></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- RECOVERY -->
+  <section class="gs" id="recovery">
+    <div class="section-head">
+      <h2>התאוששות — אחרי שזה עבר</h2>
+      <p>המלטדאון נגמר. הגוף שרוף. מה עכשיו?</p>
+    </div>
+    <div class="steps">
+      <div class="step"><div><h4>שינה</h4><p>הגוף השתמש בכל הרזרבות. שינה היא לא פינוק — היא הכרח פיזיולוגי. 2–3 שעות לפחות.</p></div></div>
+      <div class="step"><div><h4>מים + אוכל פשוט</h4><p>הגוף התייבש. משהו קל: פרי, יוגורט, לחם עם ממרח. לא ארוחה גדולה.</p></div></div>
+      <div class="step"><div><h4>יום ללא תכנון</h4><p>לא להקים קלנדר מלא יום אחרי מלטדאון. המערכת רגישה יותר, סיכון חזרה גבוה.</p></div></div>
+      <div class="step"><div><h4>בלי אשמה</h4><p>מלטדאון הוא לא כישלון. הוא סימן שהיה עומס גדול שלא נשם בזמן. הלמידה: איפה היו הסימנים המוקדמים שפספסנו.</p></div></div>
+      <div class="step"><div><h4>יומן — אחרי יום-יומיים</h4><p>כשאתם בכוח: מה קדם? רעש? שינה רעה? חברתי יתר? לאורך זמן זה מגלה תבניות.</p></div></div>
+    </div>
+  </section>
+
+  <section class="gs">
+    <div class="big-reframe">
+      <h3>השורה התחתונה</h3>
+      <p>
+        עומס חושי אינו סימן חולשה. הוא דרך הגוף לומר "עברת את הגבול". <strong>לכבד את המד</strong>,
+        לנוח לפני שחייבים, ולדעת — אחרי שלא הצלחתם — שגם זה יעבור.
+      </p>
+    </div>
+  </section>
+
+    </div>
+
+<footer class="guide-footer">
+  <a href="index.html" class="back">← חזרה לכל המדריכים</a>
+</footer>
+
+<footer class="rezef-footer">
+  <div class="ft-links">
+    <a href="../index.html#about">אודות רצף</a>
+    <a href="../index.html#svc">רצף מענים</a>
+    <a href="../index.html#articles">רצף כתבות</a>
+  </div>
+  <p class="ft-note">© רצף · מדריכים מבוססי מחקר לקהילה האוטיסטית · נכתבו ע"י מיטל פלג</p>
+</footer>
+
+</main>
+
+<script>
+  // Sensory meter
+  const slider = document.getElementById('meter-slider');
+  const val = document.getElementById('meter-val');
+  const state = document.getElementById('meter-state');
+  const action = document.getElementById('meter-action');
+
+  const levels = {
+    0: ['רגיעה מלאה', 'המצב האופטימלי. אפשר לתכנן דברים שדורשים אנרגיה — שיחות חברתיות, עבודה מורכבת.'],
+    1: ['רגיעה', 'עדיין בתוך האזור הבטוח. הזמן לעשות דברים שאתם אוהבים, לטעון מצברים.'],
+    2: ['רגיעה', 'עדיין בסדר. אם חוש אחד מתחיל להרגיש — לשים לב.'],
+    3: ['תחושה רגועה', 'המצב הבסיסי. אפשר לעשות פעילויות רגילות. הזמן האידיאלי לתכנן — מה הטריגרים הצפויים היום?'],
+    4: ['תחילת חימום', 'משהו מפריע. לא דרמה, אבל לא להתעלם. שימו אוזניות, הפחיתו אור, קחו כוס מים.'],
+    5: ['עומס מתחיל', 'קו הגבול. אם לא מתערבים עכשיו — זה יעלה. 10 דק\' שקטות, לצאת מהחדר, לנשום.'],
+    6: ['עומס ברור', 'יוצא מהאזור הבטוח. <strong>להפסיק פעילות ולהתחיל ויסות</strong>. זה לא המקום לסיים משימה — זה המקום לנוח.'],
+    7: ['עומס גבוה', 'אזור אזהרה. לבטל מה שאפשר. להוציא את ערכת החירום. לסמס לאדם אחד. להסתיר ממראה.'],
+    8: ['על סף מלטדאון', 'עוד 5–15 דק\' ויגיע. <strong>לעזוב את הסביבה עכשיו</strong>. לבית, לרכב, לחדר שקט. בלי להסביר.'],
+    9: ['רגע לפני', 'כנראה לא תוכלו למנוע. לצמצם נזק: מקום בטוח, לבד, חושך. לא לנסות לדבר. לא לנסות "להתגבר".'],
+    10: ['מלטדאון', 'לא נעצר. <strong>לעבור אותו בטוח</strong>: שקט, חושך, לחץ על הגוף (שמיכה כבדה, פינה). הוא ייגמר. אחרי — שינה וכבוד לעצמכם.']
+  };
+
+  function updateMeter(n) {
+    val.textContent = n;
+    state.textContent = levels[n][0];
+    action.innerHTML = levels[n][1];
+  }
+
+  slider.addEventListener('input', e => updateMeter(+e.target.value));
+
+  // Accordion
+  document.querySelectorAll('.scn').forEach(scn => {
+    scn.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A') return;
+      scn.classList.toggle('open');
+    });
+  });
+
+  // Smooth scroll
+  document.querySelectorAll('.nav-pill').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      document.querySelector(a.getAttribute('href')).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+
+</body>
+</html>

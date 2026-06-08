@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>איך מדברים על הילד בוועדת זכאות ואפיון | מדריך אוטי</title>
+<meta name="description" content="מדריך מעשי להורים — איך להציג חוזקות וקשיים, מה לספר ומה לא, דוגמאות לניסוחים, משפטי פתיחה ותשובות למצבים שמציפים.">
+<style>
+  /* Hero tone — cooler olive */
+  .guide-hero {
+    background: linear-gradient(135deg, var(--paper-cream) 0%, var(--white) 55%, var(--olive-pale) 100%);
+  }
+  .guide-hero::before { background: var(--olive); }
+  .guide-eyebrow { background: var(--olive-pale); color: var(--olive-deep); }
+
+  /* Phrase card */
+  .phrase-card {
+    background: var(--white);
+    border: 1.5px solid var(--border-soft);
+    border-inline-start: 4px solid var(--olive);
+    border-radius: 14px;
+    padding: 1.1rem 1.3rem;
+    margin-bottom: 0.9rem;
+  }
+  .phrase-card .label {
+    font-family: 'Heebo', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--olive-deep);
+    margin-bottom: 0.4rem;
+  }
+  .phrase-card .quote {
+    color: var(--ink);
+    font-size: 1.02rem;
+    line-height: 1.6;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  .phrase-card .quote::before { content: "„"; color: var(--olive-deep); font-size: 1.3em; font-weight: 700; margin-inline-end: 0.2rem; }
+  .phrase-card .quote::after  { content: "\""; color: var(--olive-deep); font-size: 1.3em; font-weight: 700; margin-inline-start: 0.2rem; }
+  .phrase-card .why {
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+  .phrase-card.warm { border-inline-start-color: var(--terracotta-deep); }
+  .phrase-card.warm .label, .phrase-card.warm .quote::before, .phrase-card.warm .quote::after { color: var(--terracotta-deep); }
+
+  /* Flip — before/after wording */
+  .flip-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+    margin: 1rem 0 1.4rem;
+  }
+  .flip-grid > div {
+    padding: 1rem 1.1rem;
+    border-radius: 12px;
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+  .flip-before {
+    background: #FBEEEA;
+    border: 1px solid #EDD1CA;
+    color: #8B4A37;
+  }
+  .flip-after {
+    background: var(--olive-pale);
+    border: 1px solid var(--olive-soft);
+    color: var(--olive-deep);
+  }
+  .flip-before .tag, .flip-after .tag {
+    display: inline-block;
+    font-family: 'Heebo', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.4rem;
+  }
+  .flip-before .tag { color: #B8604B; }
+  .flip-after .tag { color: var(--olive-deep); }
+  @media (max-width: 640px) {
+    .flip-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Scenario card */
+  .scenario {
+    background: var(--white);
+    border: 1px solid var(--border-soft);
+    border-radius: 16px;
+    padding: 1.2rem 1.4rem;
+    margin-bottom: 1rem;
+  }
+  .scenario .situation {
+    font-family: 'Heebo', sans-serif;
+    font-weight: 800;
+    color: var(--terracotta-deep);
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: 0.5rem;
+  }
+  .scenario h4 {
+    font-family: 'Bellefair', sans-serif;
+    font-size: 1.12rem;
+    margin: 0 0 0.5rem;
+    color: var(--ink);
+  }
+  .scenario p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin: 0 0 0.5rem;
+  }
+  .scenario .response {
+    background: var(--olive-pale);
+    border-radius: 10px;
+    padding: 0.8rem 1rem;
+    font-size: 0.93rem;
+    color: var(--ink);
+    line-height: 1.6;
+  }
+  .scenario .response b { color: var(--olive-deep); }
+
+  /* Pill highlight */
+  .pill {
+    display: inline-block;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    font-family: 'Heebo', sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    background: var(--butter-soft);
+    color: #7a5a20;
+  }
+
+  /* Section quick intro */
+  .section-head {
+    margin: 2.4rem 0 1rem;
+  }
+  .section-head h2 {
+    font-size: 1.55rem;
+    margin: 0 0 0.3rem;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .section-head h2 .num {
+    display: inline-grid;
+    place-items: center;
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: var(--olive-pale);
+    color: var(--olive-deep);
+    font-family: 'Heebo', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+  }
+  .section-head p {
+    color: var(--ink-soft);
+    font-size: 0.96rem;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* Nav pills reused */
+  .nav-pills {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: 1.2rem 0 0;
+  }
+  .nav-pills a {
+    padding: 0.45rem 0.95rem;
+    background: var(--white);
+    border: 1.5px solid var(--border-soft);
+    border-radius: 999px;
+    color: var(--ink);
+    font-weight: 700;
+    font-family: 'Heebo', sans-serif;
+    font-size: 0.84rem;
+    text-decoration: none;
+  }
+  .nav-pills a:hover { border-color: var(--olive); color: var(--olive-deep); }
+
+  .footer {
+    margin-top: 3rem;
+    padding: 2rem 0 1rem;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    color: var(--ink-light);
+    font-size: 0.88rem;
+    font-family: 'Heebo', sans-serif;
+  }
+  .footer a { color: var(--ink-soft); margin: 0 0.5rem; text-decoration: none; }
+  .footer a:hover { color: var(--olive-deep); }
+</style>
+<link rel="stylesheet" href="rezef-guides.css">
+</head>
+<body>
+
+<nav class="rezef-nav">
+  <a href="../index.html#" class="logo">
+    <svg class="logo-svg" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+      <path d="M4 36 C4 16 20 10 20 10 C20 10 36 16 36 36" stroke="#A78BFA" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <path d="M8.5 36 C8.5 19 20 14 20 14 C20 14 31.5 19 31.5 36" stroke="#312E81" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <path d="M13 36 C13 22 20 18 20 18 C20 18 27 22 27 36" stroke="#7C3AED" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+      <circle cx="20" cy="36" r="2.8" fill="#7C3AED"/>
+    </svg>
+    <div>
+      <div class="logo-name">רֶצֶף</div>
+      <div class="logo-tag">מענים לקהילה האוטיסטית ובני משפחותיהם לאורך כל שלבי החיים</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html#ages">רצף גילאי</a></li>
+    <li><a href="../index.html#svc">רצף מענים</a></li>
+    <li><a href="../index.html#articles">רצף כתבות</a></li>
+    <li><a href="index.html" class="active">רצף מדריכים</a></li>
+    <li><a href="../index.html#about">אודות</a></li>
+  </ul>
+  <a href="../index.html#ages" class="nav-cta">מצאו מענה</a>
+</nav>
+
+<nav class="rezef-breadcrumb" aria-label="פירורי לחם">
+  <a href="../index.html">רצף</a>
+  <span class="sep">›</span>
+  <a href="index.html">מדריכים</a>
+  <span class="sep">›</span>
+  <span class="current">איך מדברים על הילד בוועדת זכאות ואפיון</span>
+</nav>
+
+<main class="guide-wrap">
+
+  <header class="guide-hero">
+    <span class="guide-eyebrow">לפני הוועדה · איך לדבר</span>
+    <h1>איך מדברים על הילד<br>בוועדת זכאות ואפיון</h1>
+    <p class="lede">
+      הוועדה פוגשת את הילד שלכם במשך 60 דקות, דרך המילים שלכם. זה הרגע הכי חשוב להציג תמונה <strong>מאוזנת</strong> — חוזקות וקשיים כאחד — בלי להקצין ובלי להסתיר.
+    </p>
+    <nav class="nav-pills" aria-label="ניווט פנימי">
+      <a href="#why">למה זה משנה</a>
+      <a href="#opening">משפט פתיחה</a>
+      <a href="#balance">האיזון הגדול</a>
+      <a href="#reframe">איך לנסח</a>
+      <a href="#phrases">משפטים מוכנים</a>
+      <a href="#scenarios">מצבים קשים</a>
+      <a href="#mistakes">טעויות נפוצות</a>
+    </nav>
+  </header>
+
+  <!-- ═══════════════════════════ למה זה משנה ═══════════════════════════ -->
+  <section class="gs" id="why">
+    <div class="section-head">
+      <h2><span class="num">1</span>למה מה שתגידו — ישפיע</h2>
+      <p>הוועדה רואה את הילד דרך הדוחות והמילים שלכם. אתם המומחים הכי גדולים עליו. אתם לא נבחנים — אתם <strong>מייצגים</strong>.</p>
+    </div>
+
+    <div class="gcard tone-cool">
+      <p><strong>שלוש מטרות:</strong></p>
+      <ul>
+        <li><strong>שהוועדה תראה ילד שלם</strong> — לא רק אבחנה, לא רק קשיים, לא רק חוזקות מבהיקות.</li>
+        <li><strong>שההחלטה תתאים למציאות</strong> — כמה שעות סייעת, איזו מסגרת, איזה סל שירותים.</li>
+        <li><strong>שלא תיצרו רושם מוטעה</strong> — כי זה גורר החלטה לא מתאימה ל-3 שנים קדימה.</li>
+      </ul>
+    </div>
+
+    <div class="pull-quote">
+      הילד שלכם לא יהיה בחדר. מה שתגידו זה מה שהם ידעו עליו. רק אתם יודעים איך הוא מקשיב כשמלמדים דרך מוזיקה, ואיך הוא קופא כשמדברים אליו מהר.
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ משפט פתיחה ═══════════════════════════ -->
+  <section class="gs" id="opening">
+    <div class="section-head">
+      <h2><span class="num">2</span>משפט פתיחה של 60 שניות</h2>
+      <p>תכינו אותו מראש. תרגלו אותו בבית. זה נותן לכם שליטה ברגע הכי מלחיץ — ההתחלה.</p>
+    </div>
+
+    <p>המבנה:</p>
+    <ul>
+      <li><span class="pill">10 שניות</span> מי הילד — שם, גיל, איפה הוא לומד היום.</li>
+      <li><span class="pill">20 שניות</span> שתי חוזקות שאתם הכי גאים בהן.</li>
+      <li><span class="pill">20 שניות</span> שני הקשיים המרכזיים, בצורה קונקרטית.</li>
+      <li><span class="pill">10 שניות</span> מה אתם מבקשים מהוועדה להתייחס אליו.</li>
+    </ul>
+
+    <div class="phrase-card">
+      <div class="label">דוגמה — פתיחה להורה של יובל בן 7</div>
+      <p class="quote">יובל בן 7, בכיתה א׳ בבית ספר רגיל. הוא ילד חם, עם זיכרון מדהים לפרטים ותשוקה לדינוזאורים שמלמדת גם אותנו. יחד עם זה, הוא מתקשה בקשרים חברתיים ספונטניים ובמעברים — עזיבת פעילות אהובה לוקחת לו 15 דקות ובכי. אנחנו באים היום כדי לבקש מסגרת שתשמור על החוזקות ותיתן לו כלים לשני הדברים האלה.</p>
+      <p class="why">למה זה עובד: שם, גיל, הקשר · חוזקות ספציפיות (לא "מוכשר") · קשיים קונקרטיים (לא "קשה לו חברתית") · בקשה ברורה.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ האיזון הגדול ═══════════════════════════ -->
+  <section class="gs" id="balance">
+    <div class="section-head">
+      <h2><span class="num">3</span>האיזון הגדול — חוזקות וקשיים</h2>
+      <p>הטעות הכי נפוצה: לבוא רק עם החוזקות (ואז לא מקבלים תמיכה) או רק עם הקשיים (ואז מקצינים ולא מאמינים לכם). צריך את שניהם — <strong>בכוונה</strong>.</p>
+    </div>
+
+    <div class="do-dont">
+      <div class="do">
+        <h4>יוצר תמונה מדויקת</h4>
+        <ul>
+          <li>חוזקות קודם, אחר כך קשיים. סדר משנה.</li>
+          <li>דוגמאות יומיומיות (לא "תמיד" / "אף פעם").</li>
+          <li>תיאור מה קורה בגוף ובהתנהגות, לא רק רגשות.</li>
+          <li>להזכיר איך הילד כבר מתגבר במקומות מסוימים.</li>
+        </ul>
+      </div>
+      <div class="dont">
+        <h4>יוצר תמונה מעוותת</h4>
+        <ul>
+          <li>להציג רק את "הילד המצוין שלי" (= לא יקבל תמיכה).</li>
+          <li>לנפח קשיים כדי "לא לקחת סיכון" (הוועדה מזהה).</li>
+          <li>להשוות לילדים אחרים ("הוא הכי חמור בכיתה").</li>
+          <li>לקבוע אבחנות שהוועדה לא יכולה לאמת ("יש לו PDA").</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="gcard tone-butter">
+      <p><strong>טריק פרקטי שעובד:</strong> לכל קושי שאתם מזכירים — תוסיפו משפט על מה הילד <em>כן</em> יכול לעשות בתוך הקושי. זה מראה שאתם מכירים אותו עמוק, לא רק רושמים רשימה.</p>
+      <p style="margin-bottom:0"><span class="pill">דוגמה</span> "במעברים הוא מתקשה, אבל אם נותנים לו התראה של 5 דקות וטיימר ויזואלי — הוא מצליח לעבור בלי מלטדאון."</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ איך לנסח ═══════════════════════════ -->
+  <section class="gs" id="reframe">
+    <div class="section-head">
+      <h2><span class="num">4</span>איך לנסח — לפני ואחרי</h2>
+      <p>אותה המציאות, שני ניסוחים. אחד עמום וקל לפספוס, השני מדויק ונשמע מקצועי. זה לא מניפולציה — זה <strong>דיוק</strong>.</p>
+    </div>
+
+    <h3>על חוזקות</h3>
+    <div class="flip-grid">
+      <div class="flip-before">
+        <span class="tag">עמום</span>
+        הוא ילד חכם.
+      </div>
+      <div class="flip-after">
+        <span class="tag">מדויק</span>
+        הוא קורא מגיל 4, זוכר פרטים מדויקים מסרטים שראה לפני שנה, ומגלה דפוסים לוגיים לפני מבוגרים.
+      </div>
+    </div>
+
+    <div class="flip-grid">
+      <div class="flip-before">
+        <span class="tag">עמום</span>
+        הוא אוהב חיות.
+      </div>
+      <div class="flip-after">
+        <span class="tag">מדויק</span>
+        תחום העניין המיוחד שלו הוא חרקים — הוא מסוגל להתרכז ולחקור נושא אחד למשך שעה, זה תופעה שאפשר לרתום ללמידה.
+      </div>
+    </div>
+
+    <h3>על קשיים</h3>
+    <div class="flip-grid">
+      <div class="flip-before">
+        <span class="tag">עמום</span>
+        יש לו קשיים חברתיים.
+      </div>
+      <div class="flip-after">
+        <span class="tag">מדויק</span>
+        בקבוצות של יותר משלושה ילדים הוא קופא, לא יודע מתי להיכנס לשיחה, ובסוף חוזר ללבד. הוא זקוק לליווי פעיל בחברה.
+      </div>
+    </div>
+
+    <div class="flip-grid">
+      <div class="flip-before">
+        <span class="tag">עמום</span>
+        הוא רגיש לרעשים.
+      </div>
+      <div class="flip-after">
+        <span class="tag">מדויק</span>
+        רעשים של מעל 70 דציבל (צפירה, מסור, ילד שצורח) גורמים לו לכסות אוזניים, לבכות או לברוח. זה קורה לפחות פעם ביום בגן.
+      </div>
+    </div>
+
+    <div class="flip-grid">
+      <div class="flip-before">
+        <span class="tag">עמום</span>
+        הוא לא מתארגן בבוקר.
+      </div>
+      <div class="flip-after">
+        <span class="tag">מדויק</span>
+        מעבר לבית הספר לוקח לו 50 דקות בממוצע. זקוק לצעדים מחולקים, תמונות ולוח זמנים ויזואלי כדי להתארגן.
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ משפטים מוכנים ═══════════════════════════ -->
+  <section class="gs" id="phrases">
+    <div class="section-head">
+      <h2><span class="num">5</span>משפטים מוכנים לסיטואציות קשות</h2>
+      <p>שמרו אותם בראש. השתמשו כשזה קריטי — לא חייבים לזכור בעל-פה, אפשר גם לרשום על פתק.</p>
+    </div>
+
+    <div class="phrase-card">
+      <div class="label">כשמרגישים שלא מבינים אתכם</div>
+      <p class="quote">רגע, אני רוצה לחדד. מה שהוא עושה נראה כמו X, אבל מאחוריו יש Y. חשוב לי שתראו את זה.</p>
+      <p class="why">עוצר בלי להתנגח. מחזיר את הדיון לעובדות.</p>
+    </div>
+
+    <div class="phrase-card">
+      <div class="label">כשמציעים מסגרת שלא מתאימה</div>
+      <p class="quote">שמעתי את ההצעה. אני חושש/ת שהיא לא תתאים בגלל X ו-Y. האם יש אופציה שמענה גם על הצרכים האלה?</p>
+      <p class="why">מקבלים, לא דוחים. מציעים חלופה במקום להגיד "לא".</p>
+    </div>
+
+    <div class="phrase-card">
+      <div class="label">כשלא יודעים לענות</div>
+      <p class="quote">זו שאלה טובה. אני לא בטוח/ה כרגע — אבדוק עם המטפלת ואחזור אליכם בכתב.</p>
+      <p class="why">עדיף "אני לא יודע" מאשר לענות לא נכון ואחר כך לתקן.</p>
+    </div>
+
+    <div class="phrase-card warm">
+      <div class="label">כשמרגישים מותקפים</div>
+      <p class="quote">רגע, אני צריך/ה דקה. אני רוצה לענות על זה ממקום רגוע ולא ממקום של פגיעה.</p>
+      <p class="why">זכות מלאה לבקש הפסקה. לא סימן חולשה — סימן של הורות בוגרת.</p>
+    </div>
+
+    <div class="phrase-card">
+      <div class="label">כשרוצים להוסיף משהו שנשכח</div>
+      <p class="quote">לפני סיום, יש נקודה אחת חשובה שעוד לא הוצגה — היא נוגעת ל-X. אפשר שתיים-שלוש דקות?</p>
+      <p class="why">חוקי הוועדה לא מגבילים אתכם. הנקודה הזו תהיה בפרוטוקול.</p>
+    </div>
+
+    <div class="phrase-card">
+      <div class="label">בסוף הדיון</div>
+      <p class="quote">אני רוצה לוודא שרשמתם את שלוש הנקודות המרכזיות: 1... 2... 3... . האם יש לכם שאלות נוספות אליי לפני שאתם מחליטים?</p>
+      <p class="why">מוודא שאתם והוועדה על אותו הדף. שומר על מה שהיה חשוב לכם.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ מצבים קשים ═══════════════════════════ -->
+  <section class="gs" id="scenarios">
+    <div class="section-head">
+      <h2><span class="num">6</span>מצבים שמציפים — ומה לעשות</h2>
+      <p>אי אפשר להתכונן להכול, אבל אלה המצבים הנפוצים ביותר מהצ׳אטים של הורים שעברו ועדה.</p>
+    </div>
+
+    <div class="scenario">
+      <div class="situation">תרחיש 1</div>
+      <h4>הוועדה "לא רואה" את הקשיים</h4>
+      <p>הילד מתפקד טוב במסגרת הרגילה, הצוות כותב דוח חיובי, והוועדה חושבת שאין צורך בתמיכה. אתם יודעים שזה לא נכון — הוא שורד בזכות העזרה שלכם בבית.</p>
+      <div class="response">
+        <b>מה עושים:</b> מסבירים מה קורה בבית אחרי בית הספר — קריסה, שעות של ויסות, שיעורי בית לא מסוגל. אומרים במפורש: "מה שהוועדה רואה זה אחרי שאני משקיעה שעתיים בבוקר. בלי זה הוא לא מתפקד."
+      </div>
+    </div>
+
+    <div class="scenario">
+      <div class="situation">תרחיש 2</div>
+      <h4>הבן/בת זוג לא מתואמים אתכם</h4>
+      <p>בדיון פתאום בן הזוג אומר משהו שלא מוסכם — "הוא בסדר ברוב הזמן", בזמן שאתם בדיוק מסבירים כמה קשה.</p>
+      <div class="response">
+        <b>מה עושים:</b> תקנו בעדינות בחדר — "זה נכון שיש לו ימים טובים, ואנחנו מדברים על הדפוס הכולל לאורך החודשים האחרונים". אחרי הדיון — שיחה פתוחה. לפני הבא, תיאום מראש מה כל אחד מכם מציג.
+      </div>
+    </div>
+
+    <div class="scenario">
+      <div class="situation">תרחיש 3</div>
+      <h4>דוח של הגן/בית הספר סותר את מה שאתם חווים</h4>
+      <p>הדוח שהגן הגיש מציג ילד מתפקד-ומצויין, אתם יודעים שזה לא המציאות בבית, בחוג, בסופרמרקט.</p>
+      <div class="response">
+        <b>מה עושים:</b> לא מכחישים את הדוח — מעשירים אותו. "הדוח של הגן מדויק לסביבת הגן, שהיא מובנית ומוכרת. אנחנו רואים תמונה אחרת בסביבות חדשות ובעומסים חושיים. שני הדוחות נכונים — הם מציגים צדדים שונים."
+      </div>
+    </div>
+
+    <div class="scenario">
+      <div class="situation">תרחיש 4</div>
+      <h4>מישהו בוועדה מתייחס בביטול</h4>
+      <p>חבר ועדה אומר משהו כמו "כל הילדים כאלה" או "את יודעת, היום מאבחנים כולם", או מתייחס לאבחון בפקפוק.</p>
+      <div class="response">
+        <b>מה עושים:</b> לא מתווכחים רגשית — מפנים אל הדוחות. "האבחון נעשה על ידי ד״ר X במכון Y. הדוח מצורף. אני שמחה להסביר מה שעמום, אבל האבחנה עצמה אינה נקודת הדיון". אם ממשיך — זכותכם להזכיר שהעירה תיכנס לפרוטוקול.
+      </div>
+    </div>
+
+    <div class="scenario">
+      <div class="situation">תרחיש 5</div>
+      <h4>אתם מתחילים לבכות</h4>
+      <p>זה קורה לכולם. לדבר על הילד שלכם בתוך חדר עם שישה אנשים זרים — זה מציף.</p>
+      <div class="response">
+        <b>מה עושים:</b> זה בסדר. אומרים: "אני צריך/ה דקה", לוקחים נשימה. אף אחד לא יחשוב עליכם פחות. תביאו מים וממחטה. לא חייבים להסתיר — ההורות הזו מצריכה שיהיה בה גם רגש.
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ טעויות נפוצות ═══════════════════════════ -->
+  <section class="gs" id="mistakes">
+    <div class="section-head">
+      <h2><span class="num">7</span>שבע טעויות נפוצות — לא לעשות</h2>
+      <p>טעויות ששומעים שוב ושוב בצ׳אטים של הורים שיצאו מוועדה עם טעם רע.</p>
+    </div>
+
+    <ul>
+      <li><strong>להגיע לא מוכנים — "אני מכיר את הילד שלי".</strong> אתם מכירים, אבל ברגע של לחץ תשכחו חצי. הכינו דף עם נקודות.</li>
+      <li><strong>לצרף 15 מסמכים.</strong> הוועדה קוראת דרך, לא לרוחב. עדיף 4 דוחות חזקים מ-15 בינוניים.</li>
+      <li><strong>לבוא לבד כשיש לכם בן/בת זוג.</strong> שני הורים = תמיכה הדדית + אמינות כפולה. נסו להגיע ביחד.</li>
+      <li><strong>להסכים בחדר רק בשביל "לסיים עם זה".</strong> יש לכם 21 יום לערער. אל תחתמו על שום דבר מיד.</li>
+      <li><strong>להציף בפרטים טכניים רלוונטיים (ADHD, חרדות, אלרגיות).</strong> בחרו את 2–3 הדברים הכי חשובים. הבינו את ההיררכיה.</li>
+      <li><strong>להגיד רק שלילי.</strong> ועדות שומעות כל הזמן קשיים — החוזקות הופכות אתכם לאמינים ואת הילד ל-ילד, לא תיק.</li>
+      <li><strong>לא לבקש את הפרוטוקול אחרי הדיון.</strong> זכות שלכם תוך 14 יום. ממנו מתחילים — או מגשימים או ערעור.</li>
+    </ul>
+
+    <div class="pull-quote">
+      בסוף, הוועדה הזו היא רק רגע בחיים של הילד שלכם. אתם מלווים אותו כל חייו — הם מלווים אותו 90 דקות. הקול שלכם יישמע הכי חזק אם הוא מדויק, רגוע ומדוד.
+      <span class="attr">— מתוך צ׳אט אמהות תקשורתיות, אפריל 2024</span>
+    </div>
+  </section>
+
+  <section style="background: var(--paper-cream); border: 1px dashed var(--border); border-radius: 18px; padding: 1.4rem 1.6rem; margin-top: 2rem; text-align: center;">
+    <h3 style="margin-bottom: 0.4rem; font-size: 1.15rem;">רוצים מסלול מלא לפני ואחרי הוועדה?</h3>
+    <p style="color: var(--ink-soft); margin-bottom: 1rem; font-size: 0.92rem;">המסלול עם ציר זמן, לוחות זמנים, רשימת מסמכים, ומה לעשות אחרי ההחלטה.</p>
+    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center;">
+      <a href="../journey-vaada.html" style="padding: 0.6rem 1.2rem; background: var(--olive-deep); color: var(--white); border-radius: 10px; font-weight: 700; font-family: 'Heebo', sans-serif; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.9rem;">
+        למסלול המלא ←
+      </a>
+      <a id="share-wa" href="#" style="padding: 0.6rem 1.2rem; background: var(--olive-pale); color: var(--olive-deep); border: 1.5px solid var(--olive-soft); border-radius: 10px; font-weight: 700; font-family: 'Heebo', sans-serif; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.9rem;">
+        שיתוף בוואטסאפ
+      </a>
+    </div>
+  </section>
+  <script>
+    (function(){
+      const a = document.getElementById('share-wa');
+      if (a) {
+        const msg = encodeURIComponent('איך מדברים על הילד בוועדת זכאות ואפיון — מדריך להורים:\n' + window.location.href);
+        a.href = 'https://api.whatsapp.com/send?text=' + msg;
+      }
+    })();
+  </script>
+
+  <footer class="footer">
+    <div>
+      <a href="../index.html">בית</a>
+      <a href="../journey-vaada.html">מסלול לקראת ועדה</a>
+      <a href="index.html">מדריכים</a>
+      <a href="../about.html">על המאגר</a>
+    </div>
+    <div style="margin-top: 0.8rem">אוטי · פיילוט · 2026</div>
+  </footer>
+
+  </div>
+
+<footer class="guide-footer">
+  <a href="index.html" class="back">← חזרה לכל המדריכים</a>
+</footer>
+
+<footer class="rezef-footer">
+  <div class="ft-links">
+    <a href="../index.html#about">אודות רצף</a>
+    <a href="../index.html#svc">רצף מענים</a>
+    <a href="../index.html#articles">רצף כתבות</a>
+  </div>
+  <p class="ft-note">© רצף · מדריכים מבוססי מחקר לקהילה האוטיסטית · נכתבו ע"י מיטל פלג</p>
+</footer>
+
+</main>
+
+</body>
+</html>

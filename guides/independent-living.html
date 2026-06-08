@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מעבר לדיור עצמאי — מדריך אוטי</title>
+<meta name="description" content="מדריך מעבר לדיור עצמאי לאוטיסטים — מה לסדר לפני, מה ביום הראשון, רוטינה לשבוע הראשון, ואיך לא להישבר. צ'קליסטים ומחירון אמיתי.">
+<style>
+  /* Budget table */
+  .budget-table {
+    background: var(--white);
+    border: 1.5px solid var(--border-soft);
+    border-radius: 18px;
+    overflow: hidden;
+    margin: 1rem 0 1.4rem;
+  }
+  .budget-row {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 1rem;
+    padding: 0.9rem 1.3rem;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .budget-row:last-child { border-bottom: none; }
+  .budget-row.head {
+    background: var(--paper-deep);
+    font-family: 'Heebo', sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ink-soft);
+  }
+  .budget-row.total {
+    background: linear-gradient(90deg, var(--terracotta-pale) 0%, var(--butter-soft) 100%);
+    font-weight: 800;
+    font-size: 1.08rem;
+    font-family: 'Heebo', sans-serif;
+  }
+  .budget-row .cat { font-weight: 600; color: var(--ink); }
+  .budget-row .cat .sub { display: block; font-size: 0.82rem; color: var(--ink-soft); font-weight: 400; margin-top: 0.15rem; }
+  .budget-row .min, .budget-row .max {
+    font-family: 'Heebo', sans-serif;
+    font-weight: 700;
+    color: var(--terracotta-deep);
+    white-space: nowrap;
+  }
+  .budget-row .max { color: var(--olive-deep); }
+
+  @media (max-width: 720px) {
+    .budget-row { grid-template-columns: 1fr; gap: 0.3rem; }
+    .budget-row .min::before { content: "מינימום: "; color: var(--ink-light); font-weight: 400; }
+    .budget-row .max::before { content: "מקסימום: "; color: var(--ink-light); font-weight: 400; }
+    .budget-row.head { display: none; }
+  }
+
+  /* Shopping list */
+  .shop-columns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0 1.4rem;
+  }
+  .shop-col {
+    background: var(--white);
+    border: 1.5px solid var(--border-soft);
+    border-radius: 16px;
+    padding: 1.3rem 1.4rem;
+  }
+  .shop-col.kitchen  { border-inline-start: 4px solid #C56A4E; }
+  .shop-col.bed      { border-inline-start: 4px solid #6B8357; }
+  .shop-col.bath     { border-inline-start: 4px solid #8A6D1F; }
+  .shop-col.cleaning { border-inline-start: 4px solid #5D4E80; }
+  .shop-col h4 {
+    font-family: 'Heebo', sans-serif;
+    font-size: 1.02rem;
+    margin-bottom: 0.8rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .shop-col.kitchen h4  { color: #A84D32; }
+  .shop-col.bed h4      { color: #4E6542; }
+  .shop-col.bath h4     { color: #8A6D1F; }
+  .shop-col.cleaning h4 { color: #5D4E80; }
+  .shop-col ul { padding-inline-start: 1.2rem; margin: 0; }
+  .shop-col li {
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    margin-bottom: 0.4rem;
+    line-height: 1.5;
+  }
+</style>
+<link rel="stylesheet" href="rezef-guides.css">
+</head>
+<body>
+
+<nav class="rezef-nav">
+  <a href="../index.html#" class="logo">
+    <svg class="logo-svg" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+      <path d="M4 36 C4 16 20 10 20 10 C20 10 36 16 36 36" stroke="#A78BFA" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <path d="M8.5 36 C8.5 19 20 14 20 14 C20 14 31.5 19 31.5 36" stroke="#312E81" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <path d="M13 36 C13 22 20 18 20 18 C20 18 27 22 27 36" stroke="#7C3AED" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+      <circle cx="20" cy="36" r="2.8" fill="#7C3AED"/>
+    </svg>
+    <div>
+      <div class="logo-name">רֶצֶף</div>
+      <div class="logo-tag">מענים לקהילה האוטיסטית ובני משפחותיהם לאורך כל שלבי החיים</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html#ages">רצף גילאי</a></li>
+    <li><a href="../index.html#svc">רצף מענים</a></li>
+    <li><a href="../index.html#articles">רצף כתבות</a></li>
+    <li><a href="index.html" class="active">רצף מדריכים</a></li>
+    <li><a href="../index.html#about">אודות</a></li>
+  </ul>
+  <a href="../index.html#ages" class="nav-cta">מצאו מענה</a>
+</nav>
+
+<nav class="rezef-breadcrumb" aria-label="פירורי לחם">
+  <a href="../index.html">רצף</a>
+  <span class="sep">›</span>
+  <a href="index.html">מדריכים</a>
+  <span class="sep">›</span>
+  <span class="current">מעבר לדיור עצמאי — מדריך אוטי</span>
+</nav>
+
+<main class="guide-wrap">
+
+  <header class="guide-hero">
+    <span class="guide-eyebrow">מדריך פרקטי · דיור עצמאי</span>
+    <h1>מעבר לדיור עצמאי — בלי להישבר בשבוע הראשון.</h1>
+    <p class="lede">
+      המעבר לדירה לבד הוא <strong>שינוי חושי-תפקודי-חברתי אחד גדול</strong>.
+      אוטיסטים/ות מצליחים/ות בדיור עצמאי כשמתכננים/ות את זה כ<strong>פרויקט</strong>, לא כקפיצה לבריכה.
+      המדריך מחלק את זה לציר זמן של 60 יום, עם צ'קליסטים ומחירון אמיתי.
+    </p>
+    <nav class="nav-pills">
+      <a href="#types" class="nav-pill">סוגי דיור — מה הכי מתאים</a>
+      <a href="#timeline" class="nav-pill">ציר זמן 60 יום</a>
+      <a href="#budget" class="nav-pill">תקציב — מחירון אמיתי</a>
+      <a href="#shopping" class="nav-pill">רשימת קניות ראשונית</a>
+      <a href="#day1" class="nav-pill">היום הראשון</a>
+      <a href="#routines" class="nav-pill">רוטינות לשבוע הראשון</a>
+    </nav>
+  </header>
+
+  <!-- TYPES OF HOUSING -->
+  <section class="gs" id="types">
+    <div class="section-head">
+      <h2>3 סוגי דיור — איזה מתאים לך</h2>
+      <p>לא כל "עצמאות" נראית אותו דבר. אפשר להתחיל בגרסה מלווה ולעבור לגמרי עצמאי בהמשך.</p>
+    </div>
+
+    <div class="traffic">
+
+      <div class="tl-card green">
+        <div class="tl-dot"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg></div>
+        <div class="label">הכי עם ליווי</div>
+        <h3>דיור מוגן / מלווה</h3>
+        <ul>
+          <li>מדריך/ה שמגיע/ה כמה שעות בשבוע</li>
+          <li>דרך סל שיקום — עלות נמוכה משמעותית</li>
+          <li>עוזר/ת עם ניהול כסף, בירוקרטיה, קניות</li>
+          <li>דרך עמותת אלו"ט / עוצמה / שונים ושווים</li>
+          <li>אופציה טובה לשנה ראשונה</li>
+        </ul>
+      </div>
+
+      <div class="tl-card yellow">
+        <div class="tl-dot"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a3 3 0 015.356-1.857M17 8a3 3 0 11-6 0 3 3 0 016 0zM7 8a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
+        <div class="label">עצמאות חלקית</div>
+        <h3>שותפים / דיור שיתופי</h3>
+        <ul>
+          <li>דירה עם שותף/ה אחד/ת או שניים</li>
+          <li>עלות נמוכה יותר, אבל פחות שקט</li>
+          <li>יתרון: מישהו/י בבית, לא לבד</li>
+          <li>חיסרון חושי: רעש, ריחות, תנועה</li>
+          <li>שותפים שאוטיסטים/ות אחרים/ות — אופציה מצוינת</li>
+        </ul>
+      </div>
+
+      <div class="tl-card red">
+        <div class="tl-dot"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg></div>
+        <div class="label">הכי עצמאי</div>
+        <h3>דירה לבד</h3>
+        <ul>
+          <li>השקט המקסימלי — יתרון חושי</li>
+          <li>עלות הכי גבוהה</li>
+          <li>דורש הרבה ניהול עצמי</li>
+          <li>אפשרי עם מסגרות תומכות (תעסוקה, מועדונית)</li>
+          <li>אופציה למי שיש/יש לו/לה ניסיון עם תפקוד</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="gcard tone-warm">
+      <h3>טיפ: מתחילים בדיור מוגן, מחליטים אחר כך</h3>
+      <p>אין חובה להחליט עכשיו. אפשר להתחיל בדיור מוגן דרך סל שיקום (שנה-שנתיים), ואם זה עובד — לעבור לדירה עצמאית לגמרי. זה לא "כישלון" לעבור דרך שלב מלווה. <strong>זה בנייה נכונה.</strong></p>
+    </div>
+  </section>
+
+  <!-- TIMELINE 60 DAYS -->
+  <section class="gs" id="timeline">
+    <div class="section-head">
+      <h2>ציר זמן — 60 יום עד המעבר</h2>
+      <p>לא לחכות ליום האחרון. לחלק לגושים של שבוע.</p>
+    </div>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="when">60-45 יום לפני</div>
+        <h4>החלטה + חיפוש דירה</h4>
+        <p>להחליט איזה סוג דיור. אם דיור מוגן — פניה לעו"ס/סל שיקום. אם דירה — לחפש ב-Yad2, פייסבוק, לוחות אוניברסיטה. <strong>לא לחתום על חוזה ראשון. לראות לפחות 5 מקומות.</strong></p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="when">45-30 יום לפני</div>
+        <h4>חתימה על חוזה + פתיחת חשבון</h4>
+        <p>אחרי שבחרת — לקרוא את החוזה 3 פעמים, לבקש מהורה/עו"ס לעבור גם הוא/היא. <strong>דמי שכירות ראשונים + 2 חודשים פיקדון זה הסטנדרט.</strong> לפתוח חשבון בנק אם עוד אין.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="when">30-14 יום לפני</div>
+        <h4>חיבורי תשתיות + קניות גדולות</h4>
+        <p>להזמין חשמל, גז, מים, אינטרנט (2 שבועות לפני!). לקנות מזרון, מקרר אם אין, שולחן. <strong>רשימת קניות מדויקת בחלק הבא — אל תקנו ספונטנית.</strong></p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="when">14-7 יום לפני</div>
+        <h4>מעבר גלוי — חבילה אחר חבילה</h4>
+        <p>להתחיל להעביר בגדים, ספרים, ציוד אישי. <strong>לא הכל ביום אחד.</strong> מעבר בחבילות קטנות (2-3 בפעם) מוריד עומס חושי. אפשר גם לשים תיק ללילה אחד לישון בדירה לפני.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="when">7-1 יום לפני</div>
+        <h4>קניות אוכל + תכנון יום ראשון</h4>
+        <p>לקנות אוכל ל-5 ימים הראשונים — אל תסמוך/כי על "אני אקנה ביום הראשון". <strong>דברים קלים לבישול.</strong> לתכנן את היום הראשון (הבא בפרק הבא).</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="when">יום המעבר</div>
+        <h4>מעבר פיזי — עם עזרה</h4>
+        <p>לא לעשות לבד. <strong>לבקש הורה/אח/ת/חבר/ה לבוא.</strong> לארגן חדרים עם המלוות/ים. ללכת לישון מוקדם — המוח התאמץ כל היום.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BUDGET -->
+  <section class="gs" id="budget">
+    <div class="section-head">
+      <h2>תקציב — מחירון אמיתי (שקל ישראלי)</h2>
+      <p>מחירים ממוצעים לדירת סטודיו/חדר. מרכז = גבוה, פריפריה = נמוך.</p>
+    </div>
+
+    <h3>עלויות התחלתיות (חד-פעמיות)</h3>
+    <div class="budget-table">
+      <div class="budget-row head">
+        <div>פריט</div>
+        <div>מינימום</div>
+        <div>מקסימום</div>
+      </div>
+      <div class="budget-row">
+        <div class="cat">פיקדון לדירה<span class="sub">2 חודשי שכירות מראש</span></div>
+        <div class="min">3,000 ₪</div>
+        <div class="max">10,000 ₪</div>
+      </div>
+      <div class="budget-row">
+        <div class="cat">מזרן + מצעים בסיסיים<span class="sub">IKEA/AM:PM/AliExpress</span></div>
+        <div class="min">700 ₪</div>
+        <div class="max">2,500 ₪</div>
+      </div>
+      <div class="budget-row">
+        <div class="cat">כלי מטבח בסיסיים<span class="sub">סיר, מחבת, צלחות, סכו"ם</span></div>
+        <div class="min">400 ₪</div>
+        <div class="max">1,200 ₪</div>
+      </div>
+      <div class="budget-row">
+        <div class="cat">מקרר/מיקרו (אם לא במושכרת)<span class="sub">יד שניה — מוריד חצי</span></div>
+        <div class="min">800 ₪</div>
+        <div class="max">3,500 ₪</div>
+      </div>
+      <div class="budget-row">
+        <div class="cat">ניקיון ראשוני<span class="sub">ציוד, חומרים, נייר טואלט</span></div>
+        <div class="min">200 ₪</div>
+        <div class="max">500 ₪</div>
+      </div>
+      <div class="budget-row">
+        <div class="cat">חיבורי חשמל/מים/אינטרנט<span class="sub">חד פעמי להזמנה</span></div>
+        <div class="min">300 ₪</div>
+        <div class="max">700 ₪</div>
+      </div>
+      <div class="budget-row total">
+        <div>סה"כ לכניסה</div>
+        <div class="min">5,400 ₪</div>
+        <div class="max">18,400 ₪</div>
+      </div>
+    </div>
+
+    <h3>הוצאות חודשיות</h3>
+    <div class="budget-table">
+      <div class="budget-row head">
+        <div>פריט</div>
+        <div>מינימום</div>
+        <div>מקסימום</div>
+      </div>
+      <div class="budget-row">
+        <div class="cat">שכירות (חדר/סטודיו)<span class="sub">פריפריה-מרכז</span></div>
+        <div class="min">1,500 ₪</div>
+        <div class="max">4,500 ₪</div>
+      </div>
+      <div class="budget-row">
+        <div class="cat">ועד בית<span class="sub">משתנה לפי בניין</span></div>
+        <div class="min">100 ₪</div>
+        <div class="max">350 ₪</div>
+      </div>
+      <div class="budget-row">
+        <div class="cat">ארנונה<span class="sub">הנחת נכות: 90%!</span></div>
+        <div class="min">50 ₪</div>
+        <div class="max">400 ₪</div>
+      </div>
+      <div class="budget-row">
+        <div class="cat">חשמל<span class="sub">חורף + מזגן = יקר</span></div>
+        <div class="min">120 ₪</div>
+        <div class="max">350 ₪</div>
+      </div>
+      <div class="budget-row">
+        <div class="cat">מים + גז<span class="sub">יחד</span></div>
+        <div class="min">80 ₪</div>
+        <div class="max">200 ₪</div>
+      </div>
+      <div class="budget-row">
+        <div class="cat">אינטרנט + סלולר<span class="sub">חבילה משולבת</span></div>
+        <div class="min">90 ₪</div>
+        <div class="max">200 ₪</div>
+      </div>
+      <div class="budget-row">
+        <div class="cat">קניות אוכל<span class="sub">לאדם אחד</span></div>
+        <div class="min">900 ₪</div>
+        <div class="max">1,500 ₪</div>
+      </div>
+      <div class="budget-row">
+        <div class="cat">תחבורה<span class="sub">חופשי חודשי / דלק</span></div>
+        <div class="min">220 ₪</div>
+        <div class="max">600 ₪</div>
+      </div>
+      <div class="budget-row">
+        <div class="cat">פנאי + חירום<span class="sub">חייב להיות!</span></div>
+        <div class="min">200 ₪</div>
+        <div class="max">600 ₪</div>
+      </div>
+      <div class="budget-row total">
+        <div>סה"כ חודשי</div>
+        <div class="min">3,260 ₪</div>
+        <div class="max">8,700 ₪</div>
+      </div>
+    </div>
+
+    <div class="gcard tone-warm">
+      <h3>חשוב לדעת — הנחות לזכאי/ת קצבה</h3>
+      <ul>
+        <li><strong>ארנונה:</strong> הנחה של 80-90% לנכה (100% משלמים רק 10-20%).</li>
+        <li><strong>חשמל:</strong> הנחה של 50% על חלק מהצריכה (לזכאי/ת קצבת נכות).</li>
+        <li><strong>ארנונה + מים:</strong> הגשה למחלקת הארנונה ברשות המקומית עם אישור מביטוח לאומי.</li>
+        <li><strong>תחבורה:</strong> אישור נכה מזכה ב-רב-קו מוזל (ב-50%).</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SHOPPING LIST -->
+  <section class="gs" id="shopping">
+    <div class="section-head">
+      <h2>רשימת קניות ראשונית — כל מה שצריך</h2>
+      <p>לקנות הכל בקניה אחת שקולה. אל תקנו שוב ושוב ספונטנית — זה יוצא יקר יותר.</p>
+    </div>
+
+    <div class="shop-columns">
+
+      <div class="shop-col kitchen">
+        <h4>
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 3v2m6-2v2M3 9h18M3 15h18M9 21V9m6 12V9"/></svg>
+          מטבח
+        </h4>
+        <ul>
+          <li>סיר בינוני (2 ליטר)</li>
+          <li>מחבת קטנה</li>
+          <li>קומקום חשמלי</li>
+          <li>6 צלחות (עמוקות + שטוחות)</li>
+          <li>6 כוסות</li>
+          <li>סכו"ם בסיסי ל-6</li>
+          <li>סכין + קרש חיתוך</li>
+          <li>כף עץ + כף הגשה</li>
+          <li>מגבות מטבח × 3</li>
+          <li>קופסאות אחסון (4-5)</li>
+          <li>שקיות אשפה</li>
+          <li>נייר אפייה + ניילון נצמד</li>
+        </ul>
+      </div>
+
+      <div class="shop-col bed">
+        <h4>
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h12a1 1 0 001-1V10"/></svg>
+          חדר שינה
+        </h4>
+        <ul>
+          <li>מזרן (בוגר — 120 ס"מ לפחות)</li>
+          <li>מצעים לבנים + סט החלפה</li>
+          <li>שמיכה קיץ + שמיכה חורף</li>
+          <li>כרית × 2</li>
+          <li>וילון אוטם אור (חושי!)</li>
+          <li>מנורת לילה נעימה</li>
+          <li>שעון מעורר (לא טלפון)</li>
+          <li>סל לכביסה מלוכלכת</li>
+          <li>ארון בגדים / מתלה</li>
+          <li>שמיכה כבדה לחרדה (אופציונלי אבל עוזר)</li>
+        </ul>
+      </div>
+
+      <div class="shop-col bath">
+        <h4>
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10v11M20 10v11"/></svg>
+          אמבטיה
+        </h4>
+        <ul>
+          <li>מגבות גוף × 2</li>
+          <li>מגבות פנים × 2</li>
+          <li>שטיח אמבט</li>
+          <li>סבון גוף + שמפו</li>
+          <li>משחת שיניים + מברשת × 2</li>
+          <li>דאודורנט + חומרי היגיינה אישית</li>
+          <li>נייר טואלט × 12 גלילים</li>
+          <li>מברשת שירותים + מטהר</li>
+          <li>סל אשפה קטן</li>
+          <li>תרופות בסיסיות (פרצטמול, פלסטר)</li>
+        </ul>
+      </div>
+
+      <div class="shop-col cleaning">
+        <h4>
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+          ניקיון + בית
+        </h4>
+        <ul>
+          <li>מטאטא + יעה</li>
+          <li>מגב שטיפה</li>
+          <li>סמרטוטים (2-3)</li>
+          <li>חומר ניקוי רצפה</li>
+          <li>ספונג'ה + נוזל כלים</li>
+          <li>אקונומיקה</li>
+          <li>נייר סופג</li>
+          <li>פח אשפה מטבח + חדר</li>
+          <li>מאוורר / מזגן (חובה בישראל)</li>
+          <li>תאורה ראשית (אם אין)</li>
+          <li>ערכת תפירה קטנה (חירום)</li>
+          <li>פנסי חירום + סוללות</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="gcard tone-cool">
+      <h3>איך לחסוך — יד שניה זה הסוד</h3>
+      <p>רוב הפריטים הגדולים (מקרר, שולחן, ארון) — <strong>ב-Facebook Marketplace, Yad2</strong>, קבוצות "תרומה ליוצא/ת חדש/ה", חנויות יד שניה. חוסך 50-70%.</p>
+      <p><strong>כלי מטבח, מצעים, מגבות — חדשים.</strong> היגיינה.</p>
+    </div>
+  </section>
+
+  <!-- DAY 1 -->
+  <section class="gs" id="day1">
+    <div class="section-head">
+      <h2>היום הראשון — מה לעשות ומה לא</h2>
+      <p>היום הראשון זה עומס עצום. לא להעמיס. לתכנן בדיוק.</p>
+    </div>
+
+    <div class="do-dont">
+      <div class="do">
+        <h4>לעשות</h4>
+        <ul>
+          <li>לישון ב-22:00 ולקום בזמן הרגיל</li>
+          <li>לעשות קפה/תה בוקר במטבח החדש (פולחן)</li>
+          <li>להסתובב בדירה ולרשום מה חסר</li>
+          <li>להתקשר לאדם אחד אמין ולספר שהגעת</li>
+          <li>לפרוק תיק אחד בלבד — השאר מחר</li>
+          <li>לאכול משהו חם (גם אם הזמנת)</li>
+          <li>להרגיש שזה הכי "לא שלך" ביום הראשון — נורמלי</li>
+        </ul>
+      </div>
+      <div class="dont">
+        <h4>לא לעשות</h4>
+        <ul>
+          <li>לא לאסוף את כל הדירה ביום אחד</li>
+          <li>לא להזמין חברים לביקור ראשון</li>
+          <li>לא לחפש "מקום" לכל חפץ</li>
+          <li>לא להתחיל לקנות דברים חסרים עד מחר</li>
+          <li>לא לשתות אלכוהול ("לחגוג")</li>
+          <li>לא להיות סופר רגוע — חוסר שקט זה נורמלי</li>
+          <li>לא להתקשר להורים בבהלה — מחכים 24 שעות</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="big-reframe">
+      <h3>הלילה הראשון — הכי קשה</h3>
+      <p>
+        רוב האוטיסטים/ות מתארים/ות את הלילה הראשון כ"הכי קשה". רעש לא מוכר, חושך לא מוכר, מיטה לא מוכרת.
+        <strong>זה עובר.</strong> תוך 3-5 לילות, המוח מתרגל. אם רע מאוד — מותר לישון יום/יומיים אצל הורים וחוזרים.
+        לא כישלון. שלב.
+      </p>
+    </div>
+  </section>
+
+  <!-- ROUTINES -->
+  <section class="gs" id="routines">
+    <div class="section-head">
+      <h2>רוטינות לשבוע הראשון — הצילום של שגרה</h2>
+      <p>רוטינה קבועה מרגיעה. גם אם אין אליה תמריץ ביום מסוים, השגרה תישא אותך.</p>
+    </div>
+
+    <h3>בוקר — 4 צעדים ב-30 דקות</h3>
+    <div class="steps">
+      <div class="step"><div><h4>ללכת לשירותים + לשטוף פנים</h4><p>מיד בבוקר. מתעורר/ת המוח.</p></div></div>
+      <div class="step"><div><h4>קפה/תה + משהו לאכול</h4><p>גם אם קל — טוסט, פרי. הגוף זקוק לדלק.</p></div></div>
+      <div class="step"><div><h4>פתיחת חלון לאוויר</h4><p>5 דקות. גם בחורף. הופך את הדירה ל"חיה".</p></div></div>
+      <div class="step"><div><h4>צ'ק-אין קצר — "איך אני מרגיש/ה היום"</h4><p>1-10 על מצב רוח, 1-10 על אנרגיה. כותבים בנייד/מחברת. מראה מגמות.</p></div></div>
+    </div>
+
+    <h3>ערב — "סגירת יום" (15-20 דקות)</h3>
+    <div class="steps">
+      <div class="step"><div><h4>שטיפת כלים של היום</h4><p>לא מחר. עכשיו. 5 דקות = שקט בבוקר.</p></div></div>
+      <div class="step"><div><h4>בגדים לכביסה → בסל, לא על הרצפה</h4><p>הרגל של 10 שניות.</p></div></div>
+      <div class="step"><div><h4>החלטה מה לאכול מחר</h4><p>בוקר זה לא זמן להחליט. עכשיו מחליטים.</p></div></div>
+      <div class="step"><div><h4>כיבוי אורות — מנורת לילה בלבד</h4><p>מאותת למוח "לישון".</p></div></div>
+    </div>
+
+    <h3>שבועי — 3 דברים שאסור לדלג עליהם</h3>
+    <div class="steps">
+      <div class="step"><div><h4>יום כביסה (יום ספציפי, קבוע)</h4><p>למשל — כל שלישי. לא "כשמתאים".</p></div></div>
+      <div class="step"><div><h4>קניה גדולה של שבוע</h4><p>פעם בשבוע, רשימה קבועה. חוסך טלטלה יומית.</p></div></div>
+      <div class="step"><div><h4>שיחה עם אדם קרוב (לא בטקסט)</h4><p>הורה, חבר/ה, עו"ס. זה "בדיקת דופק" רגשי.</p></div></div>
+    </div>
+  </section>
+
+  <!-- WHEN IT BREAKS -->
+  <section class="gs">
+    <div class="section-head">
+      <h2>כשמשהו נשבר — מילולית או רגשית</h2>
+      <p>זה יקרה. זו לא שאלה אם — זו שאלה מתי. תוכנית מוכנה מראש.</p>
+    </div>
+
+    <div class="phrases">
+
+      <div class="phrase">
+        <div class="quote-mark">״</div>
+        <div class="text">"נשבר הקומקום / דולף הכיור / המזגן לא עובד"</div>
+        <div class="when"><strong>צעד 1:</strong> לצלם. <strong>צעד 2:</strong> להתקשר לבעל/ת הדירה (לא לתקן לבד). <strong>צעד 3:</strong> בתיעוד בהתכתבות (וואטסאפ) — לא רק בטלפון.</div>
+      </div>
+
+      <div class="phrase">
+        <div class="quote-mark">״</div>
+        <div class="text">"שכחתי לשלם חשבון חשמל"</div>
+        <div class="when">לא לפאניק. להתקשר לחברת החשמל, לבקש "הסדר" — ברוב המקרים מאשרים. קנסות מבוטלים לזכאי נכות.</div>
+      </div>
+
+      <div class="phrase">
+        <div class="quote-mark">״</div>
+        <div class="text">"אני לא מצליח/ה לצאת מהמיטה יומיים"</div>
+        <div class="when">אחרי 3 ימים — להתקשר לקופ"ח/לעו"ס. זה לא "עצלנות", זה <strong>סימן לשחיקה או דיכאון</strong>. זה מטופל.</div>
+      </div>
+
+      <div class="phrase">
+        <div class="quote-mark">״</div>
+        <div class="text">"אני מבולבל/ת מכל החשבונות"</div>
+        <div class="when">הורה/עו"ס יכולים לבוא לעזור לארגן. <strong>זה לא "כישלון בעצמאות" — זה ניהול פרקטי.</strong></div>
+      </div>
+
+      <div class="phrase">
+        <div class="quote-mark">״</div>
+        <div class="text">"אין לי אנשים. מרגיש לבד."</div>
+        <div class="when">בדיוק הסיבה למועדונית חברתית בסל שיקום. גם קבוצת ווטסאפ של אוטיסטים/ות בוגרים/ות. לא חייב/ת לצאת מיד — להתחיל בצ'אט.</div>
+      </div>
+
+      <div class="phrase">
+        <div class="quote-mark">״</div>
+        <div class="text">"לא יוצא לי לאכול כבר יומיים"</div>
+        <div class="when">אזעקה. להזמין אוכל מוכן, להתקשר לעזרה. תחת עומס — המוח מוותר על אוכל. זה מסוכן.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BIG REFRAME -->
+  <section class="gs">
+    <div class="big-reframe">
+      <h3>עצמאות זה לא "לעשות הכל לבד"</h3>
+      <p>
+        עצמאות זה <strong>לדעת לבד מה חסר, ולבקש עזרה כשצריך</strong>.
+        רוב האנשים (גם נוירוטיפיים) משתמשים/ות בעו"ד, רואי חשבון, מטפלות ניקיון, חברים.
+        עצמאות אוטיסטית אותו דבר — רק עם הכרה שיש כלים ומסגרות שאמורות לעזור.
+      </p>
+    </div>
+  </section>
+
+    </div>
+
+<footer class="guide-footer">
+  <a href="index.html" class="back">← חזרה לכל המדריכים</a>
+</footer>
+
+<footer class="rezef-footer">
+  <div class="ft-links">
+    <a href="../index.html#about">אודות רצף</a>
+    <a href="../index.html#svc">רצף מענים</a>
+    <a href="../index.html#articles">רצף כתבות</a>
+  </div>
+  <p class="ft-note">© רצף · מדריכים מבוססי מחקר לקהילה האוטיסטית · נכתבו ע"י מיטל פלג</p>
+</footer>
+
+</main>
+
+</body>
+</html>

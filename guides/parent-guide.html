@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>קיבלנו אבחון — מה עכשיו? | מדריך להורים לפי גיל ומגדר</title>
+<meta name="description" content="מדריך אינטראקטיבי להורים אחרי אבחון אוטיזם, מותאם לפי גיל הילד/ה (גן · יסודי · חט״ב/תיכון · בוגר/ת) ומגדר (בן · בת). מבוסס מחקר.">
+<style>
+  /* בורר כפול */
+  .dual-switch {
+    display: flex; flex-wrap: wrap; gap: 1rem;
+    margin-top: 1.4rem;
+    align-items: center;
+  }
+  .switch-group {
+    display: inline-flex;
+    background: var(--paper-deep);
+    border: 1px solid var(--border-soft);
+    border-radius: 14px;
+    padding: 0.3rem;
+    gap: 0.25rem;
+  }
+  .switch-group .label {
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    padding: 0.55rem 0.7rem 0.55rem 0.4rem;
+    font-weight: 700;
+    font-family: 'Heebo', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .switch-group button {
+    background: transparent;
+    border: none;
+    padding: 0.55rem 1rem;
+    border-radius: 10px;
+    font-family: 'Heebo', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .switch-group button:hover { color: var(--ink); background: rgba(255,255,255,0.6); }
+  .switch-group button.active {
+    background: var(--terracotta-deep);
+    color: var(--white);
+    box-shadow: 0 2px 8px rgba(197, 106, 78, 0.25);
+  }
+  .switch-group.gender button.active { background: var(--olive-deep); box-shadow: 0 2px 8px rgba(80,100,55,0.25); }
+
+  /* בלוק שמותאם לבחירה */
+  .variant { display: none; }
+  .variant.active { display: block; animation: fadeIn 0.3s ease; }
+
+  /* מספרי הירו */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin: 1.4rem 0 2rem;
+  }
+  .stat {
+    background: var(--white);
+    border: 1px solid var(--border-soft);
+    border-radius: 18px;
+    padding: 1.4rem 1.3rem;
+    border-inline-start: 4px solid var(--terracotta);
+  }
+  .stat .num {
+    font-family: 'Bellefair', serif;
+    font-size: 2.4rem;
+    line-height: 1;
+    color: var(--terracotta-deep);
+    margin-bottom: 0.4rem;
+  }
+  .stat .lbl {
+    font-size: 0.92rem;
+    color: var(--ink);
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+  .stat .src { font-size: 0.78rem; color: var(--ink-soft); }
+  .stat:nth-child(2) { border-inline-start-color: var(--olive); }
+  .stat:nth-child(2) .num { color: var(--olive-deep); }
+  .stat:nth-child(3) { border-inline-start-color: #8A6D1F; }
+  .stat:nth-child(3) .num { color: #8A6D1F; }
+
+  /* תווית מגדר ספציפי בתוך תוכן */
+  .gender-tag {
+    display: inline-block;
+    padding: 0.18rem 0.55rem;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    font-family: 'Heebo', sans-serif;
+    margin-inline-end: 0.4rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .gender-tag.girl { background: var(--butter-soft); color: #8A6D1F; }
+  .gender-tag.boy  { background: var(--olive-pale); color: var(--olive-deep); }
+</style>
+<link rel="stylesheet" href="rezef-guides.css">
+</head>
+<body>
+
+<nav class="rezef-nav">
+  <a href="../index.html#" class="logo">
+    <svg class="logo-svg" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+      <path d="M4 36 C4 16 20 10 20 10 C20 10 36 16 36 36" stroke="#A78BFA" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <path d="M8.5 36 C8.5 19 20 14 20 14 C20 14 31.5 19 31.5 36" stroke="#312E81" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <path d="M13 36 C13 22 20 18 20 18 C20 18 27 22 27 36" stroke="#7C3AED" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+      <circle cx="20" cy="36" r="2.8" fill="#7C3AED"/>
+    </svg>
+    <div>
+      <div class="logo-name">רֶצֶף</div>
+      <div class="logo-tag">מענים לקהילה האוטיסטית ובני משפחותיהם לאורך כל שלבי החיים</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html#ages">רצף גילאי</a></li>
+    <li><a href="../index.html#svc">רצף מענים</a></li>
+    <li><a href="../index.html#articles">רצף כתבות</a></li>
+    <li><a href="index.html" class="active">רצף מדריכים</a></li>
+    <li><a href="../index.html#about">אודות</a></li>
+  </ul>
+  <a href="../index.html#ages" class="nav-cta">מצאו מענה</a>
+</nav>
+
+<nav class="rezef-breadcrumb" aria-label="פירורי לחם">
+  <a href="../index.html">רצף</a>
+  <span class="sep">›</span>
+  <a href="index.html">מדריכים</a>
+  <span class="sep">›</span>
+  <span class="current">קיבלנו אבחון — מה עכשיו?</span>
+</nav>
+
+<main class="guide-wrap">
+
+  <div class="helpline-bar" role="region" aria-label="מספרי חירום">
+    <svg class="ic" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.95.68l1.5 4.5a1 1 0 01-.5 1.21l-2.26 1.13a11 11 0 005.52 5.52l1.13-2.26a1 1 0 011.21-.5l4.5 1.5a1 1 0 01.68.95V19a2 2 0 01-2 2h-1C9.72 21 3 14.28 3 6V5z"/></svg>
+    <div>
+      <strong>במצב מצוקה:</strong>
+      ער"ן <a href="tel:1201">1201</a> ·
+      סה"ר (לבני נוער) <a href="tel:1800120140">1800-120-140</a> ·
+      מד"א <a href="tel:101">101</a>
+    </div>
+  </div>
+
+  <div class="medical-disclaimer">
+    <strong>הבהרה:</strong> מדריך זה מבוסס על מחקר עדכני ועל ניסיון אישי, אך אינו תחליף לייעוץ מקצועי. החלטות לגבי טיפולים, מסגרות חינוכיות ותרופות יש לקבל בליווי צוות מטפל מוסמך שמכיר את ילדכם.
+  </div>
+
+  <header class="guide-hero">
+    <span class="guide-eyebrow">מדריך להורים · לפי גיל ומגדר</span>
+    <h1>קיבלנו אבחון. ועכשיו?</h1>
+    <p class="lede">
+      אין מסלול אחד. ילד בן 4 צריך הורה שיודע על מסגרות וטיפולים. נערה בת 14 צריכה הורה שיודע איך לזרוע זרעים בלי לדרוש שיחה.
+      <strong>בחרו גיל ומגדר</strong> — והמדריך מסתדר לכם.
+    </p>
+    <div class="dual-switch">
+      <div class="switch-group age">
+        <span class="label">גיל</span>
+        <button class="active" data-age="early">גן (0–6)</button>
+        <button data-age="elem">יסודי (7–12)</button>
+        <button data-age="teen">חט״ב/תיכון (13–18)</button>
+        <button data-age="adult">בוגר/ת (18+)</button>
+      </div>
+      <div class="switch-group gender">
+        <span class="label">מגדר</span>
+        <button class="active" data-gender="boy">בן</button>
+        <button data-gender="girl">בת</button>
+      </div>
+    </div>
+    <nav class="nav-pills">
+      <a href="#stats" class="nav-pill">מספרים שצריך לדעת</a>
+      <a href="#signs" class="nav-pill">סימנים — תקין · אזהרה</a>
+      <a href="#myths" class="nav-pill">אמת ומיתוסים</a>
+      <a href="#how" class="nav-pill">איך לדבר</a>
+      <a href="#phrases" class="nav-pill">משפטים מוכנים</a>
+      <a href="#scenarios" class="nav-pill">תרחישים</a>
+      <a href="#timeline" class="nav-pill">ציר זמן</a>
+      <a href="#checklist" class="nav-pill">צ'קליסט</a>
+      <a href="#people" class="nav-pill">אנשי מקצוע</a>
+      <a href="#resources" class="nav-pill">משאבים</a>
+    </nav>
+  </header>
+
+  <!-- ═══════════════════════ STATS — מספרים מהמחקר ═══════════════════════ -->
+  <section class="gs" id="stats">
+    <div class="section-head">
+      <h2>מספרים שכדאי לדעת</h2>
+      <p>ההקשר שמשנה איך אתם קוראים את האבחון של הילד/ה שלכם.</p>
+    </div>
+
+    <!-- EARLY -->
+    <div class="variant" data-show-age="early" data-show-gender="boy">
+      <div class="stats-row">
+        <div class="stat"><div class="num">4:1</div><div class="lbl">יחס בנים-בנות באבחון מוקדם</div><div class="src">בנים מאובחנים יותר בגיל גן — אבל לא בהכרח שכיחים יותר</div></div>
+        <div class="stat"><div class="num">~2.8%</div><div class="lbl">מהילדים על הספקטרום (כ-1 מתוך 36)</div><div class="src">CDC, 2023</div></div>
+        <div class="stat"><div class="num">3 שנים</div><div class="lbl">משך זמן ממוצע מסימן ראשון לאבחון</div><div class="src">משרד הבריאות, 2023</div></div>
+      </div>
+    </div>
+    <div class="variant" data-show-age="early" data-show-gender="girl">
+      <div class="stats-row">
+        <div class="stat"><div class="num">×4</div><div class="lbl">פחות בנות מאובחנות בגן</div><div class="src">לרוב מאובחנות בגיל מאוחר יותר</div></div>
+        <div class="stat"><div class="num">80%</div><div class="lbl">מהבנות שאובחנו לפני גיל 6 — חמורות יותר בהצגה</div><div class="src">בנות שאובחנות מוקדם נוטות להציג את הסימנים בולטים יותר</div></div>
+        <div class="stat"><div class="num">2.5 שנים</div><div class="lbl">פער ממוצע בגיל אבחון בין בנים לבנות</div><div class="src">Lai et al., 2015</div></div>
+      </div>
+    </div>
+
+    <!-- ELEMENTARY -->
+    <div class="variant" data-show-age="elem" data-show-gender="boy">
+      <div class="stats-row">
+        <div class="stat"><div class="num">63%</div><div class="lbl">מהילדים האוטיסטים — בקשיים חברתיים בכיתה</div><div class="src">בעיקר 8–12, גיל המעבר החברתי</div></div>
+        <div class="stat"><div class="num">×7</div><div class="lbl">סיכון מוגבר ל-bullying</div><div class="src">Maïano, 2016 · בולטות חיצונית מובילה לדחייה</div></div>
+        <div class="stat"><div class="num">40%</div><div class="lbl">מהילדים בכיתה רגילה — סייעת או הוראה מתקנת</div><div class="src">משרד החינוך, ועדת זכאות</div></div>
+      </div>
+    </div>
+    <div class="variant" data-show-age="elem" data-show-gender="girl">
+      <div class="stats-row">
+        <div class="stat"><div class="num">רוב</div><div class="lbl">הבנות מתחילות הסוואה (masking) בגילאי בית הספר</div><div class="src">Hull et al., 2017 · "Putting on My Best Normal"</div></div>
+        <div class="stat"><div class="num">קשר חזק</div><div class="lbl">בין הסוואה לחרדה ודיכאון</div><div class="src">Cook et al., 2021 · meta-analysis</div></div>
+        <div class="stat"><div class="num">2:1</div><div class="lbl">בנות עם פרופיל "שקטה ומסודרת" שמפספסים</div><div class="src">לרוב מאובחנות מאוחר אחרי משבר</div></div>
+      </div>
+    </div>
+
+    <!-- TEEN -->
+    <div class="variant" data-show-age="teen" data-show-gender="boy">
+      <div class="stats-row">
+        <div class="stat"><div class="num">55%</div><div class="lbl">מתבגרים אוטיסטים — אלקסיתימיה (קושי לזהות רגשות)</div><div class="src">Kinnaird, 2019</div></div>
+        <div class="stat"><div class="num">×2.5</div><div class="lbl">סיכון לחרדה ודיכאון בגיל ההתבגרות</div><div class="src">Hollocks, 2019</div></div>
+        <div class="stat"><div class="num">35%</div><div class="lbl">משרתים בצה״ל בתפקיד מותאם (תוכנית "רואים רחוק")</div><div class="src">דובר צה״ל, 2024</div></div>
+      </div>
+    </div>
+    <div class="variant" data-show-age="teen" data-show-gender="girl">
+      <div class="stats-row">
+        <div class="stat"><div class="num">49.93%</div><div class="lbl">אוטיסטים סובלים מאלקסיתימיה</div><div class="src">Kinnaird, 2019 · פי 10 מהאוכלוסייה הכללית</div></div>
+        <div class="stat"><div class="num">סיכון מוגבר</div><div class="lbl">להפרעות אכילה אצל נערות אוטיסטיות</div><div class="src">קשור להסוואה ולעומס חושי</div></div>
+        <div class="stat"><div class="num">6 שנים</div><div class="lbl">פער ממוצע באבחון בין בנים לבנות</div><div class="src">Bargiela, 2016</div></div>
+      </div>
+    </div>
+
+    <!-- ADULT -->
+    <div class="variant" data-show-age="adult" data-show-gender="boy">
+      <div class="stats-row">
+        <div class="stat"><div class="num">29%</div><div class="lbl">בלבד מהבוגרים האוטיסטים בעבודה במשרה מלאה</div><div class="src">NAS UK, 2023</div></div>
+        <div class="stat"><div class="num">~12,000</div><div class="lbl">בוגרים בסל שיקום באוטיזם בישראל</div><div class="src">משרד הרווחה, 2024</div></div>
+        <div class="stat"><div class="num">42%</div><div class="lbl">משבר זהות אחרי אבחון בגיל בוגר</div><div class="src">תהליך עיבוד נורמלי, חולף</div></div>
+      </div>
+    </div>
+    <div class="variant" data-show-age="adult" data-show-gender="girl">
+      <div class="stats-row">
+        <div class="stat"><div class="num">79%</div><div class="lbl">נשים אוטיסטיות מדווחות על הקלה אחרי אבחון</div><div class="src">"סוף סוף הבנתי למה"</div></div>
+        <div class="stat"><div class="num">×3</div><div class="lbl">סיכון מוגבר לחרדה ודיכאון לפני אבחון</div><div class="src">שנות הסוואה צוברות מחיר נפשי</div></div>
+        <div class="stat"><div class="num">35</div><div class="lbl">גיל ממוצע לאבחון של אישה</div><div class="src">לעומת 8 בבנים · Bargiela, 2016</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ TRAFFIC LIGHT ═══════════════════════ -->
+  <section class="gs" id="signs">
+    <div class="section-head">
+      <h2>מה אתם רואים — תקין · לעקוב · אזהרה</h2>
+      <p>אחרי אבחון, רוב ההורים סורקים את הילד/ה ל"סימנים". הנה ההפרדה — מה תקין, מה לעקוב, מה דורש התערבות.</p>
+    </div>
+
+    <!-- EARLY -->
+    <div class="variant" data-show-age="early" data-show-gender="any">
+      <div class="traffic">
+        <div class="tl-card green">
+          <div class="tl-dot"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div>
+          <div class="label">תקין</div>
+          <h3>ילד אוטיסט בגן</h3>
+          <ul>
+            <li>משחק חוזר עם אותו צעצוע</li>
+            <li>קושי במעברים בין פעילויות</li>
+            <li>איחור בדיבור או דיבור עשיר במיוחד</li>
+            <li>רגישות לרעש/אור/מרקם</li>
+            <li>חיבה למסלולים קבועים</li>
+          </ul>
+        </div>
+        <div class="tl-card yellow">
+          <div class="tl-dot"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg></div>
+          <div class="label">לעקוב</div>
+          <h3>שינויים שצריך תיעוד</h3>
+          <ul>
+            <li>הימנעות חברתית שגוברת</li>
+            <li>שינוי בשינה (קושי להירדם/יקיצות)</li>
+            <li>ויסות מאתגר יותר מהרגיל</li>
+            <li>סטים (התנהגות חוזרת) חדשים</li>
+            <li>תגובות חדשות לאוכל/מרקם</li>
+          </ul>
+        </div>
+        <div class="tl-card red">
+          <div class="tl-dot"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></div>
+          <div class="label">אזהרה</div>
+          <h3>מתי לפנות לרופא/ה</h3>
+          <ul>
+            <li>פגיעה עצמית (ראש בקיר, נשיכה)</li>
+            <li>איבוד מיומנויות שכבר היו</li>
+            <li>הימנעות מאוכל באופן שמשפיע על משקל</li>
+            <li>הסתגרות מוחלטת ממשפחה</li>
+            <li>תוקפנות שלא הייתה</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ELEMENTARY -->
+    <div class="variant" data-show-age="elem" data-show-gender="any">
+      <div class="traffic">
+        <div class="tl-card green">
+          <div class="tl-dot"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div>
+          <div class="label">תקין</div>
+          <h3>ילד אוטיסט ביסודי</h3>
+          <ul>
+            <li>חבר אחד או שניים, לא קבוצה</li>
+            <li>מעדיף הפסקה במקום שקט</li>
+            <li>תחומי עניין מיוחדים עמוקים</li>
+            <li>קושי עם רעש בכיתה</li>
+            <li>סגנון תקשורת ישיר</li>
+          </ul>
+        </div>
+        <div class="tl-card yellow">
+          <div class="tl-dot"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01"/></svg></div>
+          <div class="label">לעקוב</div>
+          <h3>סימני מצוקה ראשונים</h3>
+          <ul>
+            <li>"אין לי חברים" אומר/ת לעצמו</li>
+            <li>סירוב ללכת לבית הספר ביום מסוים</li>
+            <li>קושי בשיעורי בית גובר</li>
+            <li>תלונות גופניות בבקרים</li>
+            <li>עצבנות אחרי בית הספר</li>
+          </ul>
+        </div>
+        <div class="tl-card red">
+          <div class="tl-dot"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></div>
+          <div class="label">אזהרה</div>
+          <h3>מתי לפנות ליועצת/פסיכולוגית</h3>
+          <ul>
+            <li>הימנעות עקבית מבית הספר</li>
+            <li>"אני שונה / משהו לא בסדר אצלי"</li>
+            <li>פגיעה עצמית או דיבור על מוות</li>
+            <li>נסיגה מתחביבים שאהב/ה</li>
+            <li>שינוי קיצוני באכילה</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- TEEN -->
+    <div class="variant" data-show-age="teen" data-show-gender="any">
+      <div class="traffic">
+        <div class="tl-card green">
+          <div class="tl-dot"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div>
+          <div class="label">תקין</div>
+          <h3>מתבגר/ת אוטיסט/ית</h3>
+          <ul>
+            <li>שתיקה אחרי שיתוף האבחון</li>
+            <li>עיבוד פנימי, לא חיצוני</li>
+            <li>מעדיפ/ה תקשורת בכתב</li>
+            <li>תחביב אחד עמוק</li>
+            <li>1–2 חברים קרובים</li>
+          </ul>
+        </div>
+        <div class="tl-card yellow">
+          <div class="tl-dot"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01"/></svg></div>
+          <div class="label">לעקוב</div>
+          <h3>תופעות לוואי טבעיות</h3>
+          <ul>
+            <li>כמה ימי מצב רוח ירוד</li>
+            <li>עייפות יתר</li>
+            <li>צפייה מוגברת בתכנים על אוטיזם</li>
+            <li>שאלה ספונטנית, ושתיקה</li>
+            <li>עצבנות זמנית עם אחים</li>
+          </ul>
+        </div>
+        <div class="tl-card red">
+          <div class="tl-dot"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></div>
+          <div class="label">אזהרה</div>
+          <h3>סימני מצוקה</h3>
+          <ul>
+            <li>שינוי באכילה (במיוחד הימנעות)</li>
+            <li>נסיגה מתחביבים שאהב/ה</li>
+            <li>תלונות גופניות חוזרות</li>
+            <li>בכי/זעם לא צפויים</li>
+            <li>מחשבות אובדניות</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADULT -->
+    <div class="variant" data-show-age="adult" data-show-gender="any">
+      <div class="traffic">
+        <div class="tl-card green">
+          <div class="tl-dot"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div>
+          <div class="label">תקין</div>
+          <h3>בוגר/ת שאובחן/ה</h3>
+          <ul>
+            <li>תקופת "סקירת חיים" — 1–3 חודשים</li>
+            <li>הקלה ושחרור</li>
+            <li>שאלות לגבי טיפולים שעבר/ה בעבר</li>
+            <li>התעניינות בקהילה אוטיסטית</li>
+            <li>שינוי בזהות עצמית</li>
+          </ul>
+        </div>
+        <div class="tl-card yellow">
+          <div class="tl-dot"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01"/></svg></div>
+          <div class="label">לעקוב</div>
+          <h3>תהליך לא לינארי</h3>
+          <ul>
+            <li>אבל על שנים שעברו</li>
+            <li>כעס על מבוגרים שפספסו</li>
+            <li>חרדה לפני חשיפה בעבודה</li>
+            <li>שינויים ביחסים</li>
+            <li>שאלות על עצמאות וזוגיות</li>
+          </ul>
+        </div>
+        <div class="tl-card red">
+          <div class="tl-dot"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></div>
+          <div class="label">אזהרה</div>
+          <h3>צריכ/ה תמיכה מקצועית</h3>
+          <ul>
+            <li>דיכאון מתמשך</li>
+            <li>הסתגרות חברתית מוחלטת</li>
+            <li>איבוד תפקוד בעבודה</li>
+            <li>שימוש בחומרים כדי "להתמודד"</li>
+            <li>מחשבות אובדניות</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="answer-block" style="margin-top: 1.6rem">
+      <strong class="lbl">איך לתעד</strong>
+      פעם בשבוע — שורה אחת ביומן: שינה, אכילה, תחביב, מצב רוח. אם 2+ סימני אזהרה במשך שבועיים — לדבר עם מטפל/ת מלווה. בלי לקפוץ למסקנות מיום אחד.
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ MYTHS — אמת ומיתוסים ═══════════════════════ -->
+  <section class="gs" id="myths">
+    <div class="section-head">
+      <h2>אמת ומיתוסים</h2>
+      <p>מה שאתם שומעים מהסביבה — לעיתים נכון, לעיתים מסוכן. ההפרדה לפי הגיל והמגדר.</p>
+    </div>
+
+    <!-- EARLY -->
+    <div class="variant" data-show-age="early" data-show-gender="any">
+      <div class="yesno">
+        <div class="yn-col yes">
+          <div class="yn-head">
+            <div class="dot"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div>
+            <div><span class="sub">אמת</span><h3>מה המחקר מראה</h3></div>
+          </div>
+          <div class="yn-items">
+            <div class="yn-item"><div class="ic"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div><div class="txt"><strong>התערבות מוקדמת עוזרת</strong><div class="note">בגיל הגן יש פלסטיות מוחית גבוהה. אבל "מוקדם" ≠ "אגרסיבי" — איכות חשובה מכמות.</div></div></div>
+            <div class="yn-item"><div class="ic"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div><div class="txt"><strong>הילד הוא אותו ילד</strong><div class="note">האבחון נתן שם. שום דבר אחר לא השתנה. אותם חיוכים, אותם פחדים.</div></div></div>
+            <div class="yn-item"><div class="ic"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div><div class="txt"><strong>קצבת ילד נכה לא תיוג</strong><div class="note">היא תקציב לטיפולים. לא נכנסת לתעודת הזהות, לא משפיעה על עתידו/ה.</div></div></div>
+            <div class="yn-item"><div class="ic"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div><div class="txt"><strong>1–2 טיפולים, לא 5</strong><div class="note">ילד בגן גם בהסתגלות. עומס טיפולי מזיק. עדיף טיפול אחד טוב.</div></div></div>
+          </div>
+        </div>
+        <div class="yn-col no">
+          <div class="yn-head">
+            <div class="dot"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></div>
+            <div><span class="sub">מיתוס</span><h3>מה שאומרים סביבכם</h3></div>
+          </div>
+          <div class="yn-items">
+            <div class="yn-item"><div class="ic"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></div><div class="txt"><strong>"ייצא מזה / ירוץ אחר זה"</strong><div class="note">לא. אוטיזם הוא לא שלב התפתחותי. אבל ההצגה משתנה — וזה לא הוצאה ממנו.</div></div></div>
+            <div class="yn-item"><div class="ic"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></div><div class="txt"><strong>"דיאטה תרפא"</strong><div class="note">אין מחקר תומך. דיאטות מגבילות בגיל הגן יכולות להזיק.</div></div></div>
+            <div class="yn-item"><div class="ic"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></div><div class="txt"><strong>"חינוך מיוחד = פסול דרך"</strong><div class="note">לא. גן תקשורתי לעיתים בדיוק מה שצריך — סייעת, יחס, צוות מומחה.</div></div></div>
+            <div class="yn-item"><div class="ic"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></div><div class="txt"><strong>"לא לספר לסבים"</strong><div class="note">סבים שיתמכו = משאב. סבים שיתנו עצות שגויות = להגביל מידע.</div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="variant" data-show-age="early" data-show-gender="girl" style="margin-top: 1rem">
+        <div class="gcard tone-warm">
+          <span class="gender-tag girl">בת בגיל גן</span>
+          <h3>מה ייחודי לבנות בגיל הגן</h3>
+          <p>בנות בגיל הגן שכבר אובחנו — לרוב בהצגה בולטת יותר (פחות שכיח שבת תאובחן בגן עם הצגה "קלה"). זה אומר שצרכי ההתערבות שלהן יותר ברורים. שימו לב במיוחד ל<strong>יחסים עם בנות אחרות</strong> — בנות נוטות לחקות חברתיות אפילו בגיל 4–5, וזה יכול להסתיר קשיים ולעייף.</p>
+        </div>
+      </div>
+      <div class="variant" data-show-age="early" data-show-gender="boy" style="margin-top: 1rem">
+        <div class="gcard tone-cool">
+          <span class="gender-tag boy">בן בגיל גן</span>
+          <h3>מה ייחודי לבנים בגיל הגן</h3>
+          <p>בנים נוטים להציג סימנים בולטים יותר — סטים, hyperfocus, התפרצויות, בידוד חברתי. זה אומר שאבחון מגיע מוקדם, אבל גם <strong>שמסגרת הגן קריטית</strong>. בחירת גן תקשורתי מול שילוב היא ההחלטה החשובה ביותר בגיל הזה. בקרו ב-2–3 גנים לפני החלטה.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ELEMENTARY -->
+    <div class="variant" data-show-age="elem" data-show-gender="any">
+      <div class="yesno">
+        <div class="yn-col yes">
+          <div class="yn-head">
+            <div class="dot"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div>
+            <div><span class="sub">אמת</span><h3>מה המחקר מראה</h3></div>
+          </div>
+          <div class="yn-items">
+            <div class="yn-item"><div class="ic"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div><div class="txt"><strong>שיתוף מורים = הצלחה</strong><div class="note">ילדים שצוות בית הספר מודע לאבחון שלהם — מצליחים יותר אקדמית וחברתית.</div></div></div>
+            <div class="yn-item"><div class="ic"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div><div class="txt"><strong>"חבר אחד" זה הצלחה</strong><div class="note">לא צריך 10 חברים. חבר אחד יציב = רשת חברתית תקפה.</div></div></div>
+            <div class="yn-item"><div class="ic"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div><div class="txt"><strong>תחומי עניין מיוחדים = יתרון</strong><div class="note">"היפר-פוקוס" בגיל יסודי הוא יסוד למומחיות עתידית. לא להגביל.</div></div></div>
+            <div class="yn-item"><div class="ic"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div><div class="txt"><strong>חופשים = הזדמנות, גם עומס</strong><div class="note">חופש מבית הספר מקל על העומס החושי, אבל הסטרוקטורה חיונית.</div></div></div>
+          </div>
+        </div>
+        <div class="yn-col no">
+          <div class="yn-head">
+            <div class="dot"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></div>
+            <div><span class="sub">מיתוס</span><h3>מה שאומרים סביבכם</h3></div>
+          </div>
+          <div class="yn-items">
+            <div class="yn-item"><div class="ic"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></div><div class="txt"><strong>"אם נשתף — יבוז לו"</strong><div class="note">ההפך. ילד שלא מבין למה הוא שונה — מאשים את עצמו. מילה = הקלה.</div></div></div>
+            <div class="yn-item"><div class="ic"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></div><div class="txt"><strong>"חבר אחד לא מספיק"</strong><div class="note">איכות > כמות. מערך חברתי "צר ועמוק" תקף לחלוטין.</div></div></div>
+            <div class="yn-item"><div class="ic"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></div><div class="txt"><strong>"כיתת תקשורת = משפיל"</strong><div class="note">לא. כיתה קטנה עם יחס אישי. הרבה ילדים פורחים שם — אם הילד/ה רוצה.</div></div></div>
+            <div class="yn-item"><div class="ic"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></div><div class="txt"><strong>"להגביל מסכים"</strong><div class="note">מסכים הם לפעמים ערוץ הקלה חושית. הגבלה אגרסיבית = החמרת הוויסות.</div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="variant" data-show-age="elem" data-show-gender="girl" style="margin-top: 1rem">
+        <div class="gcard tone-warm">
+          <span class="gender-tag girl">בת ביסודי</span>
+          <h3>הסוואה — תופעה ייחודית לבנות (בעיקר)</h3>
+          <p>בנות אוטיסטיות בגיל יסודי מתחילות "להעמיד פנים שהן נורמליות" — לחקות בנות אחרות, להסתיר עניינים מיוחדים, לא לדבר על קשיים. <strong>הסוואה מצליחה = מצליחות בבית הספר אבל מתפרקות בבית.</strong> אם הבת שלכם נראית בסדר בבית הספר אבל מתפרצת בבית — זה לא "התנהגות", זו תוצאה ישירה של ההסוואה. הקלה בבית = הצלה.</p>
+        </div>
+      </div>
+      <div class="variant" data-show-age="elem" data-show-gender="boy" style="margin-top: 1rem">
+        <div class="gcard tone-cool">
+          <span class="gender-tag boy">בן ביסודי</span>
+          <h3>קושי חברתי גלוי — וזה בעצם יתרון</h3>
+          <p>בנים אוטיסטים בגיל יסודי לרוב בקשיים חברתיים גלויים — לא נכללים בקבוצה, מדברים בלי תור, נראים "מוזרים". זה כואב לראות, אבל <strong>זה גם הזדמנות</strong> — הקושי גלוי, אז המורים והצוות יכולים להתערב. בנות שמסוות עוברות בלי שאף אחד יודע. אצל בן — סייעת חברתית, חוגי PEERS, או חבר אחד מתאים יוצרים הבדל גדול.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TEEN -->
+    <div class="variant" data-show-age="teen" data-show-gender="any">
+      <div class="yesno">
+        <div class="yn-col yes">
+          <div class="yn-head">
+            <div class="dot"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div>
+            <div><span class="sub">אמת</span><h3>מה המחקר מראה</h3></div>
+          </div>
+          <div class="yn-items">
+            <div class="yn-item"><div class="ic"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div><div class="txt"><strong>שתיקה ≠ חוסר עיבוד</strong><div class="note">55% מהמתבגרים האוטיסטים סובלים מאלקסיתימיה. השיחה החיצונית קשה, העיבוד הפנימי קורה.</div></div></div>
+            <div class="yn-item"><div class="ic"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div><div class="txt"><strong>השיחה מתפרסת על שנים</strong><div class="note">לא שיחה אחת — מאות מיני-שיחות של 30 שניות. Child Mind Institute.</div></div></div>
+            <div class="yn-item"><div class="ic"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div><div class="txt"><strong>צד-בצד עובד יותר טוב</strong><div class="note">במכונית, בבישול, בהליכה — בלי מבט ישיר, מתבגרים מדברים יותר.</div></div></div>
+            <div class="yn-item"><div class="ic"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div><div class="txt"><strong>אוטונומיה — קריטי</strong><div class="note">בחירות לגבי שיתוף, מסגרת, טיפול — שלהם, לא שלכם. כל דרישה = הסתגרות.</div></div></div>
+          </div>
+        </div>
+        <div class="yn-col no">
+          <div class="yn-head">
+            <div class="dot"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></div>
+            <div><span class="sub">מיתוס</span><h3>מה שאומרים סביבכם</h3></div>
+          </div>
+          <div class="yn-items">
+            <div class="yn-item"><div class="ic"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></div><div class="txt"><strong>"אם לא שואל/ת — לא חשוב"</strong><div class="note">לא נכון. שאלות הן מדד לסגנון תקשורת, לא לעניין.</div></div></div>
+            <div class="yn-item"><div class="ic"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></div><div class="txt"><strong>"כל הילדים האחרים מודעים"</strong><div class="note">לרוב מתארים אבחון בגיל 5, או פרופיל הצהרתי. השוואה ללא קבוצה דומה.</div></div></div>
+            <div class="yn-item"><div class="ic"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></div><div class="txt"><strong>"חייבים שיחה גדולה"</strong><div class="note">לא. שיחה גדולה מציפה. עדיפות על מיני-שיחות לאורך זמן.</div></div></div>
+            <div class="yn-item"><div class="ic"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></div><div class="txt"><strong>"דחה כיתת תקשורת = בורח"</strong><div class="note">לא. זאת בחירת זהות. איכות יחסי החברים חשובה יותר מסוג הכיתה.</div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="variant" data-show-age="teen" data-show-gender="girl" style="margin-top: 1rem">
+        <div class="gcard tone-warm">
+          <span class="gender-tag girl">נערה בגיל ההתבגרות</span>
+          <h3>אבחון מאוחר אצל בנות — מסלול אחר</h3>
+          <p>נערה שאובחנה ב-13–18 בילתה שנים בלמסך. <strong>לפתח זהות אוטיסטית גלויה לוקח שנים, לא חודשים</strong> (Halsall, 2021). אם היא לא רוצה לשתף, לא רוצה כיתת תקשורת, לא מדברת על "חוזקות וחולשות" — זה לא נסיגה, זה מסלול שונה. גם הסיכון לחרדה, דיכאון והפרעות אכילה גבוה יותר אצל נערות עם הסוואה — הקלה בבית = מניעה.</p>
+        </div>
+      </div>
+      <div class="variant" data-show-age="teen" data-show-gender="boy" style="margin-top: 1rem">
+        <div class="gcard tone-cool">
+          <span class="gender-tag boy">נער בגיל ההתבגרות</span>
+          <h3>חרדה חברתית גוברת — וזה הגיוני</h3>
+          <p>בנות מסוות, בנים לרוב לא יכולים. נער אוטיסט בגיל 13–18 לרוב מודע שהוא שונה — וזה כואב. <strong>הסיכון לחרדה ודיכאון פי 2.5</strong> (Hollocks, 2019). פתרון: לחבר אותו לקהילה אוטיסטית — חוגי PEERS, מועדוני גיימרים, פייסבוק "אוטיסטים בוגרים". שייכות = מניעה.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADULT -->
+    <div class="variant" data-show-age="adult" data-show-gender="any">
+      <div class="yesno">
+        <div class="yn-col yes">
+          <div class="yn-head">
+            <div class="dot"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div>
+            <div><span class="sub">אמת</span><h3>מה המחקר מראה</h3></div>
+          </div>
+          <div class="yn-items">
+            <div class="yn-item"><div class="ic"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div><div class="txt"><strong>אבחון בגיל בוגר משפר איכות חיים</strong><div class="note">ההפך מ"מאוחר מדי". ההבנה מאפשרת התאמות שלא היו אפשריות.</div></div></div>
+            <div class="yn-item"><div class="ic"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div><div class="txt"><strong>זכויות מלאות</strong><div class="note">סל שיקום, חוק שוויון בעבודה, התאמות באקדמיה. לא חלום.</div></div></div>
+            <div class="yn-item"><div class="ic"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div><div class="txt"><strong>הזהות לא השתנתה</strong><div class="note">הוא/היא אותו אדם עם מילה חדשה. ההיסטוריה שלהם אותה היסטוריה.</div></div></div>
+            <div class="yn-item"><div class="ic"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div><div class="txt"><strong>קהילה אוטיסטית בוגרת = משאב</strong><div class="note">אנשים ש"היו שם" יותר עוזרים מאשר 10 פסיכולוגים.</div></div></div>
+          </div>
+        </div>
+        <div class="yn-col no">
+          <div class="yn-head">
+            <div class="dot"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></div>
+            <div><span class="sub">מיתוס</span><h3>מה שאומרים סביבכם</h3></div>
+          </div>
+          <div class="yn-items">
+            <div class="yn-item"><div class="ic"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></div><div class="txt"><strong>"מאוחר מדי לטפל"</strong><div class="note">לא. שינוי מתרחש בכל גיל. דווקא בגיל בוגר יש מודעות עצמית גבוהה.</div></div></div>
+            <div class="yn-item"><div class="ic"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></div><div class="txt"><strong>"חייב/ת לחשוף בעבודה"</strong><div class="note">לא חובה. תלוי במקום. פעמים שלא לחשוף משרת יותר.</div></div></div>
+            <div class="yn-item"><div class="ic"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></div><div class="txt"><strong>"זוגיות לא תעבוד"</strong><div class="note">עובדת. צריך תקשורת ישירה ומפורשת — וזה דווקא מתאים לאוטיסטים.</div></div></div>
+            <div class="yn-item"><div class="ic"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></div><div class="txt"><strong>"הוריות = מסוכן"</strong><div class="note">הורות אוטיסטית עובדת. מבוססת על שגרה, סדר ומפורשות — יתרונות אמיתיים.</div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="variant" data-show-age="adult" data-show-gender="girl" style="margin-top: 1rem">
+        <div class="gcard tone-warm">
+          <span class="gender-tag girl">אישה אוטיסטית בוגרת</span>
+          <h3>"עכשיו הכל מתחיל להיות הגיוני"</h3>
+          <p>79% מהנשים שאובחנו בגיל בוגר מדווחות על הקלה גדולה. <strong>שנים של תחושת "אני שונה ולא יודעת למה" מקבלות שם.</strong> אבל גם — שנים של הסוואה, מסכה והתאמה לחברה הותירו עייפות, חרדה, ולפעמים דיכאון. תהליך אבל על "מי הייתי יכולה להיות" לגיטימי וחשוב. קהילת נשים אוטיסטיות בוגרות (קבוצות פייסבוק, "Embrace Autism" של Dr. Natalie Engelbrecht) — חיוני.</p>
+        </div>
+      </div>
+      <div class="variant" data-show-age="adult" data-show-gender="boy" style="margin-top: 1rem">
+        <div class="gcard tone-cool">
+          <span class="gender-tag boy">גבר אוטיסטי בוגר</span>
+          <h3>תעסוקה — האתגר העיקרי</h3>
+          <p>85% מהבוגרים האוטיסטים בלי תעסוקה מלאה. אבל המחקר מראה ש<strong>במקומות עבודה שמתאימים סביבה — שקט, מבנה, התמחות</strong> — בוגרים אוטיסטים מצטיינים. תוכניות ייעודיות: סל שיקום (משרד הרווחה), Speactrum-friendly companies (שלם, מובילאיי, חברות הייטק עם תוכניות נוירו-דייברסיטי). שווה התמדה.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ HOW — איך לדבר על האבחון ═══════════════════════ -->
+  <section class="gs" id="how">
+    <div class="section-head">
+      <h2>איך לדבר על האבחון</h2>
+      <p>שיחה אחת לא תספיק. הנה הדרך שעובדת — לפי הגיל.</p>
+    </div>
+
+    <!-- EARLY -->
+    <div class="variant" data-show-age="early" data-show-gender="any">
+      <div class="steps">
+        <div class="step"><div><h4>אל תספרו על "אוטיזם" בגיל הזה</h4><p>ילד בן 4 לא יבין את המילה. ספרו על המוח: "המוח שלך עובד אחרת. יש דברים שאתה שם לב אליהם שאחרים לא".</p></div></div>
+        <div class="step"><div><h4>תנו שם לחוויה, לא לאבחון</h4><p>"כשיש הרבה רעש, קשה לך — זו רגישות. זה לא בראש שלך, זה אמיתי."</p></div></div>
+        <div class="step"><div><h4>חזקו את הזהות</h4><p>"אתה אותו ילד שהיית אתמול. אנחנו אוהבים אותך כמו שאתה."</p></div></div>
+        <div class="step"><div><h4>הסבירו טיפול כעזרה, לא תיקון</h4><p>"אנחנו הולכים למטפלת כי היא עוזרת לדברים שקשים. אתה לא שבור."</p></div></div>
+        <div class="step"><div><h4>השאירו דלת פתוחה</h4><p>"אם משהו מציק לך, אפשר לבוא ולהגיד. אנחנו כאן."</p></div></div>
+      </div>
+    </div>
+
+    <!-- ELEMENTARY -->
+    <div class="variant" data-show-age="elem" data-show-gender="any">
+      <div class="steps">
+        <div class="step"><div><h4>תזמון: אחרי משבר חברתי, לא לפניו</h4><p>אחרי שהילד/ה אמר/ה "אין לי חברים" או "אני שונה" — זה הרגע. לא לפני, כדי לא "להתחיל מהבעיה".</p></div></div>
+        <div class="step"><div><h4>השתמשו במילה — ניטרלית</h4><p>"אתה/את אוטיסט/ית. זה שם רפואי לדרך שהמוח שלך עובד. זה לא מחלה — זה סוג של מוח."</p></div></div>
+        <div class="step"><div><h4>הסבירו עם 2 חוזקות + 2 קשיים</h4><p>חוזקות: "אתה שם לב לפרטים", "את עמוקה". קשיים: "רעש מציק לך", "מעבר בין דברים קשה". מאוזן.</p></div></div>
+        <div class="step"><div><h4>תנו אנלוגיה</h4><p>"זה כמו שיש מוחות ימניים ושמאליים — יש מוחות אוטיסטיים ולא-אוטיסטיים. שניהם תקינים."</p></div></div>
+        <div class="step"><div><h4>שאלו מה הוא/היא רוצה</h4><p>"מי בכיתה אתה רוצה שיידע? אתה רוצה שאני אדבר עם המורה?" — תנו לו/ה שליטה.</p></div></div>
+      </div>
+    </div>
+
+    <!-- TEEN -->
+    <div class="variant" data-show-age="teen" data-show-gender="any">
+      <div class="steps">
+        <div class="step"><div><h4>התחילו במקום פרטי</h4><p>לא בארוחת ערב משפחתית. לא בנסיעה ארוכה. שיחה קצרה (5–10 דקות) במקום שקט.</p></div></div>
+        <div class="step"><div><h4>אמרו את העיקר ב-3 משפטים</h4><p>"היה לנו תהליך אבחון. הוא הראה שאת/ה על הספקטרום האוטיסטי. רציתי שתדע/י."</p></div></div>
+        <div class="step"><div><h4>השארו דלת פתוחה — ולא לחזור</h4><p>"אם תרצה/י לדבר על זה, אני פה. אם לא — גם זה בסדר." ואז שקט. אל תשאלו שוב. אל תחזרו.</p></div></div>
+        <div class="step"><div><h4>זרעו זרעים, לא דרישות</h4><p>בחודשים הבאים: 1–2 אמירות ספונטניות בשבוע. בלי "מה דעתך?". בלי "תגיד לי מה אתה מרגיש".</p></div></div>
+        <div class="step"><div><h4>התקשורת בערוצים מרובים</h4><p>פתק. WhatsApp. סרטון. לא רק פנים-אל-פנים. צד-בצד עובד יותר טוב.</p></div></div>
+      </div>
+    </div>
+
+    <!-- ADULT -->
+    <div class="variant" data-show-age="adult" data-show-gender="any">
+      <div class="steps">
+        <div class="step"><div><h4>זה לא שלכם לדבר עליו</h4><p>בוגר/ת מאובחן/ת — האבחון שלהם. אתם תומכים, לא מובילים.</p></div></div>
+        <div class="step"><div><h4>שאלו איך לעזור</h4><p>"מה הכי יעזור לך עכשיו? לדבר? לשתוק? לחפש מטפל/ת? אני זמין/ה לכל אופציה."</p></div></div>
+        <div class="step"><div><h4>קבלו שינויים בזהות</h4><p>הוא/היא יחזור עם זיכרונות, יבקש/תבקש לדבר על דברים מהילדות. זה תקין. זה עיבוד.</p></div></div>
+        <div class="step"><div><h4>תנו לקהילה לעשות עבודה</h4><p>הקבוצה החשובה ביותר עכשיו היא בוגרים אוטיסטים אחרים. לא אתם. זה לא דחייה — זה תהליך.</p></div></div>
+        <div class="step"><div><h4>אל תפעילו לחץ לשתף עם משפחה רחבה</h4><p>"מתי תספר/י לסבא?" — לא שאלה לכם לשאול. הבחירה שלהם.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ PHRASES — משפטים מוכנים ═══════════════════════ -->
+  <section class="gs" id="phrases">
+    <div class="section-head">
+      <h2>משפטים מוכנים</h2>
+      <p>שמרו בטלפון. שלפו במצבים רגישים — בלי לגמגם.</p>
+    </div>
+
+    <!-- EARLY -->
+    <div class="variant" data-show-age="early" data-show-gender="any">
+      <div class="phrases">
+        <div class="phrase"><span class="quote-mark">"</span><div class="text">"המוח שלך עובד אחרת. זה משהו טוב."</div><div class="when">לילד שמבין שהוא שונה.</div></div>
+        <div class="phrase"><span class="quote-mark">"</span><div class="text">"כשיש הרבה רעש, קשה לך — זה אמיתי."</div><div class="when">בעת overload חושי.</div></div>
+        <div class="phrase"><span class="quote-mark">"</span><div class="text">"אנחנו הולכים למטפלת כי זה עוזר. אתה לא שבור."</div><div class="when">לפני טיפול.</div></div>
+        <div class="phrase"><span class="quote-mark">"</span><div class="text">"הוא/היא אותו ילד/ה. קיבלנו אבחון שעוזר לנו להבין."</div><div class="when">למשפחה רחבה.</div></div>
+        <div class="phrase"><span class="quote-mark">"</span><div class="text">"אנחנו עובדים עם צוות מקצועי. אם נצטרך עצה, נבקש."</div><div class="when">לסבים שמציעים טיפולים.</div></div>
+        <div class="phrase"><span class="quote-mark">"</span><div class="text">"זה לא בעיית התנהגות — זה ויסות."</div><div class="when">למורה/גננת.</div></div>
+      </div>
+    </div>
+
+    <!-- ELEMENTARY -->
+    <div class="variant" data-show-age="elem" data-show-gender="any">
+      <div class="phrases">
+        <div class="phrase"><span class="quote-mark">"</span><div class="text">"אתה/את אוטיסט/ית. זה לא מחלה — זה סוג של מוח."</div><div class="when">שיחת אבחון ראשונה.</div></div>
+        <div class="phrase"><span class="quote-mark">"</span><div class="text">"יש דברים שקלים לך, יש שקשים. שניהם בסדר."</div><div class="when">איזון בין חוזקות לקשיים.</div></div>
+        <div class="phrase"><span class="quote-mark">"</span><div class="text">"מי בכיתה אתה רוצה שיידע? אתה תחליט."</div><div class="when">שליטה בשיתוף.</div></div>
+        <div class="phrase"><span class="quote-mark">"</span><div class="text">"חבר אחד טוב = הצלחה חברתית. לא חייבים יותר."</div><div class="when">כשיש לחץ ל"להיות פופולרי".</div></div>
+        <div class="phrase"><span class="quote-mark">"</span><div class="text">"זה לא התנהגות — זה תגובה לעומס."</div><div class="when">למורה אחרי תקרית בכיתה.</div></div>
+        <div class="phrase"><span class="quote-mark">"</span><div class="text">"מותר לך להגיד 'אני צריך/ה הפסקה'. בלי הסבר."</div><div class="when">להעצים את הילד/ה לבקש מרחב.</div></div>
+      </div>
+    </div>
+
+    <!-- TEEN -->
+    <div class="variant" data-show-age="teen" data-show-gender="any">
+      <div class="phrases">
+        <div class="phrase"><span class="quote-mark">"</span><div class="text">"הדמות הזאת מזכירה לי משהו על אוטיזם — שמים לב לפרטים. כמוך."</div><div class="when">בזמן צפייה. בלי תגובה צפויה.</div></div>
+        <div class="phrase"><span class="quote-mark">"</span><div class="text">"רגישות חושית זה חלק מאיך שמוח אוטיסטי עובד. זה אמיתי."</div><div class="when">כשמשהו מציק. מנרמל בלי דרמה.</div></div>
+        <div class="phrase"><span class="quote-mark">"</span><div class="text">"אם תרצה/י לדבר — אני פה. אם לא — גם זה בסדר."</div><div class="when">בלילה לפני שינה. פעם בחודש.</div></div>
+        <div class="phrase"><span class="quote-mark">"</span><div class="text">"אני חושב/ת שזה מה שאוטיסטים עושים מעולה — להיכנס לעומק."</div><div class="when">כשמצליח/ה במשהו.</div></div>
+        <div class="phrase"><span class="quote-mark">"</span><div class="text">"חשבתי עלייך היום. אם תרצי לדבר, גם בכתב, אני פה."</div><div class="when">פתק על הכרית. ערוץ לא-מילולי.</div></div>
+        <div class="phrase"><span class="quote-mark">"</span><div class="text">"היא נראית מגניבה. ראית שהיא אוטיסטית?"</div><div class="when">על יוצרת אוטיסטית באינסטגרם/טיקטוק.</div></div>
+      </div>
+    </div>
+
+    <!-- ADULT -->
+    <div class="variant" data-show-age="adult" data-show-gender="any">
+      <div class="phrases">
+        <div class="phrase"><span class="quote-mark">"</span><div class="text">"איך אתה מרגיש/ה עם האבחון? בלי לחץ לענות."</div><div class="when">פתיחה ראשונה.</div></div>
+        <div class="phrase"><span class="quote-mark">"</span><div class="text">"מה יכולתי לעשות אחרת — אם הייתי יודע/ת?"</div><div class="when">להראות הקשבה לכאב, לא לתרץ.</div></div>
+        <div class="phrase"><span class="quote-mark">"</span><div class="text">"אם תחליט/י לחפש עזרה — אני זמין/ה לעזור עם הבירוקרטיה."</div><div class="when">להציע, לא להחליט.</div></div>
+        <div class="phrase"><span class="quote-mark">"</span><div class="text">"לא אדבר על זה עם אחרים בלי הסכמתך."</div><div class="when">לחזק שליטה בסיפור.</div></div>
+        <div class="phrase"><span class="quote-mark">"</span><div class="text">"אני גאה בך — היה צריך אומץ לעשות אבחון."</div><div class="when">להעריך את הצעד.</div></div>
+        <div class="phrase"><span class="quote-mark">"</span><div class="text">"אני אשמח להכיר את הקהילה איתך — אם תרצה/י."</div><div class="when">להראות עניין בלי דרישה.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ SCENARIOS — תרחישים ═══════════════════════ -->
+  <section class="gs" id="scenarios">
+    <div class="section-head">
+      <h2>תרחישים אמיתיים</h2>
+      <p>מצבים שקורים. לחצו לראות מה לעשות.</p>
+    </div>
+
+    <!-- EARLY -->
+    <div class="variant" data-show-age="early" data-show-gender="any">
+      <div class="scenarios">
+        <div class="scn">
+          <div class="scn-q">
+            <div class="q-ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2l9 4v6c0 5-4 9-9 10-5-1-9-5-9-10V6l9-4z"/></svg></div>
+            <div class="q-text"><h4>סבתא מציעה ריפוי אלטרנטיבי "מוכח"</h4><div class="hint">לחצו לתשובה</div></div>
+            <span class="toggle"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></span>
+          </div>
+          <div class="scn-a"><div class="a-inner">
+            <span class="verdict red"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg> להגיד לא בעדינות</span>
+            <p>בתחום האוטיזם יש הרבה שרלטנות. סבתא מגיעה מרצון טוב, אבל ספציפית באבחון טרי זה מסוכן.</p>
+            <div class="answer-block"><strong class="lbl">מה להגיד</strong>"תודה שאת חושבת עליו. אנחנו עובדים עם רופאה. אם משהו חדש נוכל לבדוק, נעשה את זה דרכה. חשוב שלא נערבב."</div>
+          </div></div>
+        </div>
+        <div class="scn">
+          <div class="scn-q">
+            <div class="q-ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" stroke-linejoin="round" d="M8 12l3 3 5-6"/></svg></div>
+            <div class="q-text"><h4>גן רגיל מול גן תקשורתי — איך להחליט</h4><div class="hint">לחצו לתשובה</div></div>
+            <span class="toggle"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></span>
+          </div>
+          <div class="scn-a"><div class="a-inner">
+            <span class="verdict yellow"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01"/></svg> תלוי בילד/ה</span>
+            <p>אין תשובה אחת. גן תקשורתי = יחס אישי, סייעת, צוות מומחה. גן רגיל + שילוב = חברים נוירו-טיפוסיים.</p>
+            <div class="answer-block"><strong class="lbl">איך להחליט</strong>בקרו ב-2–3 גנים. שאלו: יחס סייעת, גודל קבוצה, אופי הצוות. ילד עם קשיים בולטים — תקשורתי. ילד עם קשיים מתונים + רצון בחברים — שילוב.</div>
+          </div></div>
+        </div>
+        <div class="scn">
+          <div class="scn-q">
+            <div class="q-ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+            <div class="q-text"><h4>להגיד או לא להגיד למשפחה רחבה</h4><div class="hint">לחצו לתשובה</div></div>
+            <span class="toggle"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></span>
+          </div>
+          <div class="scn-a"><div class="a-inner">
+            <span class="verdict green"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> לבחור — לא לכולם</span>
+            <p>סבים שיתמכו = לחלוק. סבים שיתנו עצות שגויות = להגביל מידע. זה לא רכילות, זו התאמה.</p>
+            <div class="answer-block"><strong class="lbl">משפט מוכן</strong>"קיבלנו אבחון שעוזר לנו להבין אותו. הוא אותו ילד. אנחנו לומדים."</div>
+          </div></div>
+        </div>
+        <div class="scn">
+          <div class="scn-q">
+            <div class="q-ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg></div>
+            <div class="q-text"><h4>5 טיפולים בשבוע — האם זה רעיון טוב?</h4><div class="hint">לחצו לתשובה</div></div>
+            <span class="toggle"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></span>
+          </div>
+          <div class="scn-a"><div class="a-inner">
+            <span class="verdict red"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg> יותר מדי</span>
+            <p>ילד בגן בהסתגלות לעצמו. עומס טיפולי = שחיקה. עדיף 1–2 טיפולים איכותיים מ-5 בינוניים.</p>
+            <div class="answer-block"><strong class="lbl">סדר עדיפויות</strong>(1) טיפול שעובד על העניין הכי כואב כרגע. (2) זמן עם המשפחה. (3) שינה. (4) חצי שנה לראות תוצאות לפני הוספה.</div>
+          </div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ELEMENTARY -->
+    <div class="variant" data-show-age="elem" data-show-gender="any">
+      <div class="scenarios">
+        <div class="scn">
+          <div class="scn-q">
+            <div class="q-ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/></svg></div>
+            <div class="q-text"><h4>המורה אומרת ש"מתנהג רע"</h4><div class="hint">לחצו לתשובה</div></div>
+            <span class="toggle"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></span>
+          </div>
+          <div class="scn-a"><div class="a-inner">
+            <span class="verdict yellow"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01"/></svg> צריך מפגש</span>
+            <p>לא להתווכח בוואטסאפ. לבקש פגישה עם המורה + יועצת. להביא דוח אבחון והמלצות.</p>
+            <div class="answer-block"><strong class="lbl">מה להציג</strong>"זה לא התנהגות — זה ויסות. כשהמוח שלו בעומס, הוא מתפרץ. אם נוריד גירויים — ההתנהגות תרד."</div>
+          </div></div>
+        </div>
+        <div class="scn">
+          <div class="scn-q">
+            <div class="q-ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+            <div class="q-text"><h4>הילד/ה אומר/ת "אין לי חברים"</h4><div class="hint">לחצו לתשובה</div></div>
+            <span class="toggle"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></span>
+          </div>
+          <div class="scn-a"><div class="a-inner">
+            <span class="verdict yellow"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01"/></svg> רגע חשוב</span>
+            <p>לא להגיב מיד עם "תשתדל יותר". לתת רגע. לזהות שזה כאב, לא בעיה לפתור.</p>
+            <div class="answer-block"><strong class="lbl">מה להגיד</strong>"זה כואב. גם לי היה כך לפעמים. רוצה שאדבר עם המורה? או שנמצא ילד שיש לו תחביב כמו שלך?"</div>
+            <div class="answer-block"><strong class="lbl">פתרון פעיל</strong>חוגי PEERS (קבוצת מיומנויות חברתיות לאוטיסטים), חוג עם ילדים נורו-דייברס אחרים — קבוצת מודלינג רובוטיקה, גיימינג, אומנות.</div>
+          </div></div>
+        </div>
+        <div class="scn">
+          <div class="scn-q">
+            <div class="q-ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01"/></svg></div>
+            <div class="q-text"><h4>הילד/ה לא רוצה ללכת לבית הספר</h4><div class="hint">לחצו לתשובה</div></div>
+            <span class="toggle"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></span>
+          </div>
+          <div class="scn-a"><div class="a-inner">
+            <span class="verdict red"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg> סימן מצוקה</span>
+            <p>סירוב חוזר זה לא "עצלנות". לרוב סימן ל-bullying, עומס חושי, או חרדה חברתית. לא לאלץ לפני שמבינים מה.</p>
+            <div class="answer-block"><strong class="lbl">צעדים</strong>(1) שיחה איתו/ה מה קורה בבית הספר. (2) פגישה עם יועצת. (3) אם דרוש — שינוי מסגרת. סירוב מתמשך מחייב התערבות.</div>
+          </div></div>
+        </div>
+        <div class="scn">
+          <div class="scn-q">
+            <div class="q-ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+            <div class="q-text"><h4>קבוצת הורים שואלת למה אנחנו עוברים מסגרת</h4><div class="hint">לחצו לתשובה</div></div>
+            <span class="toggle"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></span>
+          </div>
+          <div class="scn-a"><div class="a-inner">
+            <span class="verdict green"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> לא חייבים להסביר</span>
+            <p>זה הסיפור שלכם ושל הילד/ה. לא של קבוצת ההורים.</p>
+            <div class="answer-block"><strong class="lbl">משפט סוגר</strong>"חיפשנו משהו שמתאים יותר לו. תודה שאכפת לכם." משפט אחד, בלי פירוט. אם דוחקים — "זה משהו אישי, לא בקבוצה."</div>
+          </div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TEEN -->
+    <div class="variant" data-show-age="teen" data-show-gender="any">
+      <div class="scenarios">
+        <div class="scn">
+          <div class="scn-q">
+            <div class="q-ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+            <div class="q-text"><h4>סיפרתי, לא היו שאלות. שאלתי שוב — אמר/ה שאין.</h4><div class="hint">לחצו לתשובה</div></div>
+            <span class="toggle"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></span>
+          </div>
+          <div class="scn-a"><div class="a-inner">
+            <span class="verdict green"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> תקין — להפסיק לשאול</span>
+            <p>שאלה שנייה היא דרישה. הילד/ה שמע/ה. עכשיו זה לא תלוי בשיחה — זה תלוי בזרעים.</p>
+            <div class="answer-block"><strong class="lbl">מה לעשות במקום</strong>אמירה ספונטנית בזמן סרט: "הדמות הזאת מזכירה משהו שקראתי על אוטיזם." בלי תגובה צפויה. שלוש מיני-אמירות בשבוע {'>'} שיחה אחת.</div>
+          </div></div>
+        </div>
+        <div class="scn">
+          <div class="scn-q">
+            <div class="q-ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+            <div class="q-text"><h4>הורים אחרים מספרים שילדם "מודע, מדבר, יודע חוזקות"</h4><div class="hint">לחצו לתשובה</div></div>
+            <span class="toggle"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></span>
+          </div>
+          <div class="scn-a"><div class="a-inner">
+            <span class="verdict yellow"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01"/></svg> השוואה לא רלוונטית</span>
+            <p>רוב מתארים אבחון בגיל 5, או פרופיל הצהרתי. נער/ה עם אבחון בגיל 13–18 הולך/ת במסלול שונה.</p>
+            <div class="answer-block"><strong class="lbl">קבוצת השוואה נכונה</strong>למצוא 2–3 הורים אחרים של נער/ה שאובחנו מאוחר. קבוצות פייסבוק ייעודיות. השיח שונה לחלוטין.</div>
+          </div></div>
+        </div>
+        <div class="scn">
+          <div class="scn-q">
+            <div class="q-ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/></svg></div>
+            <div class="q-text"><h4>הומלץ על כיתת תקשורת — והוא/היא מסרב/ת</h4><div class="hint">לחצו לתשובה</div></div>
+            <span class="toggle"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></span>
+          </div>
+          <div class="scn-a"><div class="a-inner">
+            <span class="verdict green"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> בחירת זהות — לכבד</span>
+            <p>איכות יחסי החברים והמורים חשובה יותר מסוג הכיתה. סייעת + טיפול במסגרת מוכרת = תמיכה אמיתית.</p>
+            <div class="answer-block"><strong class="lbl">מה לעשות</strong>להשקיע במסגרת הקיימת — לוודא שהמטפל/ת והסייעת מקבלים ידע. לפגוש את היועצת.</div>
+          </div></div>
+        </div>
+        <div class="scn">
+          <div class="scn-q">
+            <div class="q-ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.18L12 21z"/></svg></div>
+            <div class="q-text"><h4>בן/בת זוג לא רצה להשתתף — נשארתי לבד</h4><div class="hint">לחצו לתשובה</div></div>
+            <span class="toggle"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></span>
+          </div>
+          <div class="scn-a"><div class="a-inner">
+            <span class="verdict yellow"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01"/></svg> חלק שאסור לדלג עליו</span>
+            <p>הורה שעובר רגע מכונן לבד נמצא בסיכון מוגבר לשחיקה ולדיכאון. ההתאוששות מתרחשת ברשתות עמיתות, לא רק בטיפול פרטני.</p>
+            <div class="answer-block"><strong class="lbl">מה לעשות לכם</strong>(1) קבוצת הורים לאבחון מאוחר. (2) פגישה מקצועית אחת לכם. (3) שגרת self-care: 30 דקות הליכה ביום, או יומן 3 פעמים בשבוע.</div>
+          </div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADULT -->
+    <div class="variant" data-show-age="adult" data-show-gender="any">
+      <div class="scenarios">
+        <div class="scn">
+          <div class="scn-q">
+            <div class="q-ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+            <div class="q-text"><h4>הוא/היא רוצה לדבר על "מה אם הייתם יודעים מוקדם"</h4><div class="hint">לחצו לתשובה</div></div>
+            <span class="toggle"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></span>
+          </div>
+          <div class="scn-a"><div class="a-inner">
+            <span class="verdict yellow"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01"/></svg> שלב טבעי</span>
+            <p>חלק מהעיבוד. לא להגן על עצמכם. להקשיב לכאב.</p>
+            <div class="answer-block"><strong class="lbl">מה להגיד</strong>"אתה צודק/ת. פספסנו. אם הייתי יודע/ת — היינו עושים דברים אחרת. אני מצטער/ת על הכאב הזה."</div>
+            <div class="answer-block"><strong class="lbl">מה לא להגיד</strong>"אבל ניסינו." "זה לא היה ברור." זה לא רגע להגנה — זה רגע להקשיב.</div>
+          </div></div>
+        </div>
+        <div class="scn">
+          <div class="scn-q">
+            <div class="q-ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/></svg></div>
+            <div class="q-text"><h4>הוא/היא לא רוצה לחשוף בעבודה</h4><div class="hint">לחצו לתשובה</div></div>
+            <span class="toggle"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></span>
+          </div>
+          <div class="scn-a"><div class="a-inner">
+            <span class="verdict green"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> בחירה לגיטימית</span>
+            <p>אין חובה לחשוף. תלוי במקום. הבחירה שלהם — לא להציע "אולי כדאי".</p>
+            <div class="answer-block"><strong class="lbl">איך לתמוך</strong>"זו בחירתך לגמרי. אני פה אם תרצה/י לדבר על זה."</div>
+          </div></div>
+        </div>
+        <div class="scn">
+          <div class="scn-q">
+            <div class="q-ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01"/></svg></div>
+            <div class="q-text"><h4>סבא שואל "מה זה אומר עכשיו?"</h4><div class="hint">לחצו לתשובה</div></div>
+            <span class="toggle"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></span>
+          </div>
+          <div class="scn-a"><div class="a-inner">
+            <span class="verdict yellow"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01"/></svg> תלוי בהסכמת הבוגר/ת</span>
+            <p>הם מאובחנים — הסיפור שלהם. אין לכם לשתף בלי הסכמה.</p>
+            <div class="answer-block"><strong class="lbl">לסבא</strong>"זה משהו שהוא/היא מעדיף/ה לספר בעצמו/ה. תוכל לדבר איתו/ה ישירות אם רוצה."</div>
+          </div></div>
+        </div>
+        <div class="scn">
+          <div class="scn-q">
+            <div class="q-ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3"/></svg></div>
+            <div class="q-text"><h4>בן/בת זוג שלהם אמר/ה "לא יודע אם אני מסוגל/ת"</h4><div class="hint">לחצו לתשובה</div></div>
+            <span class="toggle"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></span>
+          </div>
+          <div class="scn-a"><div class="a-inner">
+            <span class="verdict red"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg> כואב, לגיטימי משני הצדדים</span>
+            <p>גם בן/בת הזוג צריך/ה לעבד. הלם ראשון לא = החלטה סופית.</p>
+            <div class="answer-block"><strong class="lbl">מה לעשות בתור הורים</strong>לא להתערב. לא להזעיק. לעודד טיפול זוגי. אחרי חודש — אם לא משתנה, זו בעיית מערכת יחסים, לא בעיית אבחון.</div>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ TIMELINE — ציר זמן ═══════════════════════ -->
+  <section class="gs" id="timeline">
+    <div class="section-head">
+      <h2>ציר זמן — שנה ראשונה</h2>
+      <p>אין מרוץ. סדר שעובד ברוב המקרים, מותאם לגיל.</p>
+    </div>
+
+    <!-- EARLY -->
+    <div class="variant" data-show-age="early" data-show-gender="any">
+      <div class="timeline">
+        <div class="timeline-item"><div class="when">שבועיים ראשונים</div><h4>רק לעכל</h4><p>אפס משימות. הילד ממשיך כמו שהוא. אתם עוברים עיבוד.</p></div>
+        <div class="timeline-item"><div class="when">חודש 1</div><h4>בירוקרטיה — דבר אחד ביום</h4><p>יום פותחים תיק בביטוח לאומי (קצבת ילד נכה). יום מתקשרים לקופת חולים. לא הכל בבת אחת.</p></div>
+        <div class="timeline-item"><div class="when">חודש 2</div><h4>ועדת זכאות + בחירת מסגרת</h4><p>מתחילים להגיש לוועדת זכאות. לבקר ב-2–3 גנים אופציונליים. לא להחליט לפני ביקור.</p></div>
+        <div class="timeline-item"><div class="when">חודש 3</div><h4>טיפולים — 1–2 בלבד</h4><p>דרך מכון להתפתחות הילד. עדיף איכות מ-5 טיפולים בינוניים.</p></div>
+        <div class="timeline-item"><div class="when">חודש 6</div><h4>להעריך ולכייל</h4><p>מה עובד? מה לא? להוסיף/להוריד טיפולים. להתחבר עם הורים אחרים — אלו"ט "הורה לחבר".</p></div>
+        <div class="timeline-item"><div class="when">שנה</div><h4>שגרה יציבה</h4><p>מערכת תמיכה עומדת. לסקור עם הצוות מה השתנה. לתכנן את השנה הבאה.</p></div>
+      </div>
+    </div>
+
+    <!-- ELEMENTARY -->
+    <div class="variant" data-show-age="elem" data-show-gender="any">
+      <div class="timeline">
+        <div class="timeline-item"><div class="when">שבועיים ראשונים</div><h4>שקט והבנה</h4><p>לא לשנות מסגרת. לא לדבר עם הילד/ה על האבחון בו ביום.</p></div>
+        <div class="timeline-item"><div class="when">חודש 1</div><h4>שיחה עם הילד/ה</h4><p>אחרי שאתם עיבדתם — לדבר. כללי, לא דרמטי. לתת אנלוגיות. לתת שליטה ("מי בכיתה אתה רוצה שיידע?").</p></div>
+        <div class="timeline-item"><div class="when">חודש 2</div><h4>שיתוף בית הספר</h4><p>פגישה עם מחנכת + יועצת. להציג אבחון + המלצות. לבקש התאמות פדגוגיות.</p></div>
+        <div class="timeline-item"><div class="when">חודש 3</div><h4>ועדת זכאות (אם רלוונטי)</h4><p>סייעת? שילוב? כיתת תקשורת? להתחיל לבדוק.</p></div>
+        <div class="timeline-item"><div class="when">חודש 6</div><h4>תמיכה חברתית</h4><p>חוג ילדים נורו-דייברס, PEERS, או חבר אחד יציב מסביבה. לזהות מה עובד.</p></div>
+        <div class="timeline-item"><div class="when">שנה</div><h4>סקירה כללית</h4><p>איך השנה עברה? מה עובד? מה לשנות? לתכנן את הקלאס הבאה.</p></div>
+      </div>
+    </div>
+
+    <!-- TEEN -->
+    <div class="variant" data-show-age="teen" data-show-gender="any">
+      <div class="timeline">
+        <div class="timeline-item"><div class="when">שבוע 1–2</div><h4>רק להיות</h4><p>לא לחזור לנושא. לא לבקש "סיכום". להמשיך כרגיל.</p></div>
+        <div class="timeline-item"><div class="when">חודש 1</div><h4>1–2 זרעים בשבוע</h4><p>אמירות ספונטניות, לא דרמטיות. בזמן סרט. בלילה. לא יותר משלוש בשבוע.</p></div>
+        <div class="timeline-item"><div class="when">חודש 2–3</div><h4>תיעוד שקט</h4><p>פעם בשבוע — שורה אחת ביומן: שינה, אכילה, תחביב, מצב רוח. לזהות מגמה.</p></div>
+        <div class="timeline-item"><div class="when">חודש 3</div><h4>לעבוד עם המסגרת</h4><p>(באישור הילד/ה) — לעדכן יועצת/מטפל/ת/סייעת. לא "טפלי בזה" — "תדעי שהאבחון התקבל".</p></div>
+        <div class="timeline-item"><div class="when">חודש 6</div><h4>קבוצת הורים</h4><p>ייעודית לאבחון מאוחר. קהל ההשוואה הנכון.</p></div>
+        <div class="timeline-item"><div class="when">שנה</div><h4>לקבל שזה מסלול</h4><p>אצל מי שאובחן/ה מאוחר, זהות אוטיסטית גלויה לוקחת שנים. אם מתפקד/ת — זה הצלחה.</p></div>
+      </div>
+    </div>
+
+    <!-- ADULT -->
+    <div class="variant" data-show-age="adult" data-show-gender="any">
+      <div class="timeline">
+        <div class="timeline-item"><div class="when">שבוע 1</div><h4>שמיעה אקטיבית</h4><p>לא להמליץ. לא להציע. לשמוע. לתמוך רגשית.</p></div>
+        <div class="timeline-item"><div class="when">חודש 1</div><h4>לתת זמן לעיבוד</h4><p>הוא/היא יחזרו עם רגשות מעורבים — הקלה, אבל, כעס. לתת מקום לכולם.</p></div>
+        <div class="timeline-item"><div class="when">חודש 2</div><h4>סל שיקום ובירוקרטיה</h4><p>(אם רוצה) — להציע עזרה עם ניירת מול ביטוח לאומי, סל שיקום. לא לקחת אחריות, להיות זמינים.</p></div>
+        <div class="timeline-item"><div class="when">חודש 3</div><h4>קהילה</h4><p>לעודד חיבור עם בוגרים אוטיסטים אחרים. שלא דרככם — דרך קהילה.</p></div>
+        <div class="timeline-item"><div class="when">חודש 6</div><h4>שינויים בזהות</h4><p>הוא/היא יבקשו לדבר על "מה היו צריכים לדעת". להיות פתוחים לשיחה הזו.</p></div>
+        <div class="timeline-item"><div class="when">שנה</div><h4>זוגיות, תעסוקה, עתיד</h4><p>שאלות גדולות עולות. אתם יועצים, לא מובילים.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ CHECKLIST — מה לעשות החודש הראשון ═══════════════════════ -->
+  <section class="gs" id="checklist">
+    <div class="section-head">
+      <h2>החודש הראשון — צ'קליסט</h2>
+      <p>10 פעולות מומלצות, מותאמות לגיל. סמנו כשעשיתם.</p>
+    </div>
+
+    <div class="variant" data-show-age="early" data-show-gender="any">
+      <div class="checklist">
+        <h3>צ'קליסט — חודש ראשון אחרי אבחון בגן</h3>
+        <ul class="check-list">
+          <li><label><input type="checkbox"><span class="check-txt"><strong>פתחתי תיק בביטוח לאומי לקצבת ילד נכה</strong><span class="sub">זכאות רטרואקטיבית מיום ההגשה. btl.gov.il</span></span></label></li>
+          <li><label><input type="checkbox"><span class="check-txt"><strong>קבעתי פגישה עם מכון להתפתחות הילד</strong><span class="sub">דרך קופת חולים. בלי לחכות 3 חודשים — להתעקש על תור מוקדם.</span></span></label></li>
+          <li><label><input type="checkbox"><span class="check-txt"><strong>התקשרתי לאלו"ט "הורה לחבר"</strong><span class="sub">שיחה אחת עם הורה מנוסה. שווה זהב.</span></span></label></li>
+          <li><label><input type="checkbox"><span class="check-txt"><strong>שמרתי את דוח האבחון בתיקייה דיגיטלית + פיזית</strong><span class="sub">תצטרכו עותקים — לוועדה, לקופה, לגננת.</span></span></label></li>
+          <li><label><input type="checkbox"><span class="check-txt"><strong>עדכנתי את הגננת/מורה בכיתה הקיימת</strong><span class="sub">היא רואה אותו/ה 6 שעות ביום. שותפה חיונית.</span></span></label></li>
+          <li><label><input type="checkbox"><span class="check-txt"><strong>החלטתי איזה טיפול אחד מתחיל ראשון</strong><span class="sub">לא 5 טיפולים. אחד שעובד על העניין הכי דחוף.</span></span></label></li>
+          <li><label><input type="checkbox"><span class="check-txt"><strong>דיברתי עם בן/בת הזוג על העיבוד שלי</strong><span class="sub">לא הילד. אנחנו. שעה אחת רגועה לדבר.</span></span></label></li>
+          <li><label><input type="checkbox"><span class="check-txt"><strong>נמנעתי מקבלת החלטות גדולות</strong><span class="sub">לא לעבור עיר. לא להחליף עבודה. לא להחליט על מסגרת. רק לעכל.</span></span></label></li>
+          <li><label><input type="checkbox"><span class="check-txt"><strong>הגדרתי לעצמי 30 דקות ביום ל-self-care</strong><span class="sub">הליכה. שתיקה. כתיבה. כל מה שמחזק.</span></span></label></li>
+          <li><label><input type="checkbox"><span class="check-txt"><strong>זיהיתי 2 אנשים בטוחים לחלוק איתם</strong><span class="sub">לא 10. שניים שיכולים לשמוע בלי להציע פתרונות.</span></span></label></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="variant" data-show-age="elem" data-show-gender="any">
+      <div class="checklist">
+        <h3>צ'קליסט — חודש ראשון אחרי אבחון ביסודי</h3>
+        <ul class="check-list">
+          <li><label><input type="checkbox"><span class="check-txt"><strong>שמרתי את דוח האבחון בתיקייה דיגיטלית + פיזית</strong><span class="sub">2 עותקים פיזיים, 1 דיגיטלי בענן.</span></span></label></li>
+          <li><label><input type="checkbox"><span class="check-txt"><strong>הקדשתי שבועיים לעיבוד שלי לפני שיחה עם הילד/ה</strong><span class="sub">אסור לדבר עם הילד/ה כשאתם בהלם. תנו לעצמכם זמן.</span></span></label></li>
+          <li><label><input type="checkbox"><span class="check-txt"><strong>תכננתי שיחה עם הילד/ה (לא ספונטנית)</strong><span class="sub">מקום שקט. 5–10 דקות. 3 משפטים מרכזיים. בלי דרמה.</span></span></label></li>
+          <li><label><input type="checkbox"><span class="check-txt"><strong>קבעתי פגישה עם המחנכת והיועצת</strong><span class="sub">להציג אבחון + המלצות. לבקש התאמות.</span></span></label></li>
+          <li><label><input type="checkbox"><span class="check-txt"><strong>בדקתי זכאות לסייעת/שילוב</strong><span class="sub">דרך ועדת זכאות במחוז. תהליך ארוך — להתחיל מוקדם.</span></span></label></li>
+          <li><label><input type="checkbox"><span class="check-txt"><strong>חיפשתי חוג מתאים (PEERS, רובוטיקה, אומנות)</strong><span class="sub">קבוצת אמצע — ילדים נורו-דייברס שונים. הצלחה חברתית בקבוצה קטנה.</span></span></label></li>
+          <li><label><input type="checkbox"><span class="check-txt"><strong>פתחתי תיק בביטוח לאומי לקצבת ילד נכה</strong><span class="sub">btl.gov.il</span></span></label></li>
+          <li><label><input type="checkbox"><span class="check-txt"><strong>התקשרתי לאלו"ט/קשר להתייעצות</strong><span class="sub">ארגונים שמלווים בבירוקרטיה.</span></span></label></li>
+          <li><label><input type="checkbox"><span class="check-txt"><strong>אספתי 2 הורים מנוסים לחלוק איתם</strong><span class="sub">קבוצת WhatsApp שיש לפנות אליה.</span></span></label></li>
+          <li><label><input type="checkbox"><span class="check-txt"><strong>נתתי לעצמי 30 דקות ביום ל-self-care</strong><span class="sub">לא מתפנקים — הכרחי.</span></span></label></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="variant" data-show-age="teen" data-show-gender="any">
+      <div class="checklist">
+        <h3>צ'קליסט — חודש ראשון אחרי אבחון בגיל ההתבגרות</h3>
+        <ul class="check-list">
+          <li><label><input type="checkbox"><span class="check-txt"><strong>נתתי שבועיים שקטים לפני "שיחה גדולה"</strong><span class="sub">לא לרוץ לדבר. לא לבקש ממנו/ה לדבר. לתת זמן.</span></span></label></li>
+          <li><label><input type="checkbox"><span class="check-txt"><strong>תכננתי שיחה ראשונה — 3 משפטים, 5 דקות</strong><span class="sub">לא הרצאה. לא דרישה. רק שיתוף.</span></span></label></li>
+          <li><label><input type="checkbox"><span class="check-txt"><strong>הפסקתי לחזור על השאלה "יש לך שאלות?"</strong><span class="sub">פעם אחת מספיק. אחר כך — שקט.</span></span></label></li>
+          <li><label><input type="checkbox"><span class="check-txt"><strong>התחלתי לזרוע 1–2 זרעים בשבוע</strong><span class="sub">אמירות ספונטניות בזמן סרט/נסיעה. בלי תגובה צפויה.</span></span></label></li>
+          <li><label><input type="checkbox"><span class="check-txt"><strong>מצאתי קבוצת הורים לאבחון מאוחר</strong><span class="sub">פייסבוק, ייעודית. השיח שונה מקבוצה כללית.</span></span></label></li>
+          <li><label><input type="checkbox"><span class="check-txt"><strong>קבעתי פגישה לעצמי עם איש מקצוע</strong><span class="sub">לא לבת/בן — לכם. גם פגישה אחת עוגן.</span></span></label></li>
+          <li><label><input type="checkbox"><span class="check-txt"><strong>(באישור הילד/ה) — עדכנתי יועצת/מטפל/ת מלווה</strong><span class="sub">לא "טפלי בזה" — "תדעי שהאבחון התקבל".</span></span></label></li>
+          <li><label><input type="checkbox"><span class="check-txt"><strong>התחלתי לתעד שורה בשבוע</strong><span class="sub">שינה, אכילה, תחביב, מצב רוח. לזהות מגמה.</span></span></label></li>
+          <li><label><input type="checkbox"><span class="check-txt"><strong>הפסקתי להציע שיתוף עם אחים/משפחה</strong><span class="sub">3–6 חודשים. הסיפור שלהם.</span></span></label></li>
+          <li><label><input type="checkbox"><span class="check-txt"><strong>נתתי לעצמי 30 דקות ביום ל-self-care</strong><span class="sub">הוא/היא לא בלוח זמנים שלכם.</span></span></label></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="variant" data-show-age="adult" data-show-gender="any">
+      <div class="checklist">
+        <h3>צ'קליסט — חודש ראשון אחרי אבחון בגיל בוגר (לכם, כהורים)</h3>
+        <ul class="check-list">
+          <li><label><input type="checkbox"><span class="check-txt"><strong>עיבדתי את ההלם שלי לפני שדיברתי איתם</strong><span class="sub">לא להציף אותם בעיבוד שלכם.</span></span></label></li>
+          <li><label><input type="checkbox"><span class="check-txt"><strong>שאלתי "איך אתה רוצה שאעזור?"</strong><span class="sub">לא להציע. לתת להם להוביל.</span></span></label></li>
+          <li><label><input type="checkbox"><span class="check-txt"><strong>קיבלתי שינויים בזהות שלהם</strong><span class="sub">חזרה לזיכרונות, שאלות חדשות. תקין.</span></span></label></li>
+          <li><label><input type="checkbox"><span class="check-txt"><strong>לא חשפתי את האבחון בלי הסכמתם</strong><span class="sub">למשפחה רחבה, לחברים, לסבים. הסיפור שלהם.</span></span></label></li>
+          <li><label><input type="checkbox"><span class="check-txt"><strong>הצעתי עזרה בבירוקרטיה — אם רוצים</strong><span class="sub">סל שיקום, ביטוח לאומי. לא לוקחים אחריות, זמינים.</span></span></label></li>
+          <li><label><input type="checkbox"><span class="check-txt"><strong>הצעתי קישור לקהילה אוטיסטית בוגרת</strong><span class="sub">לא דרככם — דרך קהילה. שייכות.</span></span></label></li>
+          <li><label><input type="checkbox"><span class="check-txt"><strong>זיהיתי שהאבל שלי לא שלהם</strong><span class="sub">"מה היה לו/לה אם היינו יודעים" — שיחה לעצמי, לא איתם.</span></span></label></li>
+          <li><label><input type="checkbox"><span class="check-txt"><strong>חיפשתי קבוצת הורים בוגרים שאובחנו</strong><span class="sub">קהל ייעודי. אבל פוסט-פקטום. תמיכה הדדית.</span></span></label></li>
+          <li><label><input type="checkbox"><span class="check-txt"><strong>נתתי לעצמי לעבד את האבל</strong><span class="sub">"מה היה אם". לגיטימי, חולף.</span></span></label></li>
+          <li><label><input type="checkbox"><span class="check-txt"><strong>אמרתי "אני גאה בך — היה צריך אומץ"</strong><span class="sub">רגע מעצים את הצעד שלהם.</span></span></label></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ PEOPLE — מי אנשי המקצוע שצריך ═══════════════════════ -->
+  <section class="gs" id="people">
+    <div class="section-head">
+      <h2>אנשי המקצוע שכדאי שיהיו</h2>
+      <p>לא כולם צריכים את כולם. בחרו לפי הרלוונטי לכם.</p>
+    </div>
+
+    <div class="variant" data-show-age="early" data-show-gender="any">
+      <div class="people-grid">
+        <div class="person"><div class="icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/></svg></div><h4>נוירולוג/ית התפתחות</h4><p>מאבחן ועוקב.</p></div>
+        <div class="person"><div class="icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2"/></svg></div><h4>מרפאה בעיסוק</h4><p>ויסות חושי.</p></div>
+        <div class="person"><div class="icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg></div><h4>קלינאית תקשורת</h4><p>שפה ותקשורת.</p></div>
+        <div class="person"><div class="icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><h4>פסיכולוגית התפתחותית</h4><p>תמיכה רגשית.</p></div>
+      </div>
+    </div>
+
+    <div class="variant" data-show-age="elem" data-show-gender="any">
+      <div class="people-grid">
+        <div class="person"><div class="icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13"/></svg></div><h4>פסיכולוגית חינוכית</h4><p>תמיכה בבית הספר.</p></div>
+        <div class="person"><div class="icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/></svg></div><h4>יועצת בית ספר</h4><p>שותפה במסגרת.</p></div>
+        <div class="person"><div class="icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2"/></svg></div><h4>מרפאה בעיסוק</h4><p>אם יש קשיים בכתיבה/ויסות.</p></div>
+        <div class="person"><div class="icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/></svg></div><h4>מנחה PEERS / מיומנויות חברתיות</h4><p>חבר בקבוצה דומה.</p></div>
+      </div>
+    </div>
+
+    <div class="variant" data-show-age="teen" data-show-gender="any">
+      <div class="people-grid">
+        <div class="person"><div class="icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13"/></svg></div><h4>פסיכולוגית מומחית באוטיזם</h4><p>במיוחד בגיל ההתבגרות.</p></div>
+        <div class="person"><div class="icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/></svg></div><h4>יועצת תיכון</h4><p>הכוונה ובחירת מסלולים.</p></div>
+        <div class="person"><div class="icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg></div><h4>קצין מיון בלשכת גיוס</h4><p>סוף תיכון — מסלול גיוס מותאם / פטור.</p></div>
+        <div class="person"><div class="icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/></svg></div><h4>מנטור/ית אוטיסט/ית בוגר/ת</h4><p>"מי שעבר את זה". משאב חשוב מתבגרים.</p></div>
+      </div>
+    </div>
+
+    <div class="variant" data-show-age="adult" data-show-gender="any">
+      <div class="people-grid">
+        <div class="person"><div class="icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/></svg></div><h4>עובד/ת סוציאלית בסל שיקום</h4><p>הזכאויות והשירותים.</p></div>
+        <div class="person"><div class="icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13"/></svg></div><h4>פסיכולוג/ית מומחה/ית באוטיזם בוגר</h4><p>מעטים בישראל. שווה חיפוש.</p></div>
+        <div class="person"><div class="icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg></div><h4>יועץ/ת תעסוקה לבוגרים אוטיסטים</h4><p>יוזמות ייעודיות בסל שיקום.</p></div>
+        <div class="person"><div class="icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/></svg></div><h4>פיר-מנטור/ית בוגר/ת</h4><p>אדם שעבר את אותו תהליך.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ RESOURCES — משאבים ═══════════════════════ -->
+  <section class="gs" id="resources">
+    <div class="section-head">
+      <h2>משאבים</h2>
+      <p>מקורות אמינים — ארגונים ישראליים ובינלאומיים.</p>
+    </div>
+    <div class="resources">
+      <div class="resource">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <div><h4>אלו"ט — הורה לחבר</h4><p>שירות שמצמיד הורה טרי להורה מנוסה. שיחה אחת משנה הכל. <a href="https://alut.org.il" target="_blank" rel="noopener">alut.org.il</a></p></div>
+      </div>
+      <div class="resource">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/></svg></div>
+        <div><h4>קשר — עמותה להורים לילדים מיוחדים</h4><p>מלווים בבירוקרטיה מול ועדות, קופות חולים, משרדי ממשלה. <a href="https://kesher.org.il" target="_blank" rel="noopener">kesher.org.il</a></p></div>
+      </div>
+      <div class="resource">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2"/></svg></div>
+        <div><h4>כל זכות — מידע בעברית פשוטה</h4><p>ריכוז כל הזכויות לאוטיסטים והוריהם. <a href="https://www.kolzchut.org.il" target="_blank" rel="noopener">kolzchut.org.il</a></p></div>
+      </div>
+      <div class="resource">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7"/></svg></div>
+        <div><h4>ביטוח לאומי — קצבת ילד נכה</h4><p>להגיש מיד. זכאות רטרואקטיבית. <a href="https://www.btl.gov.il" target="_blank" rel="noopener">btl.gov.il</a></p></div>
+      </div>
+      <div class="resource">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/></svg></div>
+        <div><h4>סל שיקום (בוגרים) — משרד הרווחה</h4><p>שירותים שיקומיים לבוגרים: דיור, תעסוקה, ליווי. <a href="https://www.gov.il/he/departments/topics/rehabilitation_basket" target="_blank" rel="noopener">gov.il</a></p></div>
+      </div>
+      <div class="resource">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13"/></svg></div>
+        <div><h4>NAS UK · Child Mind Institute</h4><p>תוכן מבוסס מחקר באנגלית פשוטה. <a href="https://www.autism.org.uk" target="_blank" rel="noopener">autism.org.uk</a> · <a href="https://childmind.org" target="_blank" rel="noopener">childmind.org</a></p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ BIG REFRAME ═══════════════════════ -->
+  <section class="gs">
+    <div class="big-reframe">
+      <h3>השורה התחתונה</h3>
+      <p>
+        האבחון נתן שם למשהו שכבר היה. הילד/ה לא השתנה. אתם לא לבד, ואתם לא שבורים.
+        <strong>גם המסלול שלכם — לפי הגיל והמגדר של הילד/ה — לא חייב להיראות כמו של ההורים שאתם רואים סביבכם.</strong>
+        אתם בוחרים את הקצב שלכם.
+      </p>
+    </div>
+  </section>
+
+  </div>
+
+  <footer class="guide-footer">
+  <a href="index.html" class="back">← חזרה לכל המדריכים</a>
+</footer>
+
+<footer class="rezef-footer">
+  <div class="ft-links">
+    <a href="../index.html#about">אודות רצף</a>
+    <a href="../index.html#svc">רצף מענים</a>
+    <a href="../index.html#articles">רצף כתבות</a>
+  </div>
+  <p class="ft-note">© רצף · מדריכים מבוססי מחקר לקהילה האוטיסטית · נכתבו ע"י מיטל פלג</p>
+</footer>
+
+</main>
+
+<script>
+  const STORAGE_KEY = 'oti-parent-guide-v1';
+  const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  let currentAge = saved.age || 'early';
+  let currentGender = saved.gender || 'boy';
+
+  function persist() {
+    const checks = {};
+    document.querySelectorAll('.check-list input[type="checkbox"]').forEach((cb, i) => {
+      const key = cb.closest('.variant')?.dataset.showAge + '-' + i;
+      checks[key] = cb.checked;
+    });
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ age: currentAge, gender: currentGender, checks }));
+  }
+
+  function restoreChecks() {
+    const checks = saved.checks || {};
+    document.querySelectorAll('.check-list input[type="checkbox"]').forEach((cb, i) => {
+      const key = cb.closest('.variant')?.dataset.showAge + '-' + i;
+      if (checks[key]) cb.checked = true;
+      cb.addEventListener('change', persist);
+    });
+  }
+
+  function updateVariants() {
+    document.querySelectorAll('.variant').forEach(el => {
+      const showAge = el.dataset.showAge;
+      const showGender = el.dataset.showGender;
+      const ageMatch = showAge === currentAge;
+      const genderMatch = showGender === 'any' || showGender === currentGender;
+      el.classList.toggle('active', ageMatch && genderMatch);
+    });
+  }
+
+  function setAge(age) {
+    currentAge = age;
+    document.querySelectorAll('.switch-group.age button').forEach(b => {
+      const active = b.dataset.age === age;
+      b.classList.toggle('active', active);
+      b.setAttribute('aria-pressed', active);
+    });
+    updateVariants();
+    persist();
+  }
+  function setGender(gender) {
+    currentGender = gender;
+    document.querySelectorAll('.switch-group.gender button').forEach(b => {
+      const active = b.dataset.gender === gender;
+      b.classList.toggle('active', active);
+      b.setAttribute('aria-pressed', active);
+    });
+    updateVariants();
+    persist();
+  }
+
+  document.querySelectorAll('.switch-group.age button').forEach(btn => {
+    btn.setAttribute('aria-pressed', btn.dataset.age === currentAge);
+    btn.addEventListener('click', () => setAge(btn.dataset.age));
+  });
+  document.querySelectorAll('.switch-group.gender button').forEach(btn => {
+    btn.setAttribute('aria-pressed', btn.dataset.gender === currentGender);
+    btn.addEventListener('click', () => setGender(btn.dataset.gender));
+  });
+
+  setAge(currentAge);
+  setGender(currentGender);
+  restoreChecks();
+
+  // Accordion עם תמיכת מקלדת
+  document.querySelectorAll('.scn').forEach(scn => {
+    scn.setAttribute('role', 'button');
+    scn.setAttribute('tabindex', '0');
+    scn.setAttribute('aria-expanded', 'false');
+    const toggle = (e) => {
+      if (e.target.tagName === 'A') return;
+      const open = scn.classList.toggle('open');
+      scn.setAttribute('aria-expanded', open);
+    };
+    scn.addEventListener('click', toggle);
+    scn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle(e);
+      }
+    });
+  });
+
+  document.querySelectorAll('.nav-pill').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      document.querySelector(a.getAttribute('href')).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+
+</body>
+</html>

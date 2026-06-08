@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ראיון עבודה — מדריך אוטי</title>
+<meta name="description" content="מדריך ראיון עבודה לאוטיסטים — מה צפוי, איך מתכוננים, מה לענות, ומתי לחשוף את האבחנה. משפטים מוכנים וצ'קליסט לפני ואחרי.">
+<style>
+  /* טיימליין הראיון */
+  .interview-timeline {
+    display: grid;
+    gap: 0.85rem;
+    margin: 1rem 0 1.4rem;
+  }
+  .it-stage {
+    background: var(--white);
+    border: 1px solid var(--border-soft);
+    border-radius: 16px;
+    padding: 1.2rem 1.3rem;
+    border-inline-start: 4px solid var(--terracotta);
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 1rem;
+    align-items: start;
+  }
+  .it-stage .it-min {
+    background: var(--terracotta-pale);
+    color: var(--terracotta-deep);
+    border-radius: 12px;
+    padding: 0.6rem 0.4rem;
+    text-align: center;
+    font-family: 'Heebo', sans-serif;
+  }
+  .it-stage .it-min .num { font-size: 1.4rem; font-weight: 800; line-height: 1; }
+  .it-stage .it-min .unit { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  .it-stage h4 {
+    font-size: 1.05rem; font-weight: 700;
+    font-family: 'Heebo', sans-serif; margin-bottom: 0.4rem;
+    color: var(--ink);
+  }
+  .it-stage p { font-size: 0.93rem; color: var(--ink-soft); margin: 0; line-height: 1.6; }
+  .it-stage:nth-child(even) { border-inline-start-color: var(--olive); }
+  .it-stage:nth-child(even) .it-min { background: var(--olive-pale); color: var(--olive-deep); }
+
+  /* Disclose decision tree */
+  .disclose {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .disclose-card {
+    background: var(--white);
+    border-radius: 18px;
+    padding: 1.5rem 1.5rem;
+    border: 2px solid var(--border-soft);
+  }
+  .disclose-card.yes { border-color: var(--olive-soft); background: linear-gradient(180deg, var(--olive-pale) 0%, var(--white) 60%); }
+  .disclose-card.no  { border-color: var(--butter); background: linear-gradient(180deg, var(--butter-soft) 0%, var(--white) 60%); }
+  .disclose-card h3 {
+    font-size: 1.15rem; font-family: 'Heebo', sans-serif;
+    margin: 0 0 0.8rem; display: flex; align-items: center; gap: 0.6rem;
+  }
+  .disclose-card ul { padding-inline-start: 1.2rem; margin: 0; }
+  .disclose-card ul li {
+    font-size: 0.93rem; color: var(--ink-soft);
+    margin-bottom: 0.5rem; line-height: 1.55;
+  }
+  @media (max-width: 720px) { .disclose { grid-template-columns: 1fr; } }
+
+  /* Q&A cards */
+  .qa-list { display: grid; gap: 0.9rem; margin: 1rem 0 1.4rem; }
+  .qa-card {
+    background: var(--white);
+    border: 1.5px solid var(--border-soft);
+    border-radius: 16px;
+    padding: 1.3rem 1.4rem;
+    border-inline-start: 4px solid var(--terracotta);
+  }
+  .qa-card .q {
+    font-family: 'Heebo', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--terracotta-deep);
+    margin-bottom: 0.7rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .qa-card .q::before {
+    content: "Q"; background: var(--terracotta-deep); color: var(--white);
+    width: 22px; height: 22px; border-radius: 50%;
+    display: grid; place-items: center;
+    font-size: 0.75rem; font-weight: 900;
+  }
+  .qa-card .a {
+    background: var(--paper-deep); border-radius: 10px;
+    padding: 0.9rem 1.1rem; margin-bottom: 0.6rem;
+    font-size: 0.93rem; color: var(--ink-soft); line-height: 1.6;
+  }
+  .qa-card .a strong { color: var(--ink); }
+  .qa-card .note {
+    font-size: 0.82rem; color: var(--ink-light);
+    font-style: italic; line-height: 1.5;
+  }
+</style>
+<link rel="stylesheet" href="rezef-guides.css">
+</head>
+<body>
+
+<nav class="rezef-nav">
+  <a href="../index.html#" class="logo">
+    <svg class="logo-svg" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+      <path d="M4 36 C4 16 20 10 20 10 C20 10 36 16 36 36" stroke="#A78BFA" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <path d="M8.5 36 C8.5 19 20 14 20 14 C20 14 31.5 19 31.5 36" stroke="#312E81" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <path d="M13 36 C13 22 20 18 20 18 C20 18 27 22 27 36" stroke="#7C3AED" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+      <circle cx="20" cy="36" r="2.8" fill="#7C3AED"/>
+    </svg>
+    <div>
+      <div class="logo-name">רֶצֶף</div>
+      <div class="logo-tag">מענים לקהילה האוטיסטית ובני משפחותיהם לאורך כל שלבי החיים</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html#ages">רצף גילאי</a></li>
+    <li><a href="../index.html#svc">רצף מענים</a></li>
+    <li><a href="../index.html#articles">רצף כתבות</a></li>
+    <li><a href="index.html" class="active">רצף מדריכים</a></li>
+    <li><a href="../index.html#about">אודות</a></li>
+  </ul>
+  <a href="../index.html#ages" class="nav-cta">מצאו מענה</a>
+</nav>
+
+<nav class="rezef-breadcrumb" aria-label="פירורי לחם">
+  <a href="../index.html">רצף</a>
+  <span class="sep">›</span>
+  <a href="index.html">מדריכים</a>
+  <span class="sep">›</span>
+  <span class="current">ראיון עבודה — מדריך אוטי</span>
+</nav>
+
+<main class="guide-wrap">
+
+  <header class="guide-hero">
+    <span class="guide-eyebrow">מדריך פרקטי · תעסוקה</span>
+    <h1>ראיון עבודה — הוגן לך, אמין להם.</h1>
+    <p class="lede">
+      ראיון עבודה הוא <strong>מבחן חברתי סמוי</strong>. אוטיסטים/ות לרוב מוערכים/ות שלא בצדק בגלל הדינמיקה,
+      לא בגלל הכישורים. המדריך מסביר <strong>איך בוחן מראיין/ה חושב/ת</strong>, איך להכין תשובות מראש,
+      ומתי — ואם בכלל — כדאי לחשוף את האבחנה.
+    </p>
+    <nav class="nav-pills">
+      <a href="#timeline" class="nav-pill">איך ראיון בנוי</a>
+      <a href="#prep" class="nav-pill">הכנה 48 שעות לפני</a>
+      <a href="#disclose" class="nav-pill">לחשוף או לא?</a>
+      <a href="#questions" class="nav-pill">10 שאלות צפויות</a>
+      <a href="#redflags" class="nav-pill">דגלים אדומים במעסיק</a>
+      <a href="#checklist" class="nav-pill">צ'קליסט</a>
+    </nav>
+  </header>
+
+  <!-- TIMELINE — איך בנוי ראיון -->
+  <section class="gs" id="timeline">
+    <div class="section-head">
+      <h2>איך בנוי ראיון — 45 דקות מתוכננות</h2>
+      <p>רוב הראיונות בנויים באותו אופן. אם מבינים את המבנה — לא מופתעים.</p>
+    </div>
+    <div class="interview-timeline">
+
+      <div class="it-stage">
+        <div class="it-min"><div class="num">2</div><div class="unit">דקות</div></div>
+        <div>
+          <h4>Small Talk פתיחה</h4>
+          <p>"איך הגעת? הלך לך למצוא חניה?" — <strong>לא באמת מעניין אותם.</strong> זו בדיקה האם את/ה יכול/ה לעשות אינטראקציה חברתית בסיסית. תשובה קצרה של 1-2 משפטים + שאלה חזרה ("ואת/ה?"). זהו.</p>
+        </div>
+      </div>
+
+      <div class="it-stage">
+        <div class="it-min"><div class="num">5</div><div class="unit">דקות</div></div>
+        <div>
+          <h4>"ספר/י על עצמך"</h4>
+          <p>השאלה הקלאסית. לא להיכנס לכל קורות החיים — להכין מראש מצגת של 90 שניות: איפה למדת/עבדת, מה את/ה עושה עכשיו, למה הגעת לראיון. <strong>יש חלק נפרד במדריך עם נוסחה.</strong></p>
+        </div>
+      </div>
+
+      <div class="it-stage">
+        <div class="it-min"><div class="num">15</div><div class="unit">דקות</div></div>
+        <div>
+          <h4>שאלות על ניסיון וכישורים</h4>
+          <p>כאן המעסיק/ה בוחן/ת פער בין מה שכתוב בקו"ח למה שאת/ה יודע/ת באמת. תענה/י עם דוגמאות קונקרטיות — "פרויקט X", "אתגר Y", "פתרתי Z".</p>
+        </div>
+      </div>
+
+      <div class="it-stage">
+        <div class="it-min"><div class="num">10</div><div class="unit">דקות</div></div>
+        <div>
+          <h4>שאלות "התנהגותיות" / סיטואציה</h4>
+          <p>"ספר/י על פעם שהתמודדת עם לחץ." "איך את/ה עובד/ת בצוות?" — <strong>זה הקטע הקשה לאוטיסטים/ות.</strong> הכן/י 3-4 סיפורים מראש לפי מודל STAR (ראה/י למטה).</p>
+        </div>
+      </div>
+
+      <div class="it-stage">
+        <div class="it-min"><div class="num">8</div><div class="unit">דקות</div></div>
+        <div>
+          <h4>שאלות שלך אליהם</h4>
+          <p>"יש לך שאלות בשבילנו?" — <strong>לא להגיד "לא".</strong> זה מתפרש כחוסר עניין. הכן/י 3 שאלות מראש: על התפקיד, הצוות, והחברה. דוגמה: "איך נראה שבוע ממוצע בתפקיד?".</p>
+        </div>
+      </div>
+
+      <div class="it-stage">
+        <div class="it-min"><div class="num">3</div><div class="unit">דקות</div></div>
+        <div>
+          <h4>סגירה — "איך ממשיכים מכאן"</h4>
+          <p>המראיין/ת יסבירו על השלבים הבאים. הקשיבו לזמנים ("נחזור אליך תוך שבוע"). אם לא חוזרים בזמן שצוין — מותר ולגיטימי לשלוח מייל תזכורת.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="gcard tone-warm">
+      <h3>STAR — נוסחה לתשובות התנהגותיות</h3>
+      <p><strong>S</strong>ituation — מה הייתה הסיטואציה? (משפט אחד)</p>
+      <p><strong>T</strong>ask — מה היה התפקיד שלך? (משפט אחד)</p>
+      <p><strong>A</strong>ction — מה עשית בפועל? (2-3 משפטים)</p>
+      <p><strong>R</strong>esult — מה הייתה התוצאה? (מספר/תוצאה קונקרטית)</p>
+    </div>
+  </section>
+
+  <!-- PREP — 48 hours before -->
+  <section class="gs" id="prep">
+    <div class="section-head">
+      <h2>48 שעות לפני הראיון — מה לעשות</h2>
+      <p>הכנה נכונה מורידה חרדה ב-70%. זה לא ניחוש — זה מחקר.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div>
+          <h4>48 שעות לפני: חקירת החברה (30-45 דקות)</h4>
+          <p>לקרוא על החברה באתר שלהם + לינקדאין + חדשות. לחפש את שם המראיין/ת בלינקדאין. <strong>זה לא מציצנות — זו הכנה.</strong> לרשום 3 עובדות מעניינות לציין בראיון.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div>
+          <h4>24 שעות לפני: לכתוב תשובות לשאלות צפויות</h4>
+          <p>לעבור על 10 השאלות הנפוצות (בחלק הבא) ולכתוב לכל אחת תשובה של 30-60 שניות. <strong>לא ללמוד בעל פה — לכתוב ולקרוא בקול 3 פעמים.</strong></p>
+        </div>
+      </div>
+      <div class="step">
+        <div>
+          <h4>ערב לפני: להכין פיזית</h4>
+          <p>בגדים (ראו/י מדריך קוד לבוש), המסמכים במעטפה, הדרך למקום בוויז. אם ראיון בזום — לבדוק מצלמה, מיקרופון, אור. <strong>לא לחכות לבוקר.</strong></p>
+        </div>
+      </div>
+      <div class="step">
+        <div>
+          <h4>בבוקר: 2 שעות פנויות לפני</h4>
+          <p>לא להיכנס למשימות חדשות. לאכול משהו (גם אם אין חשק). להגיע 10 דקות מוקדם — לא 30, לא 5. 10 זה הנכון.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div>
+          <h4>5 דקות לפני: "נשימת הקופסה"</h4>
+          <p>4 שניות נשימה פנימה → 4 החזקה → 4 החוצה → 4 החזקה. שלוש פעמים. זה מרגיע את מערכת העצבים. <strong>עובד, גם אם זה נשמע קלישאה.</strong></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DISCLOSE -->
+  <section class="gs" id="disclose">
+    <div class="section-head">
+      <h2>לחשוף את האבחנה בראיון? החלטה אישית</h2>
+      <p>אין תשובה נכונה אחת. <strong>בישראל, מעסיק אסור לו לפטר אדם בגלל נכות/אבחנה</strong> (חוק שוויון הזדמנויות בעבודה), אבל חשיפה היא בחירה שלך.</p>
+    </div>
+
+    <div class="disclose">
+      <div class="disclose-card yes">
+        <h3>
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          מתי לחשוף — שיקולים בעד
+        </h3>
+        <ul>
+          <li><strong>כשצריכים התאמות.</strong> אם את/ה צריך/ה סביבה שקטה/אוזניות/הפסקות חושיות — צריכים לדעת כדי לאשר.</li>
+          <li><strong>במקומות שמגייסים מגוון במודע.</strong> יש חברות עם תכניות תעסוקה לאוטיסטים/ות (Microsoft, SAP, Bank Leumi). חשיפה שם = יתרון.</li>
+          <li><strong>כשזה נראה בראיון ממילא.</strong> אם את/ה יודע/ת שהסגנון שלך ייתפס כ"מוזר" — עדיף להגיד "אני אוטיסט/ית, זה למה אני מדבר/ת ישיר" מאשר לתת להם לנחש.</li>
+          <li><strong>אחרי קבלה לעבודה — לפני התחלה.</strong> אפשרות מצוינת. חוקי, מאפשר התאמות, לא משפיע על הקבלה.</li>
+        </ul>
+      </div>
+
+      <div class="disclose-card no">
+        <h3>
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01"/></svg>
+          מתי לא — שיקולים נגד
+        </h3>
+        <ul>
+          <li><strong>כשהתפקיד לא דורש התאמות.</strong> אם את/ה יכול/ה לעבוד בסביבה הרגילה — אין חובה חוקית לספר.</li>
+          <li><strong>בתפקידים שיש בהם דעה קדומה.</strong> מכירות פנים-אל-פנים, תפקידים ייצוגיים. לצערנו, סטיגמות קיימות. חוקי לא לחשוף.</li>
+          <li><strong>ראיון ראשון.</strong> בדרך כלל לא. תני לעצמך להראות קודם את הכישורים. חשיפה בראיון שני או אחרי קבלה.</li>
+          <li><strong>כשאת/ה לא בטוח/ה.</strong> פעם אחת סיפרת — אי אפשר להחזיר. במקרה של ספק: להשאיר לאחר כך.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="gcard tone-cool">
+      <h3>אם החלטת לחשוף — נוסחה</h3>
+      <p>"אני על הרצף האוטיסטי. זה אומר ש[יתרון 1: דיוק/מיקוד/זיכרון] ולפעמים אני זקוק/ה ל[התאמה קונקרטית: סביבה שקטה/הנחיות בכתב/פחות פגישות]. אני ממליץ/ה על האתגר הזה כי [כישור ספציפי]."</p>
+      <p><strong>לסיים על יתרון + פתרון. לא להתנצל.</strong></p>
+    </div>
+
+    <div class="big-reframe">
+      <h3>זכות החוק עומדת לצידך</h3>
+      <p>
+        חוק שוויון הזדמנויות בעבודה (1988) ו<strong>חוק שוויון זכויות לאנשים עם מוגבלות</strong> (1998) אוסרים על מעסיק
+        לסרב להעסיק או לפטר אדם בגלל נכות — כולל אוטיזם.
+        אם קרה לך — נציבות שוויון הזדמנויות בעבודה <a href="tel:*6050">*6050</a> או עמותת "בזכות".
+      </p>
+    </div>
+  </section>
+
+  <!-- 10 QUESTIONS -->
+  <section class="gs" id="questions">
+    <div class="section-head">
+      <h2>10 השאלות הנפוצות — עם תשובות מוכנות</h2>
+      <p>תאימו לעצמכם/ן. העיקר — לא להמציא ברגע האמת.</p>
+    </div>
+    <div class="qa-list">
+
+      <div class="qa-card">
+        <div class="q">ספר/י על עצמך</div>
+        <div class="a"><strong>נוסחה — 90 שניות:</strong> (1) רקע מקצועי — איפה למדת/עבדת. (2) מה את/ה עושה היום. (3) למה הגעת לראיון הזה — מה מושך בתפקיד הספציפי.</div>
+        <div class="note">אל תתחיל/י מילדות. אל תפרט/י משפחה. השאלה מקצועית, לא אישית.</div>
+      </div>
+
+      <div class="qa-card">
+        <div class="q">מה החולשות שלך?</div>
+        <div class="a"><strong>לא:</strong> "אני פרפקציוניסט/ית" (קלישאה). <strong>כן:</strong> חולשה אמיתית + מה את/ה עושה לגבי. לדוגמה: "קשה לי לעצור באמצע משימה. פיתחתי שיטת 'טיימר של 50 דקות' כדי לנהל את זה."</div>
+        <div class="note">מראיינים מחפשים מודעות עצמית, לא חולשה אמיתית. לא להתנצל.</div>
+      </div>
+
+      <div class="qa-card">
+        <div class="q">למה עזבת את העבודה הקודמת?</div>
+        <div class="a"><strong>כלל זהב:</strong> אף פעם לא לדבר רע על מעסיק קודם. תמיד לנסח חיובי: "חיפשתי אתגר חדש", "התפקיד הקודם הגיע למקסימום", "רציתי לעבור לתחום X".</div>
+        <div class="note">גם אם פוטרת או שהמקום היה נורא — לא מספרים את זה בראיון.</div>
+      </div>
+
+      <div class="qa-card">
+        <div class="q">ספר/י על פעם שהיה סכסוך עם קולגה</div>
+        <div class="a"><strong>STAR:</strong> תאר/י מצב קצר (לא דרמטי), מה עשית (הקשבה, פגישה, מתווך), ומה הייתה התוצאה. אם אין לך — <strong>לגיטימי לומר "לא חוויתי סכסוך רציני", ולתת דוגמה קטנה של אי-הסכמה שנפתרה."</strong></div>
+        <div class="note">מטרה: להראות שאת/ה לא נסחף/ת לסכסוכים. לא שהיו לך הרבה.</div>
+      </div>
+
+      <div class="qa-card">
+        <div class="q">איך את/ה עובד/ת בצוות?</div>
+        <div class="a"><strong>דוגמה מחיי היום יום:</strong> "בצוות אני הכי טוב/ה ב[תחום ספציפי — תיעוד, ניתוח, הצעת פתרונות]. אני נהנה/ת מחלוקת משימות ברורה. במקרים שבהם ההנחיות עמומות, אני מבקש/ת הבהרה."</div>
+        <div class="note">לא להגיד "אני טוב/ה בצוות" בלי דוגמה. תוסיף/י ערך מוחשי.</div>
+      </div>
+
+      <div class="qa-card">
+        <div class="q">מה הציפיות שלך למשכורת?</div>
+        <div class="a"><strong>לחקור מראש</strong> ב-Glassdoor/AllJobs/קבוצות פייסבוק של התחום. לתת <strong>טווח</strong>, לא מספר בודד. "בהתחשב בניסיון שלי, אני מצפה לטווח X-Y. פתוח/ה לדיון בהתאם לחבילה המלאה."</div>
+        <div class="note">לא לגלות מה המשכורת הנוכחית — לא חוקי לדרוש ממך.</div>
+      </div>
+
+      <div class="qa-card">
+        <div class="q">איפה את/ה רואה/ה את עצמך בעוד 5 שנים?</div>
+        <div class="a"><strong>לקשור לתפקיד</strong> ולא לחלום גנרי. "להיות מומחה/ית בתחום X, להוביל פרויקטים, אולי לנהל צוות קטן — בהנחה שהתפקיד הזה הוא הקרקע לכך."</div>
+        <div class="note">אל תגיד/י "במקומך/בעמדה שלך" (מאיים). אל תגיד/י "לא יודע/ת" (לא טוב).</div>
+      </div>
+
+      <div class="qa-card">
+        <div class="q">למה דווקא החברה שלנו?</div>
+        <div class="a"><strong>להשתמש במחקר שעשית.</strong> "ראיתי ש-[עובדה ספציפית מהאתר/חדשות]. זה מתחבר לניסיון שלי ב-[תחום]. גם [שם עובד/ת שראיית בלינקדאין] כתב/ה על [נושא] — זה תחום שמעניין אותי."</div>
+        <div class="note">לא "כי אני צריך/ה עבודה". גם אם זו האמת.</div>
+      </div>
+
+      <div class="qa-card">
+        <div class="q">יש לך שאלות?</div>
+        <div class="a"><strong>תמיד יש.</strong> דוגמאות: "איך נראה יום ממוצע בתפקיד?" | "מה ההצלחה נמדדת בה ב-3 החודשים הראשונים?" | "מי יהיו הקולגות הקרובים שלי?" | "איך החברה מתמודדת עם X?"</div>
+        <div class="note">לא לשאול על משכורת או חופשות — זה בשלב מאוחר יותר.</div>
+      </div>
+
+      <div class="qa-card">
+        <div class="q">איך את/ה מתמודד/ת עם לחץ?</div>
+        <div class="a"><strong>דוגמה קונקרטית:</strong> "כשיש דד-ליין קרוב, אני מחלק/ת את המשימה לצעדים קטנים ועובד/ת לפי רשימה. בפרויקט X היה לי 3 ימים לסיים Y — חילקתי ל-9 משימות של שעה ועמדתי בזמן."</div>
+        <div class="note">לא "אני לא נלחצ/ת" (לא אמין). לא "הלחץ משתק אותי" (פוגע בסיכויים).</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- RED FLAGS -->
+  <section class="gs" id="redflags">
+    <div class="section-head">
+      <h2>דגלים אדומים — מתי לא לקבל את העבודה</h2>
+      <p>ראיון הוא דו-כיווני. גם את/ה בוחן/ת אותם.</p>
+    </div>
+    <div class="yesno">
+      <div class="yn-col no">
+        <div class="yn-head">
+          <div class="dot"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01"/></svg></div>
+          <div>
+            <span class="sub">חשוב לשים לב</span>
+            <h3>סימנים שזה לא המקום</h3>
+          </div>
+        </div>
+        <div class="yn-items">
+          <div class="yn-item">
+            <div class="ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01"/></svg></div>
+            <div class="txt"><strong>מראיין/ת מאחר/ת בלי התנצלות</strong><span class="note">לא מכבד/ת אותך עכשיו, לא יכבד/ת אחר כך.</span></div>
+          </div>
+          <div class="yn-item">
+            <div class="ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01"/></svg></div>
+            <div class="txt"><strong>מדברים על "משפחה", "אווירה", "אהבה" יותר ממקצועיות</strong><span class="note">לרוב סימן לגבולות רעועים ועבודה במחיר נפשי.</span></div>
+          </div>
+          <div class="yn-item">
+            <div class="ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01"/></svg></div>
+            <div class="txt"><strong>"כולם פה נשארים עד 10 בלילה"</strong><span class="note">תרבות שחיקה. בייחוד קשה לאוטיסטים/ות.</span></div>
+          </div>
+          <div class="yn-item">
+            <div class="ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01"/></svg></div>
+            <div class="txt"><strong>לוחצים לענות מיד "כן" להצעה</strong><span class="note">הצעה סבירה מאפשרת 24-48 שעות לשקול. לחץ = דגל אדום.</span></div>
+          </div>
+          <div class="yn-item">
+            <div class="ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01"/></svg></div>
+            <div class="txt"><strong>לא מפרטים בבירור מה התפקיד</strong><span class="note">אם אחרי 45 דקות את/ה עדיין לא יודע/ת מה תעשה/י כל יום — תברח/י.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="yn-col yes">
+        <div class="yn-head">
+          <div class="dot"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div>
+          <div>
+            <span class="sub">סימנים טובים</span>
+            <h3>מה שמעיד שזה מקום טוב</h3>
+          </div>
+        </div>
+        <div class="yn-items">
+          <div class="yn-item">
+            <div class="ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div>
+            <div class="txt"><strong>מתארים את התפקיד בצורה קונקרטית</strong><span class="note">"ביום ראשון תעשה/י X, בשבוע שני Y" — בהירות = מקום שמנוהל טוב.</span></div>
+          </div>
+          <div class="yn-item">
+            <div class="ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div>
+            <div class="txt"><strong>שואלים שאלות מקצועיות, לא רק "אישיות"</strong><span class="note">התעניינות בכישורים = מקום שערכים בו את מה שאת/ה מביא/ה.</span></div>
+          </div>
+          <div class="yn-item">
+            <div class="ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div>
+            <div class="txt"><strong>מציעים לענות על שאלות שלך בלי להסתייג</strong><span class="note">שקיפות = תרבות בריאה.</span></div>
+          </div>
+          <div class="yn-item">
+            <div class="ic"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div>
+            <div class="txt"><strong>מסבירים מה "הצלחה" בתפקיד בתוך 3 חודשים</strong><span class="note">מדדים ברורים = אפשר לנצח. עמימות = לא.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHECKLIST -->
+  <section class="gs" id="checklist">
+    <div class="section-head">
+      <h2>צ'קליסט — בוקר הראיון</h2>
+      <p>סמנו בוקר הראיון. לא לנחש — לעבור לפי הרשימה.</p>
+    </div>
+    <div class="checklist">
+      <h3>לפני היציאה מהבית</h3>
+      <ul class="check-list">
+        <li><label><input type="checkbox"><div class="check-txt"><strong>קו"ח מודפסים (2 עותקים)</strong><span class="sub">גם אם שלחת במייל. מראה רצינות.</span></div></label></li>
+        <li><label><input type="checkbox"><div class="check-txt"><strong>בגדים לפי מדריך קוד לבוש</strong><span class="sub">גיהוץ ערב קודם, לא בוקר.</span></div></label></li>
+        <li><label><input type="checkbox"><div class="check-txt"><strong>טלפון טעון + מטען חירום</strong><span class="sub">לניווט, לכתובת, לזימון אוטובוס חזרה.</span></div></label></li>
+        <li><label><input type="checkbox"><div class="check-txt"><strong>כתובת + שם איש/ת קשר שמור/ה</strong><span class="sub">ב-Notes, לא רק במייל. מייל יכול להישכח.</span></div></label></li>
+        <li><label><input type="checkbox"><div class="check-txt"><strong>בקבוק מים + חטיף אנרגיה</strong><span class="sub">לאחרי הראיון, בתחבורה חזרה.</span></div></label></li>
+        <li><label><input type="checkbox"><div class="check-txt"><strong>3 שאלות ששאלתי מראש — רשומות בטלפון</strong><span class="sub">מותר לפתוח את הטלפון בסוף ולקרוא מהן.</span></div></label></li>
+        <li><label><input type="checkbox"><div class="check-txt"><strong>אוזניות נגד רעש בכיס</strong><span class="sub">לאחרי — אם הראיון היה מאתגר, חוזרים הביתה בשקט.</span></div></label></li>
+        <li><label><input type="checkbox"><div class="check-txt"><strong>אכלתי משהו</strong><span class="sub">גם אם אין חשק. ריק = רעד = רושם לא טוב.</span></div></label></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PHRASES -->
+  <section class="gs">
+    <div class="section-head">
+      <h2>משפטים מצילי ראיון</h2>
+      <p>שמור/י בטלפון. כשתוקעים/ן — להעתיק.</p>
+    </div>
+    <div class="phrases">
+      <div class="phrase">
+        <div class="quote-mark">״</div>
+        <div class="text">"זו שאלה טובה. אפשר לתת לי רגע לחשוב?"</div>
+        <div class="when">כשנתקעים על שאלה. מותר ב-100%. עדיף מתשובה ריקה.</div>
+      </div>
+      <div class="phrase">
+        <div class="quote-mark">״</div>
+        <div class="text">"אני רוצה לוודא שהבנתי נכון — השאלה היא X?"</div>
+        <div class="when">כשלא בטוח/ה מה שאלו. לא מביך — מקצועי.</div>
+      </div>
+      <div class="phrase">
+        <div class="quote-mark">״</div>
+        <div class="text">"זו לא היה התחום החזק שלי בתפקיד הקודם. כאן הייתי רוצה להתפתח בזה."</div>
+        <div class="when">כשאין לך ניסיון רלוונטי. להפוך לפוטנציאל במקום להתחבא.</div>
+      </div>
+      <div class="phrase">
+        <div class="quote-mark">״</div>
+        <div class="text">"אני עדיין חושב/ת על ההצעה. אחזור אליכם תוך 24 שעות."</div>
+        <div class="when">כשלוחצים להחלטה מיד. לקנות זמן מותר.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BIG REFRAME -->
+  <section class="gs">
+    <div class="big-reframe">
+      <h3>ראיון לא מודד אם את/ה "בנאדם טוב"</h3>
+      <p>
+        הוא מודד עד כמה טוב את/ה במבחן של 45 דקות מתוזמן, עם אדם זר, שיש לו/ה דעות קדומות.
+        <strong>אי-קבלה אומר שזה לא המקום — לא שאת/ה לא טוב/ה.</strong>
+        בממוצע, לוקח 5-15 ראיונות למצוא עבודה. זה נורמלי, גם לנוירוטיפיים.
+      </p>
+    </div>
+  </section>
+
+    </div>
+
+<footer class="guide-footer">
+  <a href="index.html" class="back">← חזרה לכל המדריכים</a>
+</footer>
+
+<footer class="rezef-footer">
+  <div class="ft-links">
+    <a href="../index.html#about">אודות רצף</a>
+    <a href="../index.html#svc">רצף מענים</a>
+    <a href="../index.html#articles">רצף כתבות</a>
+  </div>
+  <p class="ft-note">© רצף · מדריכים מבוססי מחקר לקהילה האוטיסטית · נכתבו ע"י מיטל פלג</p>
+</footer>
+
+</main>
+
+</body>
+</html>
