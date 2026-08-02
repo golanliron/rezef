@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=Rubik:wght@700;800;900&display=swap"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:clip}
 body{
   font-family:'Heebo',sans-serif;
   direction:rtl;
@@ -36,13 +36,14 @@ body{
 /* ── NAV ── */
 nav{
   position:sticky;top:0;z-index:250;
-  height:68px;padding:0 64px;
-  display:flex;align-items:center;justify-content:space-between;
+  height:68px;padding:0 clamp(16px,3.4vw,64px);
+  display:flex;align-items:center;justify-content:space-between;gap:18px;
   background:rgba(255,255,255,0.97);
   border-bottom:1px solid var(--border);
 }
 
-.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;min-width:0}
+.logo-tag{max-width:min(44vw,420px)}
 .logo-name{
   font-family:'Rubik',sans-serif;
   font-size:26px;font-weight:900;
