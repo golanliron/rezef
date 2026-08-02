@@ -4,7 +4,9 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
 <title>רצף — מענים לאוטיזם לאורך כל שלבי החיים</title>
-<style>@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=Rubik:wght@700;800;900&display=swap');</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=Rubik:wght@700;800;900&display=swap"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -36,8 +38,7 @@ nav{
   position:sticky;top:0;z-index:250;
   height:68px;padding:0 64px;
   display:flex;align-items:center;justify-content:space-between;
-  background:rgba(255,255,255,0.95);
-  backdrop-filter:blur(16px);
+  background:rgba(255,255,255,0.97);
   border-bottom:1px solid var(--border);
 }
 
@@ -1091,10 +1092,7 @@ footer{background:var(--navy);padding:64px 80px 36px}
 </style>
 </head>
 <body>
-<script src="_maanim_inline.js"></script>
-<script>
-if(typeof initMaanim==="function"){initMaanim();}else{document.addEventListener("DOMContentLoaded",initMaanim);}
-</script>
+<script src="_maanim_inline.js" defer></script>
 
 
 <!-- SKIP LINK — נגישות -->
@@ -1163,10 +1161,10 @@ if(typeof initMaanim==="function"){initMaanim();}else{document.addEventListener(
 <section class="hero" id="main-content">
   <!-- תמונה -->
   <div class="hero-image" id="heroSlideshow">
-    <div class="hero-slide active"><img src="hero4.png" alt="" style="object-position:center 20%"/></div>
-    <div class="hero-slide"><img src="hero5.png" alt="" style="object-position:center 20%"/></div>
-    <div class="hero-slide"><img src="hero6.png" alt="" style="object-position:center 20%"/></div>
-    <div class="hero-slide"><img src="hero7.png" alt="" style="object-position:center 20%"/></div>
+    <div class="hero-slide active"><img src="hero4.webp" fetchpriority="high" decoding="async" alt="" style="object-position:center 20%"/></div>
+    <div class="hero-slide"><img data-src="hero5.webp" decoding="async" alt="" style="object-position:center 20%"/></div>
+    <div class="hero-slide"><img data-src="hero6.webp" decoding="async" alt="" style="object-position:center 20%"/></div>
+    <div class="hero-slide"><img data-src="hero7.webp" decoding="async" alt="" style="object-position:center 20%"/></div>
   </div>
 
   <!-- תוכן -->
@@ -1404,7 +1402,7 @@ if(typeof initMaanim==="function"){initMaanim();}else{document.addEventListener(
       <p>הבנתי שהבעיה המרכזית אינה מחסור במענים, אלא הקושי למצוא אותם בזמן, להבין מה מתאים, למי לפנות ואיך להתקדם בביטחון. <span class="brand">רֶצֶף</span> נבנתה כדי להפוך מידע מורכב לנגיש, ברור ומועיל — ולאפשר למשפחות לקבל החלטות טובות יותר, בדרך רגועה ופשוטה יותר.</p>
     </div>
     <div class="about-founder-card" style="padding:0;overflow:hidden;background:transparent;border:none;display:flex;flex-direction:column;">
-      <img src="mital.png" alt="מיטל פלג" style="width:100%;flex:1;min-height:280px;object-fit:cover;object-position:center top;display:block;border-radius:24px 24px 0 0;"/>
+      <img src="mital.webp" loading="lazy" decoding="async" alt="מיטל פלג" style="width:100%;flex:1;min-height:280px;object-fit:cover;object-position:center top;display:block;border-radius:24px 24px 0 0;"/>
       <div style="padding:20px 24px 24px;background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.12);border-top:none;border-radius:0 0 24px 24px;text-align:center;flex-shrink:0;">
         <div class="about-name">מיטל פלג</div>
         <div class="about-role">מייסדת <span class="brand">רֶצֶף</span></div>
@@ -1453,7 +1451,7 @@ if(typeof initMaanim==="function"){initMaanim();}else{document.addEventListener(
     <!-- כתבה 4 -->
     <div class="article-card" onclick="openArticle('a4')">
       <div class="article-img" style="position:relative;overflow:hidden;background:#1e3a5f">
-        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=680&q=80&auto=format&fit=crop" alt="מסמכים וזכויות" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center"/>
+        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=680&q=80&auto=format&fit=crop" alt="מסמכים וזכויות" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center"/>
         <div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(30,58,95,0.55) 0%,rgba(29,78,216,0.45) 100%)"></div>
         <span class="article-tag">קצבאות וזכויות</span>
       </div>
@@ -1467,7 +1465,7 @@ if(typeof initMaanim==="function"){initMaanim();}else{document.addEventListener(
     <!-- כתבה 5 -->
     <div class="article-card" onclick="openArticle('a5')">
       <div class="article-img" style="position:relative;overflow:hidden;background:#064e3b">
-        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=680&q=80&auto=format&fit=crop" alt="ועדת זכאות וחינוך" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%"/>
+        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=680&q=80&auto=format&fit=crop" alt="ועדת זכאות וחינוך" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%"/>
         <div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(6,78,59,0.6) 0%,rgba(5,150,105,0.4) 100%)"></div>
         <span class="article-tag">חינוך</span>
       </div>
@@ -1481,7 +1479,7 @@ if(typeof initMaanim==="function"){initMaanim();}else{document.addEventListener(
     <!-- כתבה 6 -->
     <div class="article-card" onclick="openArticle('a6')">
       <div class="article-img" style="position:relative;overflow:hidden;background:#4a1942">
-        <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=680&q=80&auto=format&fit=crop" alt="ילד בגן ובית ספר" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%"/>
+        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=680&q=80&auto=format&fit=crop" alt="ילד בגן ובית ספר" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%"/>
         <div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(74,25,66,0.55) 0%,rgba(126,34,206,0.4) 100%)"></div>
         <span class="article-tag">חינוך</span>
       </div>
@@ -1495,7 +1493,7 @@ if(typeof initMaanim==="function"){initMaanim();}else{document.addEventListener(
     <!-- כתבה 7 -->
     <div class="article-card" onclick="openArticle('a7')">
       <div class="article-img" style="position:relative;overflow:hidden;background:#7c2d12">
-        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=680&q=80&auto=format&fit=crop" alt="טיפול פרא-רפואי" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%"/>
+        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=680&q=80&auto=format&fit=crop" alt="טיפול פרא-רפואי" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%"/>
         <div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(124,45,18,0.55) 0%,rgba(194,65,12,0.4) 100%)"></div>
         <span class="article-tag">טיפולים</span>
       </div>
@@ -1509,7 +1507,7 @@ if(typeof initMaanim==="function"){initMaanim();}else{document.addEventListener(
     <!-- כתבה 8 -->
     <div class="article-card" onclick="openArticle('a8')">
       <div class="article-img" style="position:relative;overflow:hidden;background:#134e4a">
-        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=680&q=80&auto=format&fit=crop" alt="מטפל ומטופל" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%"/>
+        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=680&q=80&auto=format&fit=crop" alt="מטפל ומטופל" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%"/>
         <div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(19,78,74,0.6) 0%,rgba(15,118,110,0.4) 100%)"></div>
         <span class="article-tag">טיפולים</span>
       </div>
@@ -1523,7 +1521,7 @@ if(typeof initMaanim==="function"){initMaanim();}else{document.addEventListener(
     <!-- כתבה 1 -->
     <div class="article-card" onclick="openArticle('a1')">
       <div class="article-img" style="position:relative;overflow:hidden;background:#2d1b69">
-        <img src="https://images.unsplash.com/photo-1491013516836-7db643ee125a?w=680&q=80&auto=format&fit=crop" alt="הורה וילד" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%"/>
+        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1491013516836-7db643ee125a?w=680&q=80&auto=format&fit=crop" alt="הורה וילד" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%"/>
         <div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(45,27,105,0.6) 0%,rgba(124,58,237,0.4) 100%)"></div>
         <span class="article-tag">אבחון</span>
       </div>
@@ -1534,15 +1532,15 @@ if(typeof initMaanim==="function"){initMaanim();}else{document.addEventListener(
       </div>
     </div>
 
-    <div class="article-card" onclick="openArticle('a9')"><div class="article-img" style="position:relative;overflow:hidden;background:#2d1b69"><img src="https://images.unsplash.com/photo-1529390079861-591de354faf5?w=680&q=80&auto=format&fit=crop" alt="נער מתבגר" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%"/><div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(45,27,105,0.6) 0%,rgba(124,58,237,0.4) 100%)"></div><span class="article-tag">התבגרות</span></div><div class="article-body"><div class="article-title">אוטיזם בגיל ההתבגרות: כשהגוף משתנה ומה שהיה עובד — לא תמיד עובד יותר</div><div class="article-desc">גיל ההתבגרות הוא תקופת מעבר מאתגרת לכל בני הנוער — ולבני הנוער על הרצף, האתגרים יכולים להיות מוכפלים.</div><button class="article-read">קראו את הכתבה ←</button></div></div>
-    <div class="article-card" onclick="openArticle('a10')"><div class="article-img" style="position:relative;overflow:hidden;background:#2d1b69"><img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=680&q=80&auto=format&fit=crop" alt="כיתה" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%"/><div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(45,27,105,0.6) 0%,rgba(124,58,237,0.4) 100%)"></div><span class="article-tag">חינוך</span></div><div class="article-body"><div class="article-title">הכנה למעבר לחטיבה ולתיכון: איך עוברים חלק יותר</div><div class="article-desc">המעבר מיסודי לחטיבה, ומחטיבה לתיכון — אחד השינויים המורכבים ביותר עבור ילדים על הרצף. איך מכינים נכון?</div><button class="article-read">קראו את הכתבה ←</button></div></div>
-    <div class="article-card" onclick="openArticle('a11')"><div class="article-img" style="position:relative;overflow:hidden;background:#2d1b69"><img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=680&q=80&auto=format&fit=crop" alt="נער לבד" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%"/><div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(45,27,105,0.6) 0%,rgba(124,58,237,0.4) 100%)"></div><span class="article-tag">חברה</span></div><div class="article-body"><div class="article-title">אוטיזם ובדידות חברתית: כשהלב רוצה אבל הכלים חסרים</div><div class="article-desc">בדידות חברתית היא אחד הכאבים הגדולים ביותר של אנשים על הרצף. איך מזהים אותה, איך עוזרים, ומה עובד.</div><button class="article-read">קראו את הכתבה ←</button></div></div>
-    <div class="article-card" onclick="openArticle('a12')"><div class="article-img" style="position:relative;overflow:hidden;background:#2d1b69"><img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=680&q=80&auto=format&fit=crop" alt="מסמכים" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%"/><div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(45,27,105,0.6) 0%,rgba(124,58,237,0.4) 100%)"></div><span class="article-tag">זכויות</span></div><div class="article-body"><div class="article-title">מה קורה כשהבן או הבת שלכם מגיעים לגיל 18? מדריך לזכויות הבוגר</div><div class="article-desc">גיל 18 הוא נקודת מפנה משפטית ורגשית. מה משתנה, אילו זכויות ממשיכות ואיך עוברים את המעבר בשלום.</div><button class="article-read">קראו את הכתבה ←</button></div></div>
-    <div class="article-card" onclick="openArticle('a13')"><div class="article-img" style="position:relative;overflow:hidden;background:#2d1b69"><img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=680&q=80&auto=format&fit=crop" alt="עבודה" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%"/><div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(45,27,105,0.6) 0%,rgba(124,58,237,0.4) 100%)"></div><span class="article-tag">תעסוקה</span></div><div class="article-body"><div class="article-title">תעסוקה לאנשים על הרצף: אפשרויות, זכויות ותמיכות</div><div class="article-desc">עבודה היא לא רק פרנסה — היא זהות, שגרה ושייכות. איך מוצאים מקום עבודה מתאים ואילו תמיכות קיימות.</div><button class="article-read">קראו את הכתבה ←</button></div></div>
-    <div class="article-card" onclick="openArticle('a14')"><div class="article-img" style="position:relative;overflow:hidden;background:#2d1b69"><img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?w=680&q=80&auto=format&fit=crop" alt="דירה" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%"/><div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(45,27,105,0.6) 0%,rgba(124,58,237,0.4) 100%)"></div><span class="article-tag">דיור</span></div><div class="article-body"><div class="article-title">דיור נתמך וחיים עצמאיים לאנשים על הרצף: המדריך המלא</div><div class="article-desc">גר לבד? בדיור נתמך? בהוסטל? מה ההבדלים, למי זה מתאים, ואיך מתחילים את התהליך.</div><button class="article-read">קראו את הכתבה ←</button></div></div>
-    <div class="article-card" onclick="openArticle('a15')"><div class="article-img" style="position:relative;overflow:hidden;background:#2d1b69"><img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=680&q=80&auto=format&fit=crop" alt="צוות" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%"/><div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(45,27,105,0.6) 0%,rgba(124,58,237,0.4) 100%)"></div><span class="article-tag">שירות</span></div><div class="article-body"><div class="article-title">שירות צבאי ושירות לאומי לצעירים על הרצף: מה האפשרויות?</div><div class="article-desc">גיוס, פטור, שירות לאומי אזרחי — הדרכים רבות. איך מתמצאים ומה מגיע לכם.</div><button class="article-read">קראו את הכתבה ←</button></div></div>
-    <div class="article-card" onclick="openArticle('a16')"><div class="article-img" style="position:relative;overflow:hidden;background:#2d1b69"><img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=680&q=80&auto=format&fit=crop" alt="אחים" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%"/><div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(45,27,105,0.6) 0%,rgba(124,58,237,0.4) 100%)"></div><span class="article-tag">משפחה</span></div><div class="article-body"><div class="article-title">איך לדבר עם אחים ואחיות על אוטיזם בגיל שמבינים</div><div class="article-desc">האחים גדלים בבית שבו אוטיזם הוא חלק מהחיים — אבל לא תמיד מדברים איתם. כשלדבר, מה לומר, ואיך לשמור גם עליהם.</div><button class="article-read">קראו את הכתבה ←</button></div></div>
-    <div class="article-card" onclick="openArticle('a17')"><div class="article-img" style="position:relative;overflow:hidden;background:#2d1b69"><img src="https://images.unsplash.com/photo-1474552226712-ac0f0961a954?w=680&q=80&auto=format&fit=crop" alt="הורה עייף" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%"/><div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(45,27,105,0.6) 0%,rgba(124,58,237,0.4) 100%)"></div><span class="article-tag">הורים</span></div><div class="article-body"><div class="article-title">שחיקה הורית: כשאתם כל כך עסוקים בילד שאתם שוכחים את עצמכם</div><div class="article-desc">הורות לילד על הרצף היא מרתון, לא ספרינט. שחיקה היא לא חולשה — היא סימן שצריך עזרה. איך מזהים ואיך מתחזקים.</div><button class="article-read">קראו את הכתבה ←</button></div></div>
+    <div class="article-card" onclick="openArticle('a9')"><div class="article-img" style="position:relative;overflow:hidden;background:#2d1b69"><img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1529390079861-591de354faf5?w=680&q=80&auto=format&fit=crop" alt="נער מתבגר" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%"/><div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(45,27,105,0.6) 0%,rgba(124,58,237,0.4) 100%)"></div><span class="article-tag">התבגרות</span></div><div class="article-body"><div class="article-title">אוטיזם בגיל ההתבגרות: כשהגוף משתנה ומה שהיה עובד — לא תמיד עובד יותר</div><div class="article-desc">גיל ההתבגרות הוא תקופת מעבר מאתגרת לכל בני הנוער — ולבני הנוער על הרצף, האתגרים יכולים להיות מוכפלים.</div><button class="article-read">קראו את הכתבה ←</button></div></div>
+    <div class="article-card" onclick="openArticle('a10')"><div class="article-img" style="position:relative;overflow:hidden;background:#2d1b69"><img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=680&q=80&auto=format&fit=crop" alt="כיתה" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%"/><div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(45,27,105,0.6) 0%,rgba(124,58,237,0.4) 100%)"></div><span class="article-tag">חינוך</span></div><div class="article-body"><div class="article-title">הכנה למעבר לחטיבה ולתיכון: איך עוברים חלק יותר</div><div class="article-desc">המעבר מיסודי לחטיבה, ומחטיבה לתיכון — אחד השינויים המורכבים ביותר עבור ילדים על הרצף. איך מכינים נכון?</div><button class="article-read">קראו את הכתבה ←</button></div></div>
+    <div class="article-card" onclick="openArticle('a11')"><div class="article-img" style="position:relative;overflow:hidden;background:#2d1b69"><img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=680&q=80&auto=format&fit=crop" alt="נער לבד" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%"/><div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(45,27,105,0.6) 0%,rgba(124,58,237,0.4) 100%)"></div><span class="article-tag">חברה</span></div><div class="article-body"><div class="article-title">אוטיזם ובדידות חברתית: כשהלב רוצה אבל הכלים חסרים</div><div class="article-desc">בדידות חברתית היא אחד הכאבים הגדולים ביותר של אנשים על הרצף. איך מזהים אותה, איך עוזרים, ומה עובד.</div><button class="article-read">קראו את הכתבה ←</button></div></div>
+    <div class="article-card" onclick="openArticle('a12')"><div class="article-img" style="position:relative;overflow:hidden;background:#2d1b69"><img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=680&q=80&auto=format&fit=crop" alt="מסמכים" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%"/><div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(45,27,105,0.6) 0%,rgba(124,58,237,0.4) 100%)"></div><span class="article-tag">זכויות</span></div><div class="article-body"><div class="article-title">מה קורה כשהבן או הבת שלכם מגיעים לגיל 18? מדריך לזכויות הבוגר</div><div class="article-desc">גיל 18 הוא נקודת מפנה משפטית ורגשית. מה משתנה, אילו זכויות ממשיכות ואיך עוברים את המעבר בשלום.</div><button class="article-read">קראו את הכתבה ←</button></div></div>
+    <div class="article-card" onclick="openArticle('a13')"><div class="article-img" style="position:relative;overflow:hidden;background:#2d1b69"><img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=680&q=80&auto=format&fit=crop" alt="עבודה" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%"/><div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(45,27,105,0.6) 0%,rgba(124,58,237,0.4) 100%)"></div><span class="article-tag">תעסוקה</span></div><div class="article-body"><div class="article-title">תעסוקה לאנשים על הרצף: אפשרויות, זכויות ותמיכות</div><div class="article-desc">עבודה היא לא רק פרנסה — היא זהות, שגרה ושייכות. איך מוצאים מקום עבודה מתאים ואילו תמיכות קיימות.</div><button class="article-read">קראו את הכתבה ←</button></div></div>
+    <div class="article-card" onclick="openArticle('a14')"><div class="article-img" style="position:relative;overflow:hidden;background:#2d1b69"><img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1484154218962-a197022b5858?w=680&q=80&auto=format&fit=crop" alt="דירה" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%"/><div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(45,27,105,0.6) 0%,rgba(124,58,237,0.4) 100%)"></div><span class="article-tag">דיור</span></div><div class="article-body"><div class="article-title">דיור נתמך וחיים עצמאיים לאנשים על הרצף: המדריך המלא</div><div class="article-desc">גר לבד? בדיור נתמך? בהוסטל? מה ההבדלים, למי זה מתאים, ואיך מתחילים את התהליך.</div><button class="article-read">קראו את הכתבה ←</button></div></div>
+    <div class="article-card" onclick="openArticle('a15')"><div class="article-img" style="position:relative;overflow:hidden;background:#2d1b69"><img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=680&q=80&auto=format&fit=crop" alt="צוות" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%"/><div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(45,27,105,0.6) 0%,rgba(124,58,237,0.4) 100%)"></div><span class="article-tag">שירות</span></div><div class="article-body"><div class="article-title">שירות צבאי ושירות לאומי לצעירים על הרצף: מה האפשרויות?</div><div class="article-desc">גיוס, פטור, שירות לאומי אזרחי — הדרכים רבות. איך מתמצאים ומה מגיע לכם.</div><button class="article-read">קראו את הכתבה ←</button></div></div>
+    <div class="article-card" onclick="openArticle('a16')"><div class="article-img" style="position:relative;overflow:hidden;background:#2d1b69"><img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=680&q=80&auto=format&fit=crop" alt="אחים" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%"/><div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(45,27,105,0.6) 0%,rgba(124,58,237,0.4) 100%)"></div><span class="article-tag">משפחה</span></div><div class="article-body"><div class="article-title">איך לדבר עם אחים ואחיות על אוטיזם בגיל שמבינים</div><div class="article-desc">האחים גדלים בבית שבו אוטיזם הוא חלק מהחיים — אבל לא תמיד מדברים איתם. כשלדבר, מה לומר, ואיך לשמור גם עליהם.</div><button class="article-read">קראו את הכתבה ←</button></div></div>
+    <div class="article-card" onclick="openArticle('a17')"><div class="article-img" style="position:relative;overflow:hidden;background:#2d1b69"><img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1474552226712-ac0f0961a954?w=680&q=80&auto=format&fit=crop" alt="הורה עייף" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%"/><div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(45,27,105,0.6) 0%,rgba(124,58,237,0.4) 100%)"></div><span class="article-tag">הורים</span></div><div class="article-body"><div class="article-title">שחיקה הורית: כשאתם כל כך עסוקים בילד שאתם שוכחים את עצמכם</div><div class="article-desc">הורות לילד על הרצף היא מרתון, לא ספרינט. שחיקה היא לא חולשה — היא סימן שצריך עזרה. איך מזהים ואיך מתחזקים.</div><button class="article-read">קראו את הכתבה ←</button></div></div>
 
   </div>
 </section>
@@ -2516,6 +2514,14 @@ document.addEventListener('DOMContentLoaded', initMaanim);
 /* ── HERO SLIDESHOW ── */
 (function(){
   var cur=0;
+  function loadRest(){
+    document.querySelectorAll('#heroSlideshow .hero-slide img[data-src]').forEach(function(img){
+      img.src = img.getAttribute('data-src');
+      img.removeAttribute('data-src');
+    });
+  }
+  if (document.readyState === 'complete') loadRest();
+  else window.addEventListener('load', loadRest);
   function tick(){
     var slides=document.querySelectorAll('#heroSlideshow .hero-slide');
     if(!slides.length) return;
@@ -3088,7 +3094,7 @@ function doSearch() {
 
   <!-- תמונה עליונה -->
   <div style="position:relative;height:140px;overflow:hidden">
-    <img src="https://images.unsplash.com/photo-1531983412531-1f49a365ffed?w=760&q=80&auto=format&fit=crop&crop=top" alt="קהילה" style="width:100%;height:100%;object-fit:cover;object-position:center 30%"/>
+    <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1531983412531-1f49a365ffed?w=760&q=80&auto=format&fit=crop&crop=top" alt="קהילה" style="width:100%;height:100%;object-fit:cover;object-position:center 30%"/>
     <div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(45,27,105,0.72) 0%,rgba(124,58,237,0.55) 100%)"></div>
     <!-- לוגו + כותרת על התמונה -->
     <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:20px 22px 16px">
@@ -3166,23 +3172,32 @@ function closePromo(){
 </script>
 
 <script>
-// Parallax scroll effect on article card images
+// Parallax scroll effect on article card images (desktop only, on-screen only)
 (function(){
+  if (window.matchMedia('(pointer:coarse), (prefers-reduced-motion:reduce), (max-width:900px)').matches) return;
+  var pairs = null;
+  function collect(){
+    pairs = [];
+    document.querySelectorAll('.article-img img').forEach(function(img){
+      var wrap = img.closest('.article-img');
+      if (wrap){ img.style.willChange = 'transform'; pairs.push([img, wrap]); }
+    });
+  }
   function updateParallax(){
-    var imgs = document.querySelectorAll('.article-img img');
-    imgs.forEach(function(img){
-      var rect = img.closest('.article-img').getBoundingClientRect();
-      var center = rect.top + rect.height / 2;
-      var vhCenter = window.innerHeight / 2;
-      var offset = (center - vhCenter) * 0.12;
-      img.style.transform = 'translateY(' + offset + 'px) scale(1.08)';
+    if (!pairs) collect();
+    var vh = window.innerHeight, vhCenter = vh / 2;
+    pairs.forEach(function(p){
+      var rect = p[1].getBoundingClientRect();
+      if (rect.bottom < -100 || rect.top > vh + 100) return;
+      var offset = ((rect.top + rect.height / 2) - vhCenter) * 0.12;
+      p[0].style.transform = 'translateY(' + offset + 'px) scale(1.08)';
     });
   }
   var ticking = false;
   window.addEventListener('scroll', function(){
     if(!ticking){ requestAnimationFrame(function(){ updateParallax(); ticking=false; }); ticking=true; }
   }, {passive:true});
-  updateParallax();
+  document.addEventListener('DOMContentLoaded', function(){ collect(); updateParallax(); });
 })();
 </script>
 
