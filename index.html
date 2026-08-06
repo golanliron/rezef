@@ -10,6 +10,8 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;overflow-x:clip}
+/* מובייל: גלילה בתוך פאנל/עמוד-מאמרים לא תזלוג לעמוד שמאחור */
+#maanim-panel,#articles-page{overscroll-behavior:contain}
 body{
   font-family:'Heebo',sans-serif;
   direction:rtl;
@@ -925,7 +927,9 @@ footer{background:var(--navy);padding:64px 80px 36px}
     border-radius:14px;margin-bottom:0;
     padding:5px 5px 5px 12px;
   }
-  .hero-search-strip .hero-search input{font-size:15px}
+  /* 16px ומעלה — מתחת לזה ספארי iOS עושה זום אוטומטי לכל העמוד בפוקוס */
+  .hero-search-strip .hero-search input{font-size:16px}
+  #maanim-region,#maanim-kupa{font-size:16px!important}
   .hero-search-strip .hero-search button{padding:12px 18px;font-size:14px;border-radius:10px}
   .hero-btns{display:flex;gap:5px;margin-top:12px;flex-wrap:nowrap;justify-content:center}
   .hero-btns .btn-main,.hero-btns .btn-line{padding:9px 11px;font-size:11.5px;border-radius:100px;white-space:nowrap;flex-shrink:0}
@@ -1116,7 +1120,7 @@ footer{background:var(--navy);padding:64px 80px 36px}
   </ul>
 
   <!-- לוגו — מרכז תמיד -->
-  <a href="#" class="logo" onclick="var p=document.getElementById('articles-page');if(p&&p.style.display!=='none'){p.style.display='none';document.body.style.overflow='';return false;}">
+  <a href="#" class="logo" onclick="closeArticlesPage();return false;">
     <svg class="logo-svg" viewBox="0 0 40 40" fill="none">
       <path d="M4 36 C4 16 20 10 20 10 C20 10 36 16 36 36" stroke="#A78BFA" stroke-width="2.5" stroke-linecap="round" fill="none"/>
       <path d="M8.5 36 C8.5 19 20 14 20 14 C20 14 31.5 19 31.5 36" stroke="#312E81" stroke-width="2.5" stroke-linecap="round" fill="none"/>
@@ -2592,12 +2596,42 @@ document.addEventListener('DOMContentLoaded', initMaanim);
       resetAuto();
       render();
     };
-    window.addEventListener('resize', render);
+    // רק שינוי-רוחב אמיתי — במובייל קריסת שורת-הכתובת יורה resize על כל גלילה
+    var lastW = window.innerWidth;
+    window.addEventListener('resize', function(){
+      if (window.innerWidth === lastW) return;
+      lastW = window.innerWidth;
+      render();
+    });
     render();
     startAuto();
   }
   document.addEventListener('DOMContentLoaded', init);
 })();
+
+// נעילת גלילת-רקע שעובדת גם ב-iOS (overflow:hidden על body לא מכובד שם —
+// הרקע זז מאחורי הפאנל והעמוד "קופץ"). position:fixed + שחזור מיקום בסגירה.
+var __bodyLockY = null;
+function lockBody() {
+  if (__bodyLockY !== null) return;
+  __bodyLockY = window.scrollY || document.documentElement.scrollTop || 0;
+  var b = document.body.style;
+  b.position = 'fixed';
+  b.top = (-__bodyLockY) + 'px';
+  b.left = '0'; b.right = '0'; b.width = '100%';
+  b.overflow = 'hidden';
+}
+function unlockBody() {
+  if (__bodyLockY === null) return;
+  var b = document.body.style;
+  b.position = ''; b.top = ''; b.left = ''; b.right = ''; b.width = ''; b.overflow = '';
+  var de = document.documentElement;
+  var prev = de.style.scrollBehavior;
+  de.style.scrollBehavior = 'auto';
+  window.scrollTo(0, __bodyLockY);
+  de.style.scrollBehavior = prev;
+  __bodyLockY = null;
+}
 
 function openMaanim(ageKey) {
   const cfg = AGE_CONFIG.find(a => a.key === ageKey);
@@ -2605,7 +2639,7 @@ function openMaanim(ageKey) {
   document.getElementById('maanim-back').style.display = 'none';
   document.getElementById('maanim-overlay').style.display = 'block';
   document.getElementById('maanim-panel').style.display = 'block';
-  document.body.style.overflow = 'hidden';
+  lockBody();
   renderCurrent();
 }
 
@@ -2614,14 +2648,14 @@ function openMaanimByCategory(cat) {
   document.getElementById('maanim-back').style.display = 'inline-flex';
   document.getElementById('maanim-overlay').style.display = 'block';
   document.getElementById('maanim-panel').style.display = 'block';
-  document.body.style.overflow = 'hidden';
+  lockBody();
   renderCurrent();
 }
 
 function closeMaanim() {
   document.getElementById('maanim-overlay').style.display = 'none';
   document.getElementById('maanim-panel').style.display = 'none';
-  document.body.style.overflow = '';
+  unlockBody();
 }
 
 function maanimBack() {
@@ -2891,25 +2925,25 @@ function toggleArticles(e){
   var page = document.getElementById('articles-page');
   var isHidden = page.style.display === 'none';
   page.style.display = isHidden ? 'block' : 'none';
-  document.body.style.overflow = isHidden ? 'hidden' : '';
+  if (isHidden) lockBody(); else unlockBody();
   page.scrollTop = 0;
 }
 function closeArticlesPage(){
   var page = document.getElementById('articles-page');
   if(page && page.style.display !== 'none'){
     page.style.display = 'none';
-    document.body.style.overflow = '';
+    unlockBody();
   }
 }
 
 
 function openArticle(id){
   document.getElementById('modal-'+id).classList.add('open');
-  document.body.style.overflow='hidden';
+  lockBody();
 }
 function closeArticle(id){
   document.getElementById('modal-'+id).classList.remove('open');
-  document.body.style.overflow='';
+  unlockBody();
 }
 document.addEventListener('keydown',function(e){
   if(e.key==='Escape'){
@@ -2917,7 +2951,7 @@ document.addEventListener('keydown',function(e){
       m.classList.remove('open');
     });
     closePrivacy();closeTerms();
-    document.body.style.overflow='';
+    unlockBody();
   }
 });
 
@@ -2925,20 +2959,20 @@ document.addEventListener('keydown',function(e){
 function openPrivacy(){
   var m=document.getElementById('privacy-modal');
   m.style.display='flex';
-  document.body.style.overflow='hidden';
+  lockBody();
 }
 function closePrivacy(){
   var m=document.getElementById('privacy-modal');
-  if(m){m.style.display='none';document.body.style.overflow='';}
+  if(m){m.style.display='none';unlockBody();}
 }
 function openTerms(){
   var m=document.getElementById('terms-modal');
   m.style.display='flex';
-  document.body.style.overflow='hidden';
+  lockBody();
 }
 function closeTerms(){
   var m=document.getElementById('terms-modal');
-  if(m){m.style.display='none';document.body.style.overflow='';}
+  if(m){m.style.display='none';unlockBody();}
 }
 
 /* ── MOBILE NAV ── */
@@ -2947,14 +2981,14 @@ function toggleMobileMenu(){
   var btn=document.getElementById('nav-hamburger');
   var isOpen=menu.classList.toggle('open');
   btn.classList.toggle('open',isOpen);
-  document.body.style.overflow=isOpen?'hidden':'';
+  if(isOpen)lockBody();else unlockBody();
 }
 function closeMobileMenu(){
   var menu=document.getElementById('nav-mobile-menu');
   var btn=document.getElementById('nav-hamburger');
   menu.classList.remove('open');
   btn.classList.remove('open');
-  document.body.style.overflow='';
+  unlockBody();
 }
 </script>
 
@@ -3026,7 +3060,9 @@ function hideCookieBanner(){
 
 // ══ SEARCH ══
 function doSearch() {
-  var q = (document.getElementById('hero-search-input').value || '').trim();
+  var input = document.getElementById('hero-search-input');
+  input.blur(); // סוגר מקלדת במובייל לפני פתיחת הפאנל
+  var q = (input.value || '').trim();
   if (!q) return;
   var results = MAANIM.filter(function(d) {
     var hay = [d.name, d.category, d.subcategory, d.region, d.description].join(' ').toLowerCase();
@@ -3037,7 +3073,7 @@ function doSearch() {
   document.getElementById('maanim-back').style.display = 'inline-flex';
   document.getElementById('maanim-overlay').style.display = 'block';
   document.getElementById('maanim-panel').style.display = 'block';
-  document.body.style.overflow = 'hidden';
+  lockBody();
   renderCurrent();
 }
 
