@@ -12,6 +12,8 @@
 html{scroll-behavior:smooth;overflow-x:clip}
 /* מובייל: גלילה בתוך פאנל/עמוד-מאמרים לא תזלוג לעמוד שמאחור */
 #maanim-panel,#articles-page{overscroll-behavior:contain}
+/* layout עצל לסקשנים מתחת לקיפול — מקצר את חסימת ה-main-thread בטעינה במובייל */
+.how-sec,.about-sec,.testimonials-sec,.articles-sec,.ft{content-visibility:auto;contain-intrinsic-size:auto 700px}
 body{
   font-family:'Heebo',sans-serif;
   direction:rtl;
@@ -2534,6 +2536,7 @@ document.addEventListener('DOMContentLoaded', initMaanim);
   if (document.readyState === 'complete') loadRest();
   else window.addEventListener('load', loadRest);
   function tick(){
+    if(document.hidden) return;
     var slides=document.querySelectorAll('#heroSlideshow .hero-slide');
     if(!slides.length) return;
     slides[cur].classList.remove('active');
@@ -2543,70 +2546,96 @@ document.addEventListener('DOMContentLoaded', initMaanim);
   setInterval(tick,4500);
 })();
 
-/* ── TESTIMONIALS CAROUSEL (autoplay loop) ── */
+/* ── TESTIMONIALS CAROUSEL (autoplay loop) ──
+   init עצל: רק כשהקרוסלה מתקרבת למסך (ה-init הישן כפה layout מלא של כל
+   העמוד באמצע הטעינה — ~2 שניות חסימה במובייל). בלי reflow פר-טיק:
+   רוחב-כרטיס נמדד פעם אחת, הנקודות נבנות פעם אחת ורק מתחלפות ב-class.
+   ה-autoplay רץ רק כשהקרוסלה על המסך והטאב גלוי. */
 (function(){
-  var track, cards, cur=0, perView=3, autoTimer=null;
-  function init(){
-    track = document.getElementById('tscrollTrack');
-    if(!track) return;
-    cards = Array.from(track.querySelectorAll('.tcard'));
-    var dotsEl = document.getElementById('tcarouselDots');
-    var total = cards.length;
-    function calcPer(){
-      var w = window.innerWidth;
-      return w < 600 ? 1 : w < 900 ? 2 : 3;
-    }
-    function render(){
-      perView = calcPer();
-      var cardW = cards[0].offsetWidth + 18;
-      track.style.transform = 'translateX(' + (cur * cardW) + 'px)';
-      var pages = Math.ceil(total / perView);
-      dotsEl.innerHTML='';
-      for(var i=0;i<pages;i++){
-        var d=document.createElement('button');
-        d.className='tcarousel-dot'+(Math.floor(cur/perView)===i?' active':'');
-        d.setAttribute('aria-label','עמוד '+(i+1));
-        (function(idx){d.onclick=function(){cur=idx*perView;resetAuto();render();}})(i);
+  var track, cards, cur=0, perView=3, autoTimer=null, cardW=0, dotBtns=[], dotsEl, started=false, onScreen=false;
+  function calcPer(){
+    var w = window.innerWidth;
+    return w < 600 ? 1 : w < 900 ? 2 : 3;
+  }
+  function measure(){ cardW = cards[0].offsetWidth + 18; }
+  function render(){
+    perView = calcPer();
+    track.style.transform = 'translateX(' + (cur * cardW) + 'px)';
+    var pages = Math.ceil(cards.length / perView);
+    if (dotBtns.length !== pages) {
+      dotsEl.innerHTML = '';
+      dotBtns = [];
+      for (var i = 0; i < pages; i++) {
+        var d = document.createElement('button');
+        d.className = 'tcarousel-dot';
+        d.setAttribute('aria-label', 'עמוד ' + (i + 1));
+        (function(idx){ d.onclick = function(){ cur = idx * perView; startAuto(); render(); }; })(i);
         dotsEl.appendChild(d);
+        dotBtns.push(d);
       }
-      var prev=document.querySelector('.tcarousel-btn.prev');
-      var next=document.querySelector('.tcarousel-btn.next');
-      if(prev) prev.disabled = false;
-      if(next) next.disabled = false;
     }
-    function advance(){
-      perView = calcPer();
+    var activeIdx = Math.floor(cur / perView);
+    for (var j = 0; j < dotBtns.length; j++) dotBtns[j].classList.toggle('active', j === activeIdx);
+  }
+  function advance(){
+    cur = cur + perView >= cards.length ? 0 : cur + perView;
+    render();
+  }
+  function startAuto(){
+    stopAuto();
+    if (onScreen && !document.hidden) autoTimer = setInterval(advance, 4500);
+  }
+  function stopAuto(){
+    if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+  }
+  window.tCarousel = function(dir){
+    if (!started) return;
+    perView = calcPer();
+    if(dir > 0){
       cur = cur + perView >= cards.length ? 0 : cur + perView;
-      render();
+    } else {
+      cur = cur - perView < 0 ? Math.max(0, cards.length - perView) : cur - perView;
     }
-    function startAuto(){
-      if(autoTimer) clearInterval(autoTimer);
-      autoTimer = setInterval(advance, 4500);
-    }
-    function resetAuto(){
-      startAuto();
-    }
-    window.tCarousel = function(dir){
-      perView = calcPer();
-      if(dir > 0){
-        cur = cur + perView >= cards.length ? 0 : cur + perView;
-      } else {
-        cur = cur - perView < 0 ? Math.max(0, cards.length - perView) : cur - perView;
-      }
-      resetAuto();
-      render();
-    };
+    startAuto();
+    render();
+  };
+  function setup(){
+    if (started) return;
+    started = true;
+    measure();
+    render();
     // רק שינוי-רוחב אמיתי — במובייל קריסת שורת-הכתובת יורה resize על כל גלילה
     var lastW = window.innerWidth;
     window.addEventListener('resize', function(){
       if (window.innerWidth === lastW) return;
       lastW = window.innerWidth;
+      measure();
       render();
     });
-    render();
-    startAuto();
+    document.addEventListener('visibilitychange', startAuto);
   }
-  document.addEventListener('DOMContentLoaded', init);
+  document.addEventListener('DOMContentLoaded', function(){
+    track = document.getElementById('tscrollTrack');
+    if (!track) return;
+    cards = Array.from(track.querySelectorAll('.tcard'));
+    dotsEl = document.getElementById('tcarouselDots');
+    if (!cards.length || !dotsEl) return;
+    var outer = track.closest('.tcarousel-wrap') || track;
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          onScreen = en.isIntersecting;
+          if (onScreen) { setup(); startAuto(); }
+          else stopAuto();
+        });
+      }, { rootMargin: '100px' });
+      io.observe(outer);
+    } else {
+      onScreen = true;
+      setup();
+      startAuto();
+    }
+  });
 })();
 
 // נעילת גלילת-רקע שעובדת גם ב-iOS (overflow:hidden על body לא מכובד שם —
@@ -3199,10 +3228,13 @@ function doSearch() {
 (function(){
   var today=new Date().toDateString();
   if(localStorage.getItem('promo_closed')===today) return;
-  setTimeout(function(){
+  function showWhenReady(){
+    // במובייל הפרומו נערם מעל באנר-העוגיות ומסתיר את הכפתור — מחכים להחלטה
+    if(!localStorage.getItem('cookies_consent')){ setTimeout(showWhenReady,1500); return; }
     var b=document.getElementById('promo-banner');
     if(b) b.style.display='block';
-  },2000);
+  }
+  setTimeout(showWhenReady,2000);
 })();
 function closePromo(){
   var b=document.getElementById('promo-banner');
