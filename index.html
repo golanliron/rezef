@@ -1179,7 +1179,7 @@ footer{background:var(--navy);padding:64px 80px 36px}
   <div class="hero-inner">
     <div class="hero-pill">
       <span class="pill-dot"></span>
-      מעודכן 2026 · +<span id="hero-count">841</span> מענים ותוכניות
+      מעודכן 2026 · +<span id="hero-count">997</span> מענים ותוכניות
     </div>
 
     <h1>
@@ -1212,7 +1212,7 @@ footer{background:var(--navy);padding:64px 80px 36px}
 
 <!-- STATS -->
 <div class="stats" id="stats-section">
-  <div class="stat"><div class="stat-n" id="stat-count" data-target="842">0</div><div class="stat-l">מענים ותוכניות</div></div>
+  <div class="stat"><div class="stat-n" id="stat-count" data-target="997">0</div><div class="stat-l">מענים ותוכניות</div></div>
   <div class="stat"><div class="stat-n" data-target="6">0</div><div class="stat-l">שלבי חיים</div></div>
   <div class="stat"><div class="stat-n stat-free" style="opacity:0;transition:opacity 0.8s 0.6s">חינם</div><div class="stat-l">מידע פתוח לכולם</div></div>
 </div>
@@ -2520,7 +2520,8 @@ function initMaanim() {
   const hc = document.getElementById('hero-count');
   if (hc) hc.textContent = total;
   const sc = document.getElementById('stat-count');
-  if (sc) sc.textContent = total;
+  // גם data-target — אנימציית-המונה קוראת אותו ואחרת דורסת עם ערך ישן
+  if (sc) { sc.textContent = total; sc.dataset.target = total; }
 }
 document.addEventListener('DOMContentLoaded', initMaanim);
 
