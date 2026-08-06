@@ -12,8 +12,6 @@
 html{scroll-behavior:smooth;overflow-x:clip}
 /* מובייל: גלילה בתוך פאנל/עמוד-מאמרים לא תזלוג לעמוד שמאחור */
 #maanim-panel,#articles-page{overscroll-behavior:contain}
-/* layout עצל לסקשנים מתחת לקיפול — מקצר את חסימת ה-main-thread בטעינה במובייל */
-.how-sec,.about-sec,.testimonials-sec,.articles-sec,.ft{content-visibility:auto;contain-intrinsic-size:auto 700px}
 body{
   font-family:'Heebo',sans-serif;
   direction:rtl;
@@ -1099,7 +1097,8 @@ footer{background:var(--navy);padding:64px 80px 36px}
 </style>
 </head>
 <body>
-<script src="_maanim_inline.js" defer></script>
+<link rel="preload" as="image" href="hero4.webp" fetchpriority="high"/>
+<script src="_maanim_inline.js" defer onerror="window.__maanimLoadFailed=true"></script>
 
 
 <!-- SKIP LINK — נגישות -->
@@ -2493,8 +2492,25 @@ function cleanUrl(raw) {
   return first;
 }
 
+// ברשת סלולרית חלשה קובץ-הנתונים (500KB) נכשל לפעמים — בלי זה הקטלוג ריק לתמיד.
+// טעינה-מחדש עם ניסיונות חוזרים + רענון הפאנל אם הוא פתוח.
+var __maanimTries = 0;
+function ensureMaanimData() {
+  if (MAANIM.length || typeof MAANIM_RAW !== 'undefined') return;
+  if (document.readyState === 'loading') return; // ה-defer המקורי עוד בדרך
+  if (__maanimTries >= 3) return;
+  __maanimTries++;
+  var s = document.createElement('script');
+  s.src = '_maanim_inline.js?retry=' + __maanimTries;
+  s.onload = function(){ initMaanim(); };
+  s.onerror = function(){ setTimeout(ensureMaanimData, 3000); };
+  document.head.appendChild(s);
+}
+window.addEventListener('load', function(){ setTimeout(ensureMaanimData, 1500); });
+
 function initMaanim() {
   if (typeof MAANIM_RAW === 'undefined') return;
+  if (MAANIM.length) return; // כבר אותחל — לא לשכפל אפשרויות-אזור
   MAANIM = MAANIM_RAW.map(d => ({
     name: d.n, category: d.c, subcategory: d.s,
     ages: d.a, region: normalizeCity(d.r), phone: d.p,
@@ -2522,6 +2538,9 @@ function initMaanim() {
   const sc = document.getElementById('stat-count');
   // גם data-target — אנימציית-המונה קוראת אותו ואחרת דורסת עם ערך ישן
   if (sc) { sc.textContent = total; sc.dataset.target = total; }
+  // אם הפאנל נפתח לפני שהנתונים הגיעו — רענון עכשיו
+  const panel = document.getElementById('maanim-panel');
+  if (panel && panel.style.display === 'block') renderCurrent();
 }
 document.addEventListener('DOMContentLoaded', initMaanim);
 
@@ -2742,6 +2761,17 @@ function renderCurrent() {
   const bc = document.getElementById('maanim-breadcrumb');
   const title = document.getElementById('maanim-title');
   const content = document.getElementById('maanim-content');
+
+  if (!MAANIM.length) {
+    // הנתונים עוד לא ירדו (או נכשלו) — מצב-טעינה במקום קטלוג ריק
+    ensureMaanimData();
+    content.innerHTML = `<div style="text-align:center;padding:70px 20px;color:#6B7280">
+      <div style="font-size:42px;margin-bottom:14px">⏳</div>
+      <div style="font-size:17px;font-weight:700;color:#1E1B4B;margin-bottom:6px">עוד רגע, טוענים את המענים...</div>
+      <div style="font-size:13px">אם זה נתקע — בדקו את חיבור האינטרנט ונסו שוב</div>
+    </div>`;
+    return;
+  }
 
   if (mState.cat === '__search__') {
     // מצב חיפוש
